@@ -29,7 +29,7 @@
                                     <outletCollection property="gestureRecognizers" destination="wt4-8K-ncZ" appends="YES" id="LzZ-4m-Sen"/>
                                 </connections>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyf-lw-abX" customClass="DeltLoadingView" customModule="huddle" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyf-lw-abX" customClass="LoadAnimationView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaS-R6-wbi">
@@ -166,10 +166,10 @@
                         <outlet property="confirmPasswordTextField" destination="hLt-IU-v9i" id="ZGd-uY-cmS"/>
                         <outlet property="confirmPasswordTextFieldBottomSpacing" destination="eR3-fp-zWS" id="cfg-hJ-c5I"/>
                         <outlet property="confirmPasswordTextFieldHeight" destination="RnS-6K-a9O" id="vuT-mm-v2C"/>
-                        <outlet property="deltLoadingView" destination="Eyf-lw-abX" id="mOg-1s-cUK"/>
                         <outlet property="emailTextField" destination="L0C-9y-iPw" id="WPa-2h-ar6"/>
                         <outlet property="emailTextFieldBottomSpacing" destination="nlH-Md-T39" id="gyo-tW-1ob"/>
                         <outlet property="emailTextFieldHeight" destination="1uk-S6-H2s" id="yxw-L5-vrw"/>
+                        <outlet property="loadAnimationView" destination="Eyf-lw-abX" id="UUV-bM-hFC"/>
                         <outlet property="loginButton" destination="tpU-FH-LpV" id="yKL-H4-npR"/>
                         <outlet property="loginView" destination="BaS-R6-wbi" id="z9z-da-mcY"/>
                         <outlet property="nameTextField" destination="9gY-nU-tqn" id="43j-2b-B1s"/>
@@ -194,10 +194,10 @@
             </objects>
             <point key="canvasLocation" x="-231" y="1019"/>
         </scene>
-        <!--Menu-->
+        <!--Main-->
         <scene sceneID="1C9-vK-4zX">
             <objects>
-                <viewControllerPlaceholder storyboardName="Menu" id="2wJ-rG-AXd" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" id="2wJ-rG-AXd" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DNO-Vm-HRO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="105" y="1019"/>

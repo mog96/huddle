@@ -10,12 +10,11 @@
 import UIKit
 import MessageUI
 import Parse
-import Reachability
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var deltLoadingView: DeltLoadingView!
+    @IBOutlet weak var loadAnimationView: LoadAnimationView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var nameTextFieldHeight: NSLayoutConstraint!
@@ -68,7 +67,7 @@ class LoginViewController: UIViewController {
         
         // self.backgroundImageView.image = UIImage(named: self.loginBackgroundImageNames[self.loginBackgroundImageIndex])
         
-        self.deltLoadingView.isHidden = true
+        self.loadAnimationView.isHidden = true
         self.resetPasswordButton.isHidden = true
         
         self.textFieldOriginalHeight = self.nameTextFieldHeight.constant
@@ -410,7 +409,7 @@ extension LoginViewController {
         self.loginLabel.text = self.loggingInString
         self.loginLabel.sizeToFit()
         self.loginLabel.center.x = self.loginView.center.x
-        self.deltLoadingView.addExemptFrames(self.loginLabel.frame)
+        self.loadAnimationView.addExemptFrames(self.loginLabel.frame)
         self.loginLabel.text = self.loginString
         self.loginLabel.sizeToFit()
         self.loginLabel.frame.origin.x = self.loginLabelOriginalOrigin.x
@@ -455,9 +454,9 @@ extension LoginViewController {
                 component.isHidden = true
                 }, completion: nil)
         })
-        UIView.transition(with: self.deltLoadingView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
-            self.deltLoadingView.startAnimating()
-            self.deltLoadingView.isHidden = false
+        UIView.transition(with: self.loadAnimationView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+            self.loadAnimationView.startAnimating()
+            self.loadAnimationView.isHidden = false
             }, completion: nil)
     }
     
@@ -535,9 +534,9 @@ extension LoginViewController {
         UIView.transition(with: self.backgroundImageView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
             self.backgroundImageView.alpha = 1
             }, completion: nil)
-        UIView.transition(with: self.deltLoadingView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
-            self.deltLoadingView.isHidden = true
-            self.deltLoadingView.stopAnimating()
+        UIView.transition(with: self.loadAnimationView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+            self.loadAnimationView.isHidden = true
+            self.loadAnimationView.stopAnimating()
             }, completion: nil)
         
         self.lastFirstResponder?.becomeFirstResponder()
@@ -549,16 +548,7 @@ extension LoginViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         UIView.transition(with: self.view.window!, duration: animationDuration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
-            self.view.window!.rootViewController = appDelegate.hamburgerViewController
-            let reelStoryboard = UIStoryboard(name: "Reel", bundle: nil)
-            let reelNC = reelStoryboard.instantiateViewController(withIdentifier: "ReelNavigationController") as! UINavigationController
-            if let reelVC = reelNC.viewControllers[0] as? ReelViewController {
-                reelVC.menuDelegate = appDelegate.menuViewController // Set menu delegate so menu button works for first view shown.
-            }
-            
-            appDelegate.hamburgerViewController?.contentViewController = reelNC
-            appDelegate.menuViewController?.tableView.reloadData()
-            
+            self.view.window!.rootViewController = appDelegate.mapViewController
             }, completion: nil)
     }
 }

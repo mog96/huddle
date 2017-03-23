@@ -11,12 +11,23 @@ import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    static var appName = "huddle"
 
     var window: UIWindow?
     
     var mapViewController: MapViewController?
+    
+    static var allowRotation = false
+    static var isAdmin = false /* {
+        didSet {
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            // appDelegate?.menuViewController?.checkAdmin()
+        }
+    } */
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        AppDelegate.appName = Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
         
         /** CONNECT TO PARSE **/
         
@@ -54,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /** SET INITIAL VIEW **/
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        self.mapViewController = mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as? HamburgerViewController
+        self.mapViewController = mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController
         
         /** CHECK IF USER LOGGED IN **/
         

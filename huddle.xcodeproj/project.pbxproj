@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		250C18B21E83764300591980 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 250C18B01E83764300591980 /* Login.storyboard */; };
 		250C18B31E83764300591980 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C18B11E83764300591980 /* LoginViewController.swift */; };
+		250C18B71E837B9500591980 /* LoadAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C18B61E837B9500591980 /* LoadAnimationView.swift */; };
+		250C18BA1E837CA400591980 /* UITextField+NextTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C18B91E837CA400591980 /* UITextField+NextTextField.swift */; };
 		253AC6BA1E7F6B4000A19AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6B91E7F6B4000A19AD8 /* AppDelegate.swift */; };
 		253AC6BF1E7F6B4000A19AD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 253AC6BD1E7F6B4000A19AD8 /* Main.storyboard */; };
 		253AC6C11E7F6B4000A19AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 		189C7D519965531ACF209DE4 /* Pods-huddle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huddle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huddle/Pods-huddle.debug.xcconfig"; sourceTree = "<group>"; };
 		250C18B01E83764300591980 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		250C18B11E83764300591980 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		250C18B61E837B9500591980 /* LoadAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAnimationView.swift; sourceTree = "<group>"; };
+		250C18B91E837CA400591980 /* UITextField+NextTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+NextTextField.swift"; sourceTree = "<group>"; };
 		253AC6B61E7F6B4000A19AD8 /* huddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253AC6B91E7F6B4000A19AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		253AC6BE1E7F6B4000A19AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 			children = (
 				250C18B01E83764300591980 /* Login.storyboard */,
 				250C18B11E83764300591980 /* LoginViewController.swift */,
+				250C18B61E837B9500591980 /* LoadAnimationView.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -98,6 +103,14 @@
 				253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */,
 			);
 			name = Map;
+			sourceTree = "<group>";
+		};
+		250C18B81E837C7700591980 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				250C18B91E837CA400591980 /* UITextField+NextTextField.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		253AC6AD1E7F6B4000A19AD8 = {
@@ -128,9 +141,10 @@
 				253AC6B91E7F6B4000A19AD8 /* AppDelegate.swift */,
 				250C18B41E83764900591980 /* Login */,
 				250C18B51E83765100591980 /* Map */,
+				253AC6C21E7F6B4000A19AD8 /* LaunchScreen.storyboard */,
 				253AC6BD1E7F6B4000A19AD8 /* Main.storyboard */,
 				253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */,
-				253AC6C21E7F6B4000A19AD8 /* LaunchScreen.storyboard */,
+				250C18B81E837C7700591980 /* Extensions */,
 				253AC6C51E7F6B4000A19AD8 /* Info.plist */,
 			);
 			path = huddle;
@@ -361,6 +375,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				250C18B31E83764300591980 /* LoginViewController.swift in Sources */,
+				250C18BA1E837CA400591980 /* UITextField+NextTextField.swift in Sources */,
+				250C18B71E837B9500591980 /* LoadAnimationView.swift in Sources */,
 				253AC6BA1E7F6B4000A19AD8 /* AppDelegate.swift in Sources */,
 				253AC6E81E7F6C8500A19AD8 /* MapViewController.swift in Sources */,
 			);
