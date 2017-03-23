@@ -7,15 +7,78 @@
 //
 
 import UIKit
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var mapViewController: MapViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        /** CONNECT TO PARSE **/
+        
+        if let keys = NSDictionary(contentsOfFile: Bundle.main.path(forResource: "Keys", ofType: "plist")!) {
+            // Parse config.
+            let configuration = ParseClientConfiguration {
+                $0.applicationId = keys["ParseApplicationID"] as? String
+                $0.clientKey = keys["ParseClientKey"] as? String
+                
+                /* DEVELOPMENT ONLY */
+                #if TARGET_IPHONE_SIMULATOR
+                    $0.server = "http://localhost:1337/parse"
+                #else
+                    // $0.server = "http://mog.local:1337/parse"
+                    $0.server = "http://192.168.1.84:1337/parse"
+                #endif
+                /* END DEVELOPMENT ONLY */
+                
+                /*********** ENABLE BEFORE APP DEPLOY ***********/
+                $0.server = "https://thedelt.herokuapp.com/parse"
+            }
+            Parse.enableDataSharing(withApplicationGroupIdentifier: "group.com.tdx.thedelt")
+            Parse.enableLocalDatastore()
+            Parse.initialize(with: configuration)
+            
+            PFUser.enableRevocableSessionInBackground { (error: Error?) -> Void in
+                print("enableRevocableSessionInBackgroundWithBlock completion")
+            }
+        } else {
+            print("Error: Unable to load Keys.plist.")
+        }
+        
+        /** SET INITIAL VIEW **/
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        self.mapViewController = mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as? HamburgerViewController
+        
+        /** CHECK IF USER LOGGED IN **/
+        
+        if PFUser.current() == nil {
+            let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let loginViewController = loginStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            
+            // Does exactly the same as arrow in storyboard. ("100% parity." --Tim Lee)
+            window?.rootViewController = loginViewController
+            // Will register for push after successful login.
+            
+        } else {
+            
+            // Save username to NSUserDefaults in case PFUser.currentUser() fails in share extension.
+            UserDefaults(suiteName: "group.com.tdx.thedelt")?.set(PFUser.current()!.username!, forKey: "Username")
+            
+            if let isAdmin = PFUser.current()!.object(forKey: "is_admin") as? Bool {
+                AppDelegate.isAdmin = isAdmin
+            } else {
+                AppDelegate.isAdmin = false
+            }
+            
+            // Does exactly the same as arrow in storyboard. ("100% parity." --Tim Lee)
+            window?.rootViewController = self.mapViewController
+        }
+        
         return true
     }
 
