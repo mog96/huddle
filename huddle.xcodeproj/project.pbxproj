@@ -16,6 +16,7 @@
 		253AC6CF1E7F6B4100A19AD8 /* huddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6CE1E7F6B4100A19AD8 /* huddleTests.swift */; };
 		253AC6DA1E7F6B4100A19AD8 /* huddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6D91E7F6B4100A19AD8 /* huddleUITests.swift */; };
 		253AC6E81E7F6C8500A19AD8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */; };
+		735C79B11DE8024CA5636B52 /* Pods_huddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		189C7D519965531ACF209DE4 /* Pods-huddle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huddle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-huddle/Pods-huddle.debug.xcconfig"; sourceTree = "<group>"; };
 		250C18B01E83764300591980 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		250C18B11E83764300591980 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		253AC6B61E7F6B4000A19AD8 /* huddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +53,8 @@
 		253AC6D91E7F6B4100A19AD8 /* huddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = huddleUITests.swift; sourceTree = "<group>"; };
 		253AC6DB1E7F6B4100A19AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		69B7F20890245A25B5CAC77E /* Pods-huddle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huddle.release.xcconfig"; path = "Pods/Target Support Files/Pods-huddle/Pods-huddle.release.xcconfig"; sourceTree = "<group>"; };
+		782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				735C79B11DE8024CA5636B52 /* Pods_huddle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +107,8 @@
 				253AC6CD1E7F6B4100A19AD8 /* huddleTests */,
 				253AC6D81E7F6B4100A19AD8 /* huddleUITests */,
 				253AC6B71E7F6B4000A19AD8 /* Products */,
+				2F3CE7C83EFD582618F9C04B /* Pods */,
+				50C6B9F52035C4259BF0DDAA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +154,23 @@
 			path = huddleUITests;
 			sourceTree = "<group>";
 		};
+		2F3CE7C83EFD582618F9C04B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				189C7D519965531ACF209DE4 /* Pods-huddle.debug.xcconfig */,
+				69B7F20890245A25B5CAC77E /* Pods-huddle.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		50C6B9F52035C4259BF0DDAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -154,9 +178,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 253AC6DE1E7F6B4100A19AD8 /* Build configuration list for PBXNativeTarget "huddle" */;
 			buildPhases = (
+				38B53B62B877A9FB9F838808 /* [CP] Check Pods Manifest.lock */,
 				253AC6B21E7F6B4000A19AD8 /* Sources */,
 				253AC6B31E7F6B4000A19AD8 /* Frameworks */,
 				253AC6B41E7F6B4000A19AD8 /* Resources */,
+				9A4813F5AD293265DCABA1BE /* [CP] Embed Pods Frameworks */,
+				39F266A4317429F3740CE93B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,6 +306,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38B53B62B877A9FB9F838808 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		39F266A4317429F3740CE93B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-huddle/Pods-huddle-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A4813F5AD293265DCABA1BE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-huddle/Pods-huddle-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		253AC6B21E7F6B4000A19AD8 /* Sources */ = {
@@ -435,6 +510,7 @@
 		};
 		253AC6DF1E7F6B4100A19AD8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 189C7D519965531ACF209DE4 /* Pods-huddle.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9VEX7Q727F;
@@ -448,6 +524,7 @@
 		};
 		253AC6E01E7F6B4100A19AD8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69B7F20890245A25B5CAC77E /* Pods-huddle.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9VEX7Q727F;

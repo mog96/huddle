@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 #endif
                 /* END DEVELOPMENT ONLY */
                 
+                /*~*~*~*~*~*~*~* CRITICAL SECTION *~*~*~*~*~*~*~*/
+                
                 /*********** ENABLE BEFORE APP DEPLOY ***********/
                 $0.server = "https://thedelt.herokuapp.com/parse"
             }

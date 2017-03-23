@@ -54,13 +54,8 @@ class LoginViewController: UIViewController {
     var signupTextFieldBottomSpacingConstraints: [NSLayoutConstraint]!
     var controlsHiddenOnLogin: [UIControl]!
     
-    let loginBackgroundImageNames = ["LOGIN BACKGROUND 1",
-                                     "LOGIN BACKGROUND 2",
-                                     "LOGIN BACKGROUND 3",
-                                     "LOGIN BACKGROUND 4",
-                                     "LOGIN BACKGROUND 5",
-                                     // "TORTOISE",
-                                     "OUTER SPACE"]
+    // let loginBackgroundImageNames = []
+    
     var loginBackgroundImageIndex = 0
     
     var lastFirstResponder: UITextField?
@@ -71,7 +66,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.backgroundImageView.image = UIImage(named: self.loginBackgroundImageNames[self.loginBackgroundImageIndex])
+        // self.backgroundImageView.image = UIImage(named: self.loginBackgroundImageNames[self.loginBackgroundImageIndex])
         
         self.deltLoadingView.isHidden = true
         self.resetPasswordButton.isHidden = true
@@ -445,10 +440,9 @@ extension LoginViewController {
         UIApplication.shared.setStatusBarHidden(true, with: .fade)
         UIView.transition(with: self.backgroundImageView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
             self.backgroundImageView.alpha = 0
-            self.loginBackgroundImageIndex = (self.loginBackgroundImageIndex + 1) % self.loginBackgroundImageNames.count
+            // self.loginBackgroundImageIndex = (self.loginBackgroundImageIndex + 1) % self.loginBackgroundImageNames.count
             }, completion: { _ in
-//                self.loginBackgroundImageIndex = (self.loginBackgroundImageIndex + 1) % self.loginBackgroundImageNames.count
-                self.backgroundImageView.image = UIImage(named: self.loginBackgroundImageNames[self.loginBackgroundImageIndex])
+                // self.backgroundImageView.image = UIImage(named: self.loginBackgroundImageNames[self.loginBackgroundImageIndex])
         })
         var controlsToHide: [UIControl]!
         if fromResetPasswordMode {
