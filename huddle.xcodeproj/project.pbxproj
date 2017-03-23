@@ -11,6 +11,7 @@
 		250C18B31E83764300591980 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C18B11E83764300591980 /* LoginViewController.swift */; };
 		250C18B71E837B9500591980 /* LoadAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C18B61E837B9500591980 /* LoadAnimationView.swift */; };
 		250C18BA1E837CA400591980 /* UITextField+NextTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250C18B91E837CA400591980 /* UITextField+NextTextField.swift */; };
+		250C18BC1E837E4300591980 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 250C18BB1E837E4300591980 /* Keys.plist */; };
 		253AC6BA1E7F6B4000A19AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6B91E7F6B4000A19AD8 /* AppDelegate.swift */; };
 		253AC6BF1E7F6B4000A19AD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 253AC6BD1E7F6B4000A19AD8 /* Main.storyboard */; };
 		253AC6C11E7F6B4000A19AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 		250C18B11E83764300591980 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		250C18B61E837B9500591980 /* LoadAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadAnimationView.swift; sourceTree = "<group>"; };
 		250C18B91E837CA400591980 /* UITextField+NextTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+NextTextField.swift"; sourceTree = "<group>"; };
+		250C18BB1E837E4300591980 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		253AC6B61E7F6B4000A19AD8 /* huddle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = huddle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253AC6B91E7F6B4000A19AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		253AC6BE1E7F6B4000A19AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */,
 				250C18B81E837C7700591980 /* Extensions */,
 				253AC6C51E7F6B4000A19AD8 /* Info.plist */,
+				250C18BB1E837E4300591980 /* Keys.plist */,
 			);
 			path = huddle;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				253AC6C41E7F6B4000A19AD8 /* LaunchScreen.storyboard in Resources */,
 				253AC6C11E7F6B4000A19AD8 /* Assets.xcassets in Resources */,
 				253AC6BF1E7F6B4000A19AD8 /* Main.storyboard in Resources */,
+				250C18BC1E837E4300591980 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

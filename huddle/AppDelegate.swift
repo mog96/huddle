@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 /*********** ENABLE BEFORE APP DEPLOY ***********/
                 $0.server = "https://thedelt.herokuapp.com/parse"
             }
-            Parse.enableDataSharing(withApplicationGroupIdentifier: "group.com.tdx.thedelt")
+            // Parse.enableDataSharing(withApplicationGroupIdentifier: "group.com.tdx.thedelt")
             Parse.enableLocalDatastore()
             Parse.initialize(with: configuration)
             
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             
             // Save username to NSUserDefaults in case PFUser.currentUser() fails in share extension.
-            UserDefaults(suiteName: "group.com.tdx.thedelt")?.set(PFUser.current()!.username!, forKey: "Username")
+            UserDefaults.standard.set(PFUser.current()!.username!, forKey: "Username")
             
             if let isAdmin = PFUser.current()!.object(forKey: "is_admin") as? Bool {
                 AppDelegate.isAdmin = isAdmin

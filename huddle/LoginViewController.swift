@@ -198,7 +198,8 @@ extension LoginViewController {
                 /** SAVE DEVICE INSTALLATION **/
                 
                 // Save username to NSUserDefaults in case PFUser.currentUser() fails in share extension.
-                UserDefaults(suiteName: "group.com.tdx.thedelt")?.set(user.username!, forKey: "Username")
+                // UserDefaults(suiteName: "group.com.tdx.thedelt")?.set(user.username!, forKey: "Username")
+                UserDefaults.standard.set(user.username!, forKey: "Username")
                 let installation = PFInstallation.current()!
                 installation["user"] = PFUser.current()!
                 installation["username"] = PFUser.current()!.username!
