@@ -10,6 +10,8 @@ import UIKit
 
 class LoadAnimationView: UIView {
     
+    let character = "×"
+    
     fileprivate var shouldContinue = false
     fileprivate var exemptFrames: [CGRect]?
     var characterColor: UIColor! = UIColor.white {
@@ -98,7 +100,7 @@ extension LoadAnimationView {
     // Returns ∆ label with random origin within this view's bounds.
     fileprivate func deltLabel(color: UIColor) -> UILabel {
         let deltLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        deltLabel.text = "Δ"
+        deltLabel.text = self.character
         deltLabel.textColor = color
         deltLabel.font = UIFont.systemFont(ofSize: 15)
         deltLabel.sizeToFit()
