@@ -18,7 +18,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.blurView.alpha = 0.6
+        
+        self.mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +36,14 @@ class MapViewController: UIViewController {
         self.mapView.setRegion(viewRegion, animated: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let annotation = MKPointAnnotation()
+        let coord = self.mapView.centerCoordinate
+        annotation.coordinate = coord
+        annotation.title = "art"
+        self.mapView.addAnnotation(annotation)
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -46,4 +55,17 @@ class MapViewController: UIViewController {
     }
     */
 
+}
+
+extension MapViewController: MKMapViewDelegate {
+    /*
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotation = MKAnnotationView()
+        annotation.image = #imageLiteral(resourceName: "art-pin")
+        
+        // TODO: CONSTRAIN IMAGE
+        
+        return annotation
+    }
+    */
 }
