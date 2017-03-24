@@ -49,8 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 /*~*~*~*~*~*~*~* CRITICAL SECTION *~*~*~*~*~*~*~*/
                 
                 /*********** ENABLE BEFORE APP DEPLOY ***********/
-                $0.server = "https://thedelt.herokuapp.com/parse"
+                $0.server = keys["ParseServerURL"] as! String
+                
+                /*~*~*~*~*~*~* END CRITICAL SECTION *~*~*~*~*~*~*/
             }
+            
             // Parse.enableDataSharing(withApplicationGroupIdentifier: "group.com.tdx.thedelt")
             Parse.enableLocalDatastore()
             Parse.initialize(with: configuration)
