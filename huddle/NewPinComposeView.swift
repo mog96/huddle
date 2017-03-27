@@ -13,10 +13,14 @@ protocol NewPinComposeViewDelegate {
 }
 
 class NewPinComposeView: UIView {
-
-    var delegate: NewPinTypeSelectionViewDelegate?
     
     @IBOutlet weak var descriptionTextView: CustomTextView!
+    @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
+    
+    var delegate: NewPinTypeSelectionViewDelegate?
+    
+    var defaultDescriptionTextViewtHeight: CGFloat!
+    let kMaxDescriptionTextViewHeight: CGFloat = 300
     
     init(frame: CGRect, exemptFrames: CGRect...) {
         super.init(frame: frame)
@@ -30,5 +34,26 @@ class NewPinComposeView: UIView {
     
     func commonInit() {
         self.descriptionTextView.placeholder = "Comment:"
+        self.descriptionTextView.delegate = self
+    }
+    
+    override func awakeFromNib() {
+        self.descriptionTextViewHeight.constant = self.descriptionTextView.contentSize.height
+        self.defaultDescriptionTextViewtHeight = self.descriptionTextViewHeight.constant
+    }
+}
+
+extension NewPinComposeView: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        // Manually resize when newline entered.
+        if text == "\n" {
+            self.descriptionTextViewHeight.constant = min(self.kMaxDescriptionTextViewHeight,  self.descriptionTextViewHeight.constant + textView.font!.lineHeight)
+        
+        // Otherwise just resize height to content size height.
+        } else {
+            self.descriptionTextViewHeight.constant = min(self.kMaxDescriptionTextViewHeight, self.descriptionTextView.contentSize.height)
+        }
+        return true
     }
 }

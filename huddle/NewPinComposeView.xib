@@ -27,6 +27,12 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="djc-u0-KOC">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PtA-6f-Vun">
+                                            <rect key="frame" x="78" y="59" width="240" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
                                 <vibrancyEffect>
                                     <blurEffect style="light"/>
@@ -42,6 +48,9 @@
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-sT-9kU" customClass="CustomTextView" customModule="huddle" customModuleProvider="target">
                             <rect key="frame" x="16" y="20" width="343" height="88"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="88" id="78C-ZU-43t"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
@@ -67,6 +76,7 @@
             </constraints>
             <connections>
                 <outlet property="descriptionTextView" destination="1UZ-sT-9kU" id="dNn-cv-jzV"/>
+                <outlet property="descriptionTextViewHeight" destination="78C-ZU-43t" id="cB3-V3-yWl"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
