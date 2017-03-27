@@ -10,6 +10,7 @@ import UIKit
 
 protocol NewPinComposeViewDelegate {
     func newPinComposeViewCancelButtonTapped()
+    func newPinComposeView(didPostPin pinType: PinType.PinType, withDescription description: String)
 }
 
 class NewPinComposeView: UIView {
@@ -93,7 +94,7 @@ extension NewPinComposeView {
         self.delegate?.newPinComposeViewCancelButtonTapped()
     }
     
-    @IBAction func onCreateFreedomBubbleTapped(_ sender: Any) {
-        //
+    @IBAction func onCreatePinTapped(_ sender: Any) {
+        self.delegate?.newPinComposeView(didPostPin: self.pinType, withDescription: self.descriptionTextView.text)
     }
 }

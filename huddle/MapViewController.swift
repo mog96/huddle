@@ -88,10 +88,14 @@ class MapViewController: UIViewController {
 
 extension MapViewController {
     fileprivate func showMenuView(_ show: Bool) {
+        self.statusBarHidden = show
+        self.setNeedsStatusBarAppearanceUpdate()
         self.showFullScreenView(view: self.menuView, show: show)
     }
     
     fileprivate func showNewPinTypeSelectionView(_ show: Bool) {
+        self.statusBarHidden = show
+        self.setNeedsStatusBarAppearanceUpdate()
         self.showFullScreenView(view: self.newPinTypeSelectionView, show: show)
     }
     
@@ -102,15 +106,11 @@ extension MapViewController {
     fileprivate func showFullScreenView(view: UIView, show: Bool) {
         if show {
             view.isHidden = false
-            self.statusBarHidden = true
-            self.setNeedsStatusBarAppearanceUpdate()
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
                 view.alpha = 1
             }, completion: nil)
             
         } else {
-            self.statusBarHidden = false
-            self.setNeedsStatusBarAppearanceUpdate()
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseIn, animations: {
                 view.alpha = 0
             }) { _ in
@@ -165,6 +165,10 @@ extension MapViewController: NewPinTypeSelectionViewDelegate {
 extension MapViewController: NewPinComposeViewDelegate {
     func newPinComposeViewCancelButtonTapped() {
         self.showNewPinComposeView(false)
+    }
+    
+    func newPinComposeView(didPostPin pinType: PinType.PinType, withDescription description: String) {
+        // TODO: START HERE
     }
 }
 
