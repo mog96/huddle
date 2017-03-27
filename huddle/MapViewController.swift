@@ -8,22 +8,31 @@
 
 import UIKit
 import MapKit
+import PureLayout
 
 class MapViewController: UIViewController {
     
     let METERS_PER_MILE = 1609.344
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var menuView: MenuView!
+    var menuView: MenuView!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
+    
+    var statusBarHidden = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.mapView.delegate = self
+        
+        self.menuView = Bundle.main.loadNibNamed("MenuView", owner: self, options: nil)![0] as! MenuView
+        self.view.addSubview(menuView)
+        self.menuView.autoPinEdgesToSuperviewEdges()
         self.menuView.delegate = self
+        self.menuView.alpha = 0
+        self.menuView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +56,14 @@ class MapViewController: UIViewController {
         annotation.title = "art"
         self.mapView.addAnnotation(annotation)
     }
+    
+    override var prefersStatusBarHidden: Bool {
+        return self.statusBarHidden
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .fade
+    }
 
     /*
     // MARK: - Navigation
@@ -64,11 +81,16 @@ extension MapViewController {
     func showMenuView(show: Bool) {
         if show {
             self.menuView.isHidden = false
-            UIView.animate(withDuration: 0.3, animations: {
+            self.statusBarHidden = true
+            self.setNeedsStatusBarAppearanceUpdate()
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.menuView.alpha = 1
             }, completion: nil)
+            
         } else {
-            UIView.animate(withDuration: 0.3, animations: {
+            self.statusBarHidden = false
+            self.setNeedsStatusBarAppearanceUpdate()
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
                 self.menuView.alpha = 0
             }) { _ in
                 self.menuView.isHidden = true

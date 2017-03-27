@@ -34,12 +34,12 @@
                             </visualEffectView>
                         </subviews>
                     </view>
-                    <blurEffect style="light"/>
+                    <blurEffect style="dark"/>
                 </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGT-aK-t47">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vey-wl-vMo">
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vey-wl-vMo">
                             <rect key="frame" x="187" y="20" width="1" height="627"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -49,7 +49,7 @@
                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OuY-yB-jPO">
                             <rect key="frame" x="20" y="0.0" width="335" height="333.5"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZu-yb-rFA">
+                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZu-yb-rFA">
                                     <rect key="frame" x="0.0" y="166" width="335" height="1"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -63,7 +63,7 @@
                                 <constraint firstItem="dZu-yb-rFA" firstAttribute="leading" secondItem="OuY-yB-jPO" secondAttribute="leading" id="z5v-6O-R2o"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mpt-cp-HRX">
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mpt-cp-HRX">
                             <rect key="frame" x="20" y="333" width="335" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -73,7 +73,7 @@
                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdX-17-kBg">
                             <rect key="frame" x="20" y="333.5" width="335" height="333.5"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFN-o7-pz4">
+                                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFN-o7-pz4">
                                     <rect key="frame" x="0.0" y="166.5" width="335" height="1"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -186,7 +186,11 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Af-1u-rZD">
-                    <rect key="frame" x="16" y="20" width="26" height="26"/>
+                    <rect key="frame" x="16" y="20" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="AY8-5G-6Zf"/>
+                        <constraint firstAttribute="width" constant="20" id="MWT-mw-RIr"/>
+                    </constraints>
                     <state key="normal" image="close-button"/>
                     <connections>
                         <action selector="onCloseButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pff-fx-rkb"/>
