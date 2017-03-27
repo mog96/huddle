@@ -84,7 +84,6 @@
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                     <state key="normal" title="CREATE FREEDOM BUBBLE"/>
                     <connections>
-                        <action selector="onCreateFreedomBubbleTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="IFT-YT-cLU"/>
                         <action selector="onCreatePinTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="xGw-I1-bow"/>
                     </connections>
                 </button>

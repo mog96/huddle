@@ -25,10 +25,16 @@ class MapViewController: UIViewController {
     
     var statusBarHidden = false
     
+    let kRegionRadius: CLLocationDistance = 1000
+    
+    let locationManager = CLLocationManager()
+    var currentLocation: CLLocation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.mapView.delegate = self
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         self.menuView = Bundle.main.loadNibNamed("MenuView", owner: self, options: nil)![0] as! MenuView
         self.view.addSubview(menuView)
@@ -50,6 +56,14 @@ class MapViewController: UIViewController {
         self.newPinComposeView.delegate = self
         self.newPinComposeView.alpha = 0
         self.newPinComposeView.isHidden = true
+        
+        self.mapView.delegate = self
+        
+        // TODO: Set location to old stored location.
+        
+        // Set initial location in Golden Gate Park.
+        let initialLocation = CLLocation(latitude: 37.769319, longitude: -122.487104)
+        self.centerMapOnLocation(initialLocation)
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,21 +71,18 @@ class MapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        var zoomLocation = CLLocationCoordinate2D()
-        zoomLocation.latitude = 37.769319
-        zoomLocation.longitude = -122.487104
-        
-        let viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5 * METERS_PER_MILE, 0.5 * METERS_PER_MILE)
-        self.mapView.setRegion(viewRegion, animated: true)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.checkLocationAuthorizationStatus()
+        
+        /*
         let annotation = MKPointAnnotation()
         let coord = self.mapView.centerCoordinate
         annotation.coordinate = coord
         annotation.title = "art"
         self.mapView.addAnnotation(annotation)
+        */
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -84,7 +95,54 @@ class MapViewController: UIViewController {
 }
 
 
-// MARK: - Helpers
+// MARK: - Map Helpers
+
+extension MapViewController {
+    func checkLocationAuthorizationStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            self.mapView.showsUserLocation = true
+            self.locationManager.requestLocation()
+        } else {
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+    }
+    
+    func centerMapOnLocation(_ location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.kRegionRadius * 2.0, self.kRegionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+}
+
+
+// MARK: - CLLocationManagerDelegate
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            self.mapView.showsUserLocation = true
+            self.locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            self.currentLocation = location
+            self.centerMapOnLocation(self.currentLocation!)
+            
+            print("Current location: \(location)")
+            
+        } else {
+            // ...
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error finding location: \(error.localizedDescription)")
+    }
+}
+
+
+// MARK: - Transition Helpers
 
 extension MapViewController {
     fileprivate func showMenuView(_ show: Bool) {
@@ -168,7 +226,7 @@ extension MapViewController: NewPinComposeViewDelegate {
     }
     
     func newPinComposeView(didPostPin pinType: PinType.PinType, withDescription description: String) {
-        // TODO: START HERE
+        self.locationManager.requestLocation()
     }
 }
 

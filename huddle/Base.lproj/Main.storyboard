@@ -24,9 +24,13 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ovt-AP-L3g">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-g3-YG0">
-                                <rect key="frame" x="20" y="597" width="44" height="30"/>
-                                <state key="normal" title="MENU"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-g3-YG0">
+                                <rect key="frame" x="20" y="597" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="LoR-RF-yft"/>
+                                    <constraint firstAttribute="height" constant="30" id="Tkl-Gn-0lz"/>
+                                </constraints>
+                                <state key="normal" image="menu"/>
                                 <connections>
                                     <action selector="onMenuButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="npt-5W-NkD"/>
                                 </connections>
@@ -39,9 +43,13 @@
                                     <action selector="onPostButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rb7-Ip-vVh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFM-g2-2Ed">
-                                <rect key="frame" x="281" y="597" width="74" height="30"/>
-                                <state key="normal" title="LOCATION"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFM-g2-2Ed">
+                                <rect key="frame" x="325" y="597" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="JOZ-5n-eWr"/>
+                                    <constraint firstAttribute="height" constant="30" id="YiC-Fs-TUX"/>
+                                </constraints>
+                                <state key="normal" image="locate"/>
                                 <connections>
                                     <action selector="onCurrentLocationButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rYA-n8-JRg"/>
                                 </connections>
@@ -73,4 +81,8 @@
             <point key="canvasLocation" x="140" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="locate" width="220" height="220"/>
+        <image name="menu" width="220" height="220"/>
+    </resources>
 </document>
