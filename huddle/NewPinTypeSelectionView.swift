@@ -17,7 +17,7 @@ class NewPinTypeSelectionView: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
     
     fileprivate let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-    fileprivate let itemsPerRow: CGFloat = 3
+    fileprivate let kItemsPerRow: Int = 3
     
     var delegate: NewPinTypeSelectionViewDelegate?
 
@@ -37,7 +37,8 @@ class NewPinTypeSelectionView: UIView {
     
     override func awakeFromNib() {
         self.collectionView.delegate = self
-        self.collectionView.register(Bundle.main.loadNibNamed("NewPinTypeCollectionViewCell", owner: self, options: nil)?[0] as? UINib, forCellWithReuseIdentifier: "NewPinTypeCell")
+        self.collectionView.dataSource = self
+        self.collectionView.register(UINib(nibName: "NewPinTypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewPinTypeCell")
     }
 }
 
@@ -46,11 +47,15 @@ class NewPinTypeSelectionView: UIView {
 
 extension NewPinTypeSelectionView: UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        var numRows = PinType.kNumPinTypes / self.kItemsPerRow
+        if PinType.kNumPinTypes % self.kItemsPerRow > 0 {
+            numRows += 1
+        }
+        return numRows
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PinType.kNumPinTypes
+        return self.kItemsPerRow
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,9 +71,9 @@ extension NewPinTypeSelectionView: UICollectionViewDelegate, UICollectionViewDat
 
 extension NewPinTypeSelectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = self.sectionInsets.left * (self.itemsPerRow + 1)
+        let paddingSpace = self.sectionInsets.left * (CGFloat(self.kItemsPerRow) + 1)
         let availableWidth = self.frame.width - paddingSpace
-        let widthPerItem = availableWidth / self.itemsPerRow
+        let widthPerItem = availableWidth / CGFloat(self.kItemsPerRow)
         
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
