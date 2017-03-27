@@ -14,13 +14,16 @@ protocol NewPinComposeViewDelegate {
 
 class NewPinComposeView: UIView {
     
+    @IBOutlet weak var pinTypeImageView: UIImageView!
     @IBOutlet weak var descriptionTextView: CustomTextView!
     @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
     
     var delegate: NewPinTypeSelectionViewDelegate?
     
-    var defaultDescriptionTextViewtHeight: CGFloat!
-    let kMaxDescriptionTextViewHeight: CGFloat = 300
+    var pinType: PinType.PinType?
+    
+    fileprivate var defaultDescriptionTextViewtHeight: CGFloat!
+    fileprivate let kMaxDescriptionTextViewHeight: CGFloat = 250
     
     init(frame: CGRect, exemptFrames: CGRect...) {
         super.init(frame: frame)
@@ -38,8 +41,14 @@ class NewPinComposeView: UIView {
     }
     
     override func awakeFromNib() {
+        self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType!]
+        
         self.descriptionTextViewHeight.constant = self.descriptionTextView.contentSize.height
         self.defaultDescriptionTextViewtHeight = self.descriptionTextViewHeight.constant
+    }
+    
+    @IBAction func onCreateFreedomBubbleTapped(_ sender: Any) {
+        //
     }
 }
 

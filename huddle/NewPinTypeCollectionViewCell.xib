@@ -18,25 +18,21 @@
                 <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y23-nQ-mao">
-                        <rect key="frame" x="20" y="20" width="85" height="85"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <action selector="onPinTypeButtonTapped:" destination="0GB-1H-Lw6" eventType="touchUpInside" id="v56-1q-Qqe"/>
-                        </connections>
-                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z1q-8d-p7B">
+                        <rect key="frame" x="8" y="8" width="109" height="109"/>
+                    </imageView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="y23-nQ-mao" firstAttribute="top" secondItem="0GB-1H-Lw6" secondAttribute="top" constant="20" id="M4u-dA-7oi"/>
-                <constraint firstAttribute="trailing" secondItem="y23-nQ-mao" secondAttribute="trailing" constant="20" id="QUj-bo-z7X"/>
-                <constraint firstAttribute="bottom" secondItem="y23-nQ-mao" secondAttribute="bottom" constant="20" id="aqy-vA-X9u"/>
-                <constraint firstItem="y23-nQ-mao" firstAttribute="leading" secondItem="0GB-1H-Lw6" secondAttribute="leading" constant="20" id="ftc-tA-hay"/>
+                <constraint firstItem="z1q-8d-p7B" firstAttribute="top" secondItem="0GB-1H-Lw6" secondAttribute="top" constant="8" id="K0G-eh-7Wv"/>
+                <constraint firstAttribute="trailing" secondItem="z1q-8d-p7B" secondAttribute="trailing" constant="8" id="Myg-OR-sBY"/>
+                <constraint firstItem="z1q-8d-p7B" firstAttribute="leading" secondItem="0GB-1H-Lw6" secondAttribute="leading" constant="8" id="lqi-F2-6jX"/>
+                <constraint firstAttribute="bottom" secondItem="z1q-8d-p7B" secondAttribute="bottom" constant="8" id="wlo-mt-162"/>
             </constraints>
             <connections>
-                <outlet property="pinTypeButton" destination="y23-nQ-mao" id="Q5F-1o-cG0"/>
+                <outlet property="pinTypeImageView" destination="z1q-8d-p7B" id="yaj-bo-QUQ"/>
             </connections>
-            <point key="canvasLocation" x="-23" y="-35"/>
+            <point key="canvasLocation" x="-23.5" y="-35.5"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -14,17 +14,26 @@ protocol NewPinTypeCollectionViewCellDelegate {
 
 class NewPinTypeCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var pinTypeButton: UIButton!
+    // @IBOutlet weak var pinTypeButton: UIButton!
+    @IBOutlet weak var pinTypeImageView: UIImageView!
     
     var delegate: NewPinTypeCollectionViewCellDelegate?
     
     var pinType: PinType.PinType! {
         didSet {
-            self.pinTypeButton.setImage(PinType.pinTypeImage[self.pinType], for: .normal)
+            // self.pinTypeButton.setImage(PinType.pinTypeImage[self.pinType], for: .normal)
+            self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
         }
     }
-    
+}
+
+
+// MARK: - Actions
+
+extension NewPinTypeCollectionViewCell {
+    /*
     @IBAction func onPinTypeButtonTapped(_ sender: Any) {
         self.delegate?.newPinTypeCollectionViewCell(tappedWithPinType: self.pinType)
     }
+    */
 }

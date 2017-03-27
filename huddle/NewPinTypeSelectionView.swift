@@ -16,7 +16,7 @@ class NewPinTypeSelectionView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    fileprivate let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    fileprivate let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     fileprivate let kItemsPerRow: Int = 3
     
     var delegate: NewPinTypeSelectionViewDelegate?
