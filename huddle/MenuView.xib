@@ -186,10 +186,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Af-1u-rZD">
-                    <rect key="frame" x="16" y="20" width="20" height="20"/>
+                    <rect key="frame" x="16" y="20" width="17" height="17"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="AY8-5G-6Zf"/>
-                        <constraint firstAttribute="width" constant="20" id="MWT-mw-RIr"/>
+                        <constraint firstAttribute="height" constant="17" id="AY8-5G-6Zf"/>
+                        <constraint firstAttribute="width" constant="17" id="MWT-mw-RIr"/>
                     </constraints>
                     <state key="normal" image="close-button"/>
                     <connections>

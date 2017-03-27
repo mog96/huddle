@@ -9,6 +9,12 @@
 import UIKit
 
 class PinType: NSObject {
+    static var kNumPinTypes: Int {
+        get {
+            return pinTypeImage.count
+        }
+    }
+    
     enum PinType {
         case art
         case basketball

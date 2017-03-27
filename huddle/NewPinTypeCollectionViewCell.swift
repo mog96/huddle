@@ -9,7 +9,7 @@
 import UIKit
 
 protocol NewPinTypeCollectionViewCellDelegate {
-    func newPinTypeCollectionViewCellButtonTapped()
+    func newPinTypeCollectionViewCell(tappedWithPinType pinType: PinType.PinType)
 }
 
 class NewPinTypeCollectionViewCell: UICollectionViewCell {
@@ -18,7 +18,13 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
     
     var delegate: NewPinTypeCollectionViewCellDelegate?
     
+    var pinType: PinType.PinType! {
+        didSet {
+            self.pinTypeButton.setImage(PinType.pinTypeImage[self.pinType], for: .normal)
+        }
+    }
+    
     @IBAction func onPinTypeButtonTapped(_ sender: Any) {
-        self.delegate?.newPinTypeCollectionViewCellButtonTapped()
+        self.delegate?.newPinTypeCollectionViewCell(tappedWithPinType: self.pinType)
     }
 }

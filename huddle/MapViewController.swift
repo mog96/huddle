@@ -15,10 +15,12 @@ class MapViewController: UIViewController {
     let METERS_PER_MILE = 1609.344
 
     @IBOutlet weak var mapView: MKMapView!
-    var menuView: MenuView!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
+    
+    var menuView: MenuView!
+    var newPinTypeSelectionView: NewPinTypeSelectionView!
     
     var statusBarHidden = false
     
@@ -33,6 +35,13 @@ class MapViewController: UIViewController {
         self.menuView.delegate = self
         self.menuView.alpha = 0
         self.menuView.isHidden = true
+        
+        self.newPinTypeSelectionView = Bundle.main.loadNibNamed("NewPinTypeSelectionView", owner: self, options: nil)![0] as! NewPinTypeSelectionView
+        self.view.addSubview(newPinTypeSelectionView)
+        self.newPinTypeSelectionView.autoPinEdgesToSuperviewEdges()
+        self.newPinTypeSelectionView.delegate = self
+        self.newPinTypeSelectionView.alpha = 0
+        self.newPinTypeSelectionView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,40 +73,43 @@ class MapViewController: UIViewController {
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+
+// MARK: - Helpers
+
 extension MapViewController {
-    func showMenuView(show: Bool) {
+    fileprivate func showMenuView(show: Bool) {
+        self.showFullScreenView(view: self.menuView, show: show)
+    }
+    
+    fileprivate func showNewPinTypeSelectionView(show: Bool) {
+        self.showFullScreenView(view: self.newPinTypeSelectionView, show: show)
+    }
+    
+    fileprivate func showFullScreenView(view: UIView, show: Bool) {
         if show {
-            self.menuView.isHidden = false
+            view.isHidden = false
             self.statusBarHidden = true
             self.setNeedsStatusBarAppearanceUpdate()
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-                self.menuView.alpha = 1
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
+                view.alpha = 1
             }, completion: nil)
             
         } else {
             self.statusBarHidden = false
             self.setNeedsStatusBarAppearanceUpdate()
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                self.menuView.alpha = 0
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseIn, animations: {
+                view.alpha = 0
             }) { _ in
-                self.menuView.isHidden = true
+                view.isHidden = true
             }
         }
     }
 }
+
+
+// MARK: - Map View Delegate
 
 extension MapViewController: MKMapViewDelegate {
     /*
@@ -113,9 +125,20 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 
+// MARK: - Menu View Delegate
+
 extension MapViewController: MenuViewDelegate {
     func menuViewCloseButtonTapped() {
         self.showMenuView(show: false)
+    }
+}
+
+
+// MARK: - New Pin Type Selection View Delegate
+
+extension MapViewController: NewPinTypeSelectionViewDelegate {
+    func newPinTypeSelectionViewCloseButtonTapped() {
+        self.showNewPinTypeSelectionView(show: false)
     }
 }
 
@@ -128,7 +151,7 @@ extension MapViewController {
     }
     
     @IBAction func onPostButtonTapped(_ sender: Any) {
-        
+        self.showNewPinTypeSelectionView(show: true)
     }
     
     @IBAction func onCurrentLocationButtonTapped(_ sender: Any) {
