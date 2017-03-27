@@ -243,6 +243,8 @@ extension MapViewController {
     }
     
     @IBAction func onCurrentLocationButtonTapped(_ sender: Any) {
-        //
+        if self.currentLocation != nil {
+            self.centerMapOnLocation(self.currentLocation!)
+        }
     }
 }
