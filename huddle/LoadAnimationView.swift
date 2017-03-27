@@ -14,7 +14,7 @@ class LoadAnimationView: UIView {
     
     fileprivate var shouldContinue = false
     fileprivate var exemptFrames: [CGRect]?
-    var characterColor: UIColor! = UIColor.white {
+    var characterColor: UIColor! {
         didSet {
             self.characterColorSet = [self.characterColor]
         }
@@ -36,7 +36,7 @@ class LoadAnimationView: UIView {
     }
     
     func commonInit() {
-        //
+        self.characterColor = .white
     }
     
     func addExemptFrames(_ exemptFrames: CGRect...) {
@@ -69,7 +69,7 @@ extension LoadAnimationView {
             var colorIndex = 0
             while self.shouldContinue {
                 DispatchQueue.main.async(execute: {
-                    self.addDeltLabel(color: self.characterColorSet[colorIndex])
+                    self.addCharacterLabel(color: self.characterColorSet[colorIndex])
                 })
                 // let interval = 0.4 + Double(arc4random()) / Double(UInt32.max) * 0.1
                 Thread.sleep(forTimeInterval: self.deltRepeatInterval)
@@ -78,11 +78,11 @@ extension LoadAnimationView {
         }
     }
     
-    fileprivate func addDeltLabel(color: UIColor) {
+    fileprivate func addCharacterLabel(color: UIColor) {
         
-        print("ADD DELT LABEL")
+        print("ADD LABEL")
         
-        let delt = self.deltLabel(color: color)
+        let delt = self.characterLabel(color: color)
         delt.alpha = 0
         self.addSubview(delt)
         let fadeDuration: TimeInterval = self.deltFadeDuration
@@ -97,8 +97,8 @@ extension LoadAnimationView {
         })
     }
     
-    // Returns ∆ label with random origin within this view's bounds.
-    fileprivate func deltLabel(color: UIColor) -> UILabel {
+    // Returns label with random origin within this view's bounds.
+    fileprivate func characterLabel(color: UIColor) -> UILabel {
         let deltLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         deltLabel.text = self.character
         deltLabel.textColor = color

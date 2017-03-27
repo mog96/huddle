@@ -14,12 +14,16 @@ class MapViewController: UIViewController {
     let METERS_PER_MILE = 1609.344
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var menuView: MenuView!
+    @IBOutlet weak var menuButton: UIButton!
+    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var currentLocationButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.mapView.delegate = self
+        self.menuView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +47,6 @@ class MapViewController: UIViewController {
         annotation.title = "art"
         self.mapView.addAnnotation(annotation)
     }
-    
 
     /*
     // MARK: - Navigation
@@ -57,6 +60,23 @@ class MapViewController: UIViewController {
 
 }
 
+extension MapViewController {
+    func showMenuView(show: Bool) {
+        if show {
+            self.menuView.isHidden = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuView.alpha = 1
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.menuView.alpha = 0
+            }) { _ in
+                self.menuView.isHidden = true
+            }
+        }
+    }
+}
+
 extension MapViewController: MKMapViewDelegate {
     /*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -68,4 +88,28 @@ extension MapViewController: MKMapViewDelegate {
         return annotation
     }
     */
+}
+
+
+extension MapViewController: MenuViewDelegate {
+    func menuViewCloseButtonTapped() {
+        self.showMenuView(show: false)
+    }
+}
+
+
+// MARK: - Actions
+
+extension MapViewController {
+    @IBAction func onMenuButtonTapped(_ sender: Any) {
+        self.showMenuView(show: true)
+    }
+    
+    @IBAction func onPostButtonTapped(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onCurrentLocationButtonTapped(_ sender: Any) {
+        
+    }
 }
