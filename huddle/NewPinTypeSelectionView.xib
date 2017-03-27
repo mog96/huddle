@@ -34,7 +34,7 @@
                             </visualEffectView>
                         </subviews>
                     </view>
-                    <blurEffect style="dark"/>
+                    <blurEffect style="light"/>
                 </visualEffectView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vDk-ZN-80W">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -77,6 +77,6 @@
         </view>
     </objects>
     <resources>
-        <image name="close-button" width="26" height="26"/>
+        <image name="close-button" width="34" height="34"/>
     </resources>
 </document>

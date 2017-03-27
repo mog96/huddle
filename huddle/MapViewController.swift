@@ -21,6 +21,7 @@ class MapViewController: UIViewController {
     
     var menuView: MenuView!
     var newPinTypeSelectionView: NewPinTypeSelectionView!
+    var newPinComposeView: NewPinComposeView!
     
     var statusBarHidden = false
     
@@ -42,6 +43,13 @@ class MapViewController: UIViewController {
         self.newPinTypeSelectionView.delegate = self
         self.newPinTypeSelectionView.alpha = 0
         self.newPinTypeSelectionView.isHidden = true
+        
+        self.newPinComposeView = Bundle.main.loadNibNamed("NewPinComposeView", owner: self, options: nil)![0] as! NewPinComposeView
+        self.view.addSubview(newPinComposeView)
+        self.newPinComposeView.autoPinEdgesToSuperviewEdges()
+        self.newPinComposeView.delegate = self
+        self.newPinComposeView.alpha = 0
+        self.newPinComposeView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,12 +87,16 @@ class MapViewController: UIViewController {
 // MARK: - Helpers
 
 extension MapViewController {
-    fileprivate func showMenuView(show: Bool) {
+    fileprivate func showMenuView(_ show: Bool) {
         self.showFullScreenView(view: self.menuView, show: show)
     }
     
-    fileprivate func showNewPinTypeSelectionView(show: Bool) {
+    fileprivate func showNewPinTypeSelectionView(_ show: Bool) {
         self.showFullScreenView(view: self.newPinTypeSelectionView, show: show)
+    }
+    
+    fileprivate func showNewPinComposeView(_ show: Bool) {
+        self.showFullScreenView(view: self.newPinComposeView, show: show)
     }
     
     fileprivate func showFullScreenView(view: UIView, show: Bool) {
@@ -129,7 +141,7 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: MenuViewDelegate {
     func menuViewCloseButtonTapped() {
-        self.showMenuView(show: false)
+        self.showMenuView(false)
     }
 }
 
@@ -138,7 +150,21 @@ extension MapViewController: MenuViewDelegate {
 
 extension MapViewController: NewPinTypeSelectionViewDelegate {
     func newPinTypeSelectionViewCloseButtonTapped() {
-        self.showNewPinTypeSelectionView(show: false)
+        self.showNewPinTypeSelectionView(false)
+    }
+    
+    func newPinTypeSelectionView(didSelectPinType pinType: PinType.PinType) {
+        self.newPinComposeView.pinType = pinType
+        self.showNewPinComposeView(true)
+    }
+}
+
+
+// MARK: - New Pin Compose View Delegate
+
+extension MapViewController: NewPinComposeViewDelegate {
+    func newPinComposeViewCancelButtonTapped() {
+        self.showNewPinComposeView(false)
     }
 }
 
@@ -147,14 +173,14 @@ extension MapViewController: NewPinTypeSelectionViewDelegate {
 
 extension MapViewController {
     @IBAction func onMenuButtonTapped(_ sender: Any) {
-        self.showMenuView(show: true)
+        self.showMenuView(true)
     }
     
     @IBAction func onPostButtonTapped(_ sender: Any) {
-        self.showNewPinTypeSelectionView(show: true)
+        self.showNewPinTypeSelectionView(true)
     }
     
     @IBAction func onCurrentLocationButtonTapped(_ sender: Any) {
-        
+        //
     }
 }

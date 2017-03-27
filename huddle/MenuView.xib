@@ -34,14 +34,14 @@
                             </visualEffectView>
                         </subviews>
                     </view>
-                    <blurEffect style="dark"/>
+                    <blurEffect style="light"/>
                 </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGT-aK-t47">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vey-wl-vMo">
                             <rect key="frame" x="187" y="20" width="1" height="627"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="aLu-9w-zq8"/>
                             </constraints>
@@ -51,7 +51,7 @@
                             <subviews>
                                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZu-yb-rFA">
                                     <rect key="frame" x="0.0" y="166" width="335" height="1"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Jnm-Rg-lxt"/>
                                     </constraints>
@@ -65,7 +65,7 @@
                         </view>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mpt-cp-HRX">
                             <rect key="frame" x="20" y="333" width="335" height="1"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="cvD-qB-0ty"/>
                             </constraints>
@@ -75,7 +75,7 @@
                             <subviews>
                                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFN-o7-pz4">
                                     <rect key="frame" x="0.0" y="166.5" width="335" height="1"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="EZT-KM-mdC"/>
                                     </constraints>
@@ -109,7 +109,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="187.5" height="167"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="profile">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on00Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="kdw-2J-U45"/>
@@ -119,7 +119,7 @@
                     <rect key="frame" x="187.5" y="0.0" width="187.5" height="167"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="filter">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on01Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="CwQ-J6-BjA"/>
@@ -129,7 +129,7 @@
                     <rect key="frame" x="0.0" y="167" width="187.5" height="166.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="wallet">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on10Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="GaF-of-MDg"/>
@@ -139,7 +139,7 @@
                     <rect key="frame" x="187.5" y="167" width="187.5" height="166.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="history">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on11Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="tfQ-nj-k9u"/>
@@ -149,7 +149,7 @@
                     <rect key="frame" x="0.0" y="333.5" width="187.5" height="167"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="about">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on20Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="k8h-rJ-FV7"/>
@@ -159,7 +159,7 @@
                     <rect key="frame" x="187.5" y="333.5" width="187.5" height="167"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="help">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on21Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="rOV-vx-A6g"/>
@@ -169,7 +169,7 @@
                     <rect key="frame" x="0.0" y="500.5" width="187.5" height="166.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="share">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on30Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="TpA-9b-f89"/>
@@ -179,7 +179,7 @@
                     <rect key="frame" x="187.5" y="500.5" width="187.5" height="166.5"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                     <state key="normal" title="feedback">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="on31Tapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Apy-V2-H1u"/>
@@ -246,6 +246,6 @@
         </view>
     </objects>
     <resources>
-        <image name="close-button" width="26" height="26"/>
+        <image name="close-button" width="34" height="34"/>
     </resources>
 </document>

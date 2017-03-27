@@ -18,9 +18,32 @@ class NewPinComposeView: UIView {
     @IBOutlet weak var descriptionTextView: CustomTextView!
     @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
     
-    var delegate: NewPinTypeSelectionViewDelegate?
+    var delegate: NewPinComposeViewDelegate?
     
-    var pinType: PinType.PinType?
+    var pinType: PinType.PinType! {
+        didSet {
+            if pinType != nil {
+                self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
+            }
+        }
+    }
+    
+    override var isHidden: Bool {
+        get {
+            return super.isHidden
+        }
+        set(hide) {
+            super.isHidden = hide
+            
+            if hide {
+                self.pinType = nil
+                self.pinTypeImageView?.image = nil
+                self.descriptionTextView?.text = ""
+                self.descriptionTextViewHeight?.constant = self.defaultDescriptionTextViewtHeight
+                self.endEditing(true)
+            }
+        }
+    }
     
     fileprivate var defaultDescriptionTextViewtHeight: CGFloat!
     fileprivate let kMaxDescriptionTextViewHeight: CGFloat = 250
@@ -36,19 +59,14 @@ class NewPinComposeView: UIView {
     }
     
     func commonInit() {
-        self.descriptionTextView.placeholder = "Comment:"
-        self.descriptionTextView.delegate = self
+        //
     }
     
     override func awakeFromNib() {
-        self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType!]
-        
         self.descriptionTextViewHeight.constant = self.descriptionTextView.contentSize.height
         self.defaultDescriptionTextViewtHeight = self.descriptionTextViewHeight.constant
-    }
-    
-    @IBAction func onCreateFreedomBubbleTapped(_ sender: Any) {
-        //
+        self.descriptionTextView.delegate = self
+        self.descriptionTextView.placeholder = "Comment:"
     }
 }
 
@@ -64,5 +82,18 @@ extension NewPinComposeView: UITextViewDelegate {
             self.descriptionTextViewHeight.constant = min(self.kMaxDescriptionTextViewHeight, self.descriptionTextView.contentSize.height)
         }
         return true
+    }
+}
+
+
+// MARK: - Actions
+
+extension NewPinComposeView {
+    @IBAction func onCancelButtonTapped(_ sender: Any) {
+        self.delegate?.newPinComposeViewCancelButtonTapped()
+    }
+    
+    @IBAction func onCreateFreedomBubbleTapped(_ sender: Any) {
+        //
     }
 }

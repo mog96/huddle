@@ -22,8 +22,15 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
     var pinType: PinType.PinType! {
         didSet {
             // self.pinTypeButton.setImage(PinType.pinTypeImage[self.pinType], for: .normal)
-            self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
+            if pinType != nil {
+                self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
+            }
         }
+    }
+    
+    override func prepareForReuse() {
+        self.pinType = nil
+        self.pinTypeImageView.image = nil
     }
 }
 

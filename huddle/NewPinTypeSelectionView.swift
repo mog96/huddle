@@ -10,13 +10,14 @@ import UIKit
 
 protocol NewPinTypeSelectionViewDelegate {
     func newPinTypeSelectionViewCloseButtonTapped()
+    func newPinTypeSelectionView(didSelectPinType pinType: PinType.PinType)
 }
 
 class NewPinTypeSelectionView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    fileprivate let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
+    fileprivate let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 10.0, right: 20.0)
     fileprivate let kItemsPerRow: Int = 3
     
     var delegate: NewPinTypeSelectionViewDelegate?
@@ -39,6 +40,7 @@ class NewPinTypeSelectionView: UIView {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "NewPinTypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewPinTypeCell")
+        // self.collectionView.contentOffset = CGPoint(x: self.collectionView.contentOffset.x, y: self.collectionView.contentOffset.y - 100)
     }
 }
 
@@ -60,9 +62,14 @@ extension NewPinTypeSelectionView: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "NewPinTypeCell", for: indexPath) as! NewPinTypeCollectionViewCell
-        cell.pinType = Array(PinType.pinTypeImage.keys)[indexPath.row]
+        cell.pinType = Array(PinType.pinTypeImage.keys)[indexPath.section * self.kItemsPerRow + indexPath.item]
         cell.delegate = self
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pinType = (self.collectionView.cellForItem(at: indexPath) as! NewPinTypeCollectionViewCell).pinType!
+        self.delegate?.newPinTypeSelectionView(didSelectPinType: pinType)
     }
 }
 
