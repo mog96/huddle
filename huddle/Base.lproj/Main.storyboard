@@ -58,8 +58,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2u-hW-j7r">
-                                <rect key="frame" x="137" y="520" width="101" height="30"/>
-                                <state key="normal" title="SEARCH HERE"/>
+                                <rect key="frame" x="136" y="520" width="104" height="30"/>
+                                <state key="normal" title="REDO SEARCH"/>
                                 <connections>
                                     <action selector="onSearchButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YhR-kg-xGL"/>
                                 </connections>

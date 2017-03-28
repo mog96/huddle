@@ -258,9 +258,11 @@ extension MapViewController {
 // MARK: - Map View Delegate
 
 extension MapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         if !self.firstLoad {
-            self.searchButton.isHidden = false
+            UIView.transition(with: self.searchButton, duration: 0.2, options: .transitionCrossDissolve, animations: { 
+                self.searchButton.isHidden = false
+            }, completion: nil)
         }
     }
 
@@ -270,6 +272,7 @@ extension MapViewController: MKMapViewDelegate {
             annotationView.image = #imageLiteral(resourceName: "art-pin")
             annotationView.contentMode = .scaleAspectFit
             annotationView.bounds = CGRect(x: 0, y: 0, width: 32, height: 39)
+            annotationView.canShowCallout = true
             return annotationView
         }
         return nil
