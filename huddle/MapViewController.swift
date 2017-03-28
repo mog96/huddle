@@ -25,6 +25,7 @@ class MapViewController: UIViewController {
     fileprivate var menuView: MenuView!
     fileprivate var newPinTypeSelectionView: NewPinTypeSelectionView!
     fileprivate var newPinComposeView: NewPinComposeView!
+    fileprivate var pinDetailView: PinDetailView!
     
     fileprivate var statusBarHidden = false
     
@@ -51,25 +52,36 @@ class MapViewController: UIViewController {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
         self.menuView = Bundle.main.loadNibNamed("MenuView", owner: self, options: nil)![0] as! MenuView
-        self.view.addSubview(menuView)
+        self.view.addSubview(self.menuView)
         self.menuView.autoPinEdgesToSuperviewEdges()
         self.menuView.delegate = self
         self.menuView.alpha = 0
         self.menuView.isHidden = true
         
         self.newPinTypeSelectionView = Bundle.main.loadNibNamed("NewPinTypeSelectionView", owner: self, options: nil)![0] as! NewPinTypeSelectionView
-        self.view.addSubview(newPinTypeSelectionView)
+        self.view.addSubview(self.newPinTypeSelectionView)
         self.newPinTypeSelectionView.autoPinEdgesToSuperviewEdges()
         self.newPinTypeSelectionView.delegate = self
         self.newPinTypeSelectionView.alpha = 0
         self.newPinTypeSelectionView.isHidden = true
         
         self.newPinComposeView = Bundle.main.loadNibNamed("NewPinComposeView", owner: self, options: nil)![0] as! NewPinComposeView
-        self.view.addSubview(newPinComposeView)
+        self.view.addSubview(self.newPinComposeView)
         self.newPinComposeView.autoPinEdgesToSuperviewEdges()
         self.newPinComposeView.delegate = self
         self.newPinComposeView.alpha = 0
         self.newPinComposeView.isHidden = true
+        
+        self.pinDetailView = Bundle.main.loadNibNamed("PinDetailView", owner: self, options: nil)![0] as! PinDetailView
+        self.view.addSubview(self.pinDetailView)
+        self.pinDetailView.autoPinEdgesToSuperviewEdges()
+        self.pinDetailView.delegate = self
+        self.pinDetailView.alpha = 0
+        self.pinDetailView.isHidden = true
+        self.pinDetailView.autoPin(toTopLayoutGuideOf: self, withInset: 0)
+        self.pinDetailView.autoPinEdge(toSuperviewEdge: .left)
+        self.pinDetailView.autoPinEdge(toSuperviewEdge: .right)
+        self.pinDetailView.autoPinEdge(toSuperviewEdge: .bottom)
         
         self.mapView.delegate = self
         
@@ -125,6 +137,7 @@ extension MapViewController {
     
     func refreshData(completion: (() -> ())?) {
         let query = PFQuery(className: "Pin")
+        query.includeKey("createdBy")
         
         if self.firstLoad {
             self.firstLoad = false
@@ -218,6 +231,47 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 
+// MARK: - Map View Delegate
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        if !self.firstLoad {
+            UIView.transition(with: self.searchButton, duration: 0.2, options: .transitionCrossDissolve, animations: { 
+                self.searchButton.isHidden = false
+            }, completion: nil)
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is Pin {
+            let annotationView = MKAnnotationView()
+            if let pinTypeString = (annotation as! Pin).pfObject["pinType"] as? String {
+                if let pinType = PinType.PinType(rawValue: pinTypeString) {
+                    annotationView.image = PinType.pinTypePinImage[pinType]
+                }
+            }
+            annotationView.contentMode = .scaleAspectFit
+            annotationView.bounds = CGRect(x: 0, y: 0, width: 32, height: 39)
+            annotationView.canShowCallout = true
+            
+            let moreInfoButton = UIButton(type: .detailDisclosure)
+            annotationView.rightCalloutAccessoryView = moreInfoButton
+            
+            return annotationView
+        }
+        return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        // Assume control is pin detail disclosure.
+        if let pinAnnotation = view.annotation as? Pin {
+            self.pinDetailView.pin = pinAnnotation.pfObject
+            self.showPinDetailView(true)
+        }
+    }
+}
+
+
 // MARK: - Transition Helpers
 
 extension MapViewController {
@@ -237,6 +291,10 @@ extension MapViewController {
         self.showFullScreenView(view: self.newPinComposeView, show: show)
     }
     
+    fileprivate func showPinDetailView(_ show: Bool) {
+        self.showFullScreenView(view: self.pinDetailView, show: show)
+    }
+    
     fileprivate func showFullScreenView(view: UIView, show: Bool) {
         if show {
             view.isHidden = false
@@ -251,31 +309,6 @@ extension MapViewController {
                 view.isHidden = true
             }
         }
-    }
-}
-
-
-// MARK: - Map View Delegate
-
-extension MapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        if !self.firstLoad {
-            UIView.transition(with: self.searchButton, duration: 0.2, options: .transitionCrossDissolve, animations: { 
-                self.searchButton.isHidden = false
-            }, completion: nil)
-        }
-    }
-
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation is Pin {
-            let annotationView = MKAnnotationView()
-            annotationView.image = #imageLiteral(resourceName: "art-pin")
-            annotationView.contentMode = .scaleAspectFit
-            annotationView.bounds = CGRect(x: 0, y: 0, width: 32, height: 39)
-            annotationView.canShowCallout = true
-            return annotationView
-        }
-        return nil
     }
 }
 
@@ -315,6 +348,7 @@ extension MapViewController: NewPinComposeViewDelegate {
         self.newPinDescription = description
         
         // TODO: Store image.
+        // self.newPinPhotoImage =
         
         self.locationRequestedForNewPin = true
         self.locationManager.requestLocation()
@@ -329,14 +363,14 @@ extension MapViewController {
         
         let pin = PFObject(className: "Pin")
         pin["location"] = PFGeoPoint(location: self.currentLocation)
-        pin["pinType"] = PinType.pinTypeString[self.newPinType!]
+        pin["pinType"] = self.newPinType!.rawValue
         pin["description"] = self.newPinDescription
         if let image = self.newPinImage {
             let imageData = UIImageJPEGRepresentation(image, 100)
             let imageFile = PFFile(name: "image.jpeg", data: imageData!)
             pin["imageFile"] = imageFile
         }
-        pin["createdBy"] = PFUser.current()?.username
+        pin["createdBy"] = PFUser.current()
         pin.saveInBackground { (success: Bool, error: Error?) in
             if error != nil {
                 print("Error: \(error!) \(error!.localizedDescription)")
@@ -358,9 +392,32 @@ extension MapViewController {
                 self.showNewPinComposeView(false)
                 self.showNewPinTypeSelectionView(false)
                 
-                self.refreshData()      // TODO: Emphasize addition of this individual pin.
+                self.refreshData()      // TODO: Emphasize 'drop' of this individual pin.
             }
         }
+    }
+}
+
+
+// MARK: - Pin Detail View Delegate
+
+extension MapViewController: PinDetailViewDelegate {
+    func pinDetailViewCloseButtonTapped() {
+        self.showPinDetailView(false)
+    }
+    
+    func pinDetailView(didTapJoin pin: PFObject) {
+        // TODO: Mark this in the DB
+        
+        currentHUD.label.text = "Joined!"
+        currentHUD.mode = MBProgressHUDMode.customView
+        let delay: TimeInterval = 2.0
+        currentHUD.hide(animated: true, afterDelay: delay)
+        self.perform(#selector(self.hidePinDetailView), with: self, afterDelay: delay)
+    }
+    
+    @objc fileprivate func hidePinDetailView() {
+        self.showPinDetailView(false)
     }
 }
 

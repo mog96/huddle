@@ -28,7 +28,7 @@ class NewPinComposeView: UIView {
         didSet {
             if pinType != nil {
                 self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
-                self.pinTypeLabel.text = PinType.pinTypeString[self.pinType]
+                self.pinTypeLabel.text = PinType.pinTypeName[self.pinType]
             }
         }
     }

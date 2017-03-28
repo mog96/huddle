@@ -25,7 +25,7 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
             // self.pinTypeButton.setImage(PinType.pinTypeImage[self.pinType], for: .normal)
             if pinType != nil {
                 self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
-                self.pinTypeLabel.text = PinType.pinTypeString[self.pinType]
+                self.pinTypeLabel.text = PinType.pinTypeName[self.pinType]
             }
         }
     }
