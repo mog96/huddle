@@ -263,16 +263,17 @@ extension MapViewController: MKMapViewDelegate {
             self.searchButton.isHidden = false
         }
     }
-    /*
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotation = MKAnnotationView()
-        annotation.image = #imageLiteral(resourceName: "art-pin")
-        
-        // TODO: CONSTRAIN IMAGE
-        
-        return annotation
+        if annotation is Pin {
+            let annotationView = MKAnnotationView()
+            annotationView.image = #imageLiteral(resourceName: "art-pin")
+            annotationView.contentMode = .scaleAspectFit
+            annotationView.bounds = CGRect(x: 0, y: 0, width: 32, height: 39)
+            return annotationView
+        }
+        return nil
     }
-    */
 }
 
 
