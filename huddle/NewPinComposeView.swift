@@ -17,9 +17,9 @@ protocol NewPinComposeViewDelegate {
 class NewPinComposeView: UIView {
     
     @IBOutlet weak var pinTypeImageView: UIImageView!
+    @IBOutlet weak var pinTypeLabel: UILabel!
     @IBOutlet weak var descriptionTextView: CustomTextView!
     @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
-    
     var delegate: NewPinComposeViewDelegate?
     
     var currentHUD = MBProgressHUD()
@@ -28,6 +28,7 @@ class NewPinComposeView: UIView {
         didSet {
             if pinType != nil {
                 self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
+                self.pinTypeLabel.text = PinType.pinTypeString[self.pinType]
             }
         }
     }

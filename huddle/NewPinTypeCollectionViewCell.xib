@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,18 +20,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z1q-8d-p7B">
-                        <rect key="frame" x="8" y="8" width="109" height="109"/>
+                        <rect key="frame" x="17" y="8" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="z1q-8d-p7B" secondAttribute="height" multiplier="1:1" id="gjY-UE-le3"/>
+                        </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pin type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-Ed-BvL">
+                        <rect key="frame" x="39" y="102" width="46" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="jfN-Ed-BvL" secondAttribute="bottom" constant="8" id="CnS-JS-e9d"/>
+                <constraint firstItem="jfN-Ed-BvL" firstAttribute="centerX" secondItem="0GB-1H-Lw6" secondAttribute="centerX" id="H3c-tQ-j1z"/>
                 <constraint firstItem="z1q-8d-p7B" firstAttribute="top" secondItem="0GB-1H-Lw6" secondAttribute="top" constant="8" id="K0G-eh-7Wv"/>
-                <constraint firstAttribute="trailing" secondItem="z1q-8d-p7B" secondAttribute="trailing" constant="8" id="Myg-OR-sBY"/>
-                <constraint firstItem="z1q-8d-p7B" firstAttribute="leading" secondItem="0GB-1H-Lw6" secondAttribute="leading" constant="8" id="lqi-F2-6jX"/>
-                <constraint firstAttribute="bottom" secondItem="z1q-8d-p7B" secondAttribute="bottom" constant="8" id="wlo-mt-162"/>
+                <constraint firstAttribute="trailing" secondItem="z1q-8d-p7B" secondAttribute="trailing" constant="18" id="Myg-OR-sBY"/>
+                <constraint firstItem="jfN-Ed-BvL" firstAttribute="top" secondItem="z1q-8d-p7B" secondAttribute="bottom" constant="4" id="hec-4F-jHe"/>
+                <constraint firstItem="z1q-8d-p7B" firstAttribute="leading" secondItem="0GB-1H-Lw6" secondAttribute="leading" constant="17" id="lqi-F2-6jX"/>
             </constraints>
             <connections>
                 <outlet property="pinTypeImageView" destination="z1q-8d-p7B" id="yaj-bo-QUQ"/>
+                <outlet property="pinTypeLabel" destination="jfN-Ed-BvL" id="ASZ-Df-063"/>
             </connections>
             <point key="canvasLocation" x="-23.5" y="-35.5"/>
         </collectionViewCell>

@@ -58,6 +58,12 @@
                         <constraint firstAttribute="width" constant="128" id="tvh-hj-l7R"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pin type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uui-vK-4Ia">
+                    <rect key="frame" x="163" y="215" width="49" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGG-8P-fn0">
                     <rect key="frame" x="0.0" y="269" width="375" height="128"/>
                     <subviews>
@@ -92,7 +98,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(AT YOUR CURRENT LOCATION)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ur1-hO-0xM">
-                    <rect key="frame" x="102.5" y="590" width="171" height="14"/>
+                    <rect key="frame" x="103" y="590" width="171" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -105,6 +111,8 @@
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-189.5" id="5Bv-IP-r56"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="top" secondItem="zbd-Ss-92X" secondAttribute="bottom" constant="-20" id="5sO-QG-1HU"/>
                 <constraint firstItem="b1g-f7-h1Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8sv-cV-j0Q"/>
+                <constraint firstItem="Uui-vK-4Ia" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="7" id="H78-MJ-mdF"/>
+                <constraint firstItem="Uui-vK-4Ia" firstAttribute="centerX" secondItem="PtA-6f-Vun" secondAttribute="centerX" id="IFc-mk-czZ"/>
                 <constraint firstItem="JGG-8P-fn0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ouq-KB-cRS"/>
                 <constraint firstItem="zbd-Ss-92X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pow-k5-9Mp"/>
                 <constraint firstItem="x6f-Iv-zwv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fBr-cA-ksH"/>
@@ -119,6 +127,7 @@
                 <outlet property="descriptionTextView" destination="1UZ-sT-9kU" id="dNn-cv-jzV"/>
                 <outlet property="descriptionTextViewHeight" destination="78C-ZU-43t" id="cB3-V3-yWl"/>
                 <outlet property="pinTypeImageView" destination="PtA-6f-Vun" id="QLP-N4-Gex"/>
+                <outlet property="pinTypeLabel" destination="Uui-vK-4Ia" id="OUh-cK-jav"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>

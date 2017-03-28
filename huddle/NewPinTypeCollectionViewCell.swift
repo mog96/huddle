@@ -16,6 +16,7 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
     
     // @IBOutlet weak var pinTypeButton: UIButton!
     @IBOutlet weak var pinTypeImageView: UIImageView!
+    @IBOutlet weak var pinTypeLabel: UILabel!
     
     var delegate: NewPinTypeCollectionViewCellDelegate?
     
@@ -24,6 +25,7 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
             // self.pinTypeButton.setImage(PinType.pinTypeImage[self.pinType], for: .normal)
             if pinType != nil {
                 self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
+                self.pinTypeLabel.text = PinType.pinTypeString[self.pinType]
             }
         }
     }
@@ -31,6 +33,7 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         self.pinType = nil
         self.pinTypeImageView.image = nil
+        self.pinTypeLabel.text = nil
     }
 }
 
