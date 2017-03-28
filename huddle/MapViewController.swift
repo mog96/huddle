@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     fileprivate var menuView: MenuView!
     fileprivate var newPinTypeSelectionView: NewPinTypeSelectionView!
@@ -85,6 +86,8 @@ class MapViewController: UIViewController {
         self.firstLoad = true
         self.checkLocationAuthorizationStatus()
         
+        self.searchButton.isHidden = true
+        
         // NotificationCenter.default.addObserver(self, selector: #selector(self.saveCurrentLocation), name: NSNotification.Name(rawValue: "UIApplicationDidEnterBackgroundNotification"), object: nil)
     }
 
@@ -110,6 +113,8 @@ class MapViewController: UIViewController {
 // MARK: - Fetch Helpers
 
 extension MapViewController {
+    
+    /* Refresh data at current location. */
     func refreshData() {
         self.currentHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.currentHUD.label.text = "Fetching Pins..."
@@ -120,7 +125,21 @@ extension MapViewController {
     
     func refreshData(completion: (() -> ())?) {
         let query = PFQuery(className: "Pin")
-        query.whereKey("location", nearGeoPoint: PFGeoPoint(location: self.currentLocation), withinKilometers: Double(self.regionRadius))
+        
+        if self.firstLoad {
+            self.firstLoad = false
+            query.whereKey("location", nearGeoPoint: PFGeoPoint(location: self.currentLocation), withinKilometers: Double(self.regionRadius))
+        } else {
+            let southwestCorner = self.mapView.convert(CGPoint(x: self.mapView.bounds.origin.x, y: self.mapView.bounds.origin.y + self.mapView.bounds.size.height), toCoordinateFrom: self.mapView)
+            let northeastCorner = self.mapView.convert(CGPoint(x: self.mapView.bounds.origin.x + self.mapView.bounds.size.width, y: self.mapView.bounds.origin.y), toCoordinateFrom: self.mapView)
+            let southwestPoint = PFGeoPoint(latitude: southwestCorner.latitude, longitude: southwestCorner.longitude)
+            let northeastPoint = PFGeoPoint(latitude: northeastCorner.latitude, longitude: northeastCorner.longitude)
+            
+            print("QUERY FROM SW TO NE:", southwestPoint, northeastPoint)
+            
+            query.whereKey("location", withinGeoBoxFromSouthwest: southwestPoint, toNortheast: northeastPoint)
+        }
+        
         query.findObjectsInBackground { (results: [PFObject]?, error: Error?) in
             if error != nil {
                 print("Error: \(error!) \(error!.localizedDescription)")
@@ -182,7 +201,6 @@ extension MapViewController: CLLocationManagerDelegate {
             } else {
                 self.centerMapOnLocation(self.currentLocation!)
                 if self.firstLoad {
-                    self.firstLoad = false
                     self.refreshData()
                 }
             }
@@ -240,6 +258,11 @@ extension MapViewController {
 // MARK: - Map View Delegate
 
 extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        if !self.firstLoad {
+            self.searchButton.isHidden = false
+        }
+    }
     /*
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotation = MKAnnotationView()
@@ -353,5 +376,10 @@ extension MapViewController {
         if self.currentLocation != nil {
             self.centerMapOnLocation(self.currentLocation!)
         }
+    }
+    
+    @IBAction func onSearchButtonTapped(_ sender: Any) {
+        self.searchButton.isHidden = true
+        self.refreshData()
     }
 }

@@ -13,12 +13,14 @@ import Parse
 class Pin: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let title: String?
+    let subtitle: String?
     let pfObject: PFObject
     
     init(object: PFObject) {
         let geoPoint = object["location"] as! PFGeoPoint
         self.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(geoPoint.latitude), longitude: CLLocationDegrees(geoPoint.longitude))
         self.title = object["pinType"] as? String
+        self.subtitle = object["description"] as? String
         self.pfObject = object
         
         super.init()
