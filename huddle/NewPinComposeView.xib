@@ -27,6 +27,10 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="djc-u0-KOC">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="XKW-sb-ffW" appends="YES" id="dwy-Ru-bJG"/>
+                                    </connections>
                                 </view>
                                 <vibrancyEffect>
                                     <blurEffect style="light"/>
@@ -118,6 +122,11 @@
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="XKW-sb-ffW">
+            <connections>
+                <action selector="onViewTapped:" destination="iN0-l3-epB" id="K7z-jU-9Pt"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="close-button" width="34" height="34"/>

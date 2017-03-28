@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 protocol NewPinComposeViewDelegate {
     func newPinComposeViewCancelButtonTapped()
@@ -20,6 +21,8 @@ class NewPinComposeView: UIView {
     @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
     
     var delegate: NewPinComposeViewDelegate?
+    
+    var currentHUD = MBProgressHUD()
     
     var pinType: PinType.PinType! {
         didSet {
@@ -90,11 +93,18 @@ extension NewPinComposeView: UITextViewDelegate {
 // MARK: - Actions
 
 extension NewPinComposeView {
+    @IBAction func onViewTapped(_ sender: Any) {
+        self.endEditing(true)
+    }
+    
     @IBAction func onCancelButtonTapped(_ sender: Any) {
         self.delegate?.newPinComposeViewCancelButtonTapped()
     }
     
     @IBAction func onCreatePinTapped(_ sender: Any) {
+        self.currentHUD = MBProgressHUD.showAdded(to: self, animated: true)
+        self.currentHUD.label.text = "Posting..."
+        
         self.delegate?.newPinComposeView(didPostPin: self.pinType, withDescription: self.descriptionTextView.text)
     }
 }

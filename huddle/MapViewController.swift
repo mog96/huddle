@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import MBProgressHUD
+import Parse
 import PureLayout
 
 class MapViewController: UIViewController {
@@ -19,16 +21,27 @@ class MapViewController: UIViewController {
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var currentLocationButton: UIButton!
     
-    var menuView: MenuView!
-    var newPinTypeSelectionView: NewPinTypeSelectionView!
-    var newPinComposeView: NewPinComposeView!
+    fileprivate var menuView: MenuView!
+    fileprivate var newPinTypeSelectionView: NewPinTypeSelectionView!
+    fileprivate var newPinComposeView: NewPinComposeView!
     
-    var statusBarHidden = false
+    fileprivate var statusBarHidden = false
     
-    let kRegionRadius: CLLocationDistance = 1000
+    fileprivate var regionRadius: CLLocationDistance = 1000     // meters
     
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
+    fileprivate let locationManager = CLLocationManager()
+    fileprivate var currentLocation: CLLocation?
+    
+    fileprivate var locationRequestedForNewPin = false
+    fileprivate var newPinType: PinType.PinType?
+    fileprivate var newPinDescription: String?
+    fileprivate var newPinImage: UIImage?
+    
+    fileprivate var currentHUD = MBProgressHUD()
+    
+    fileprivate var pins = [PFObject]()
+    
+    fileprivate var firstLoad = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,30 +72,25 @@ class MapViewController: UIViewController {
         
         self.mapView.delegate = self
         
-        // TODO: Set location to old stored location.
+        // Default initial location to Golden Gate Park.
+        var initialLocation = CLLocation(latitude: 37.769319, longitude: -122.487104)
         
-        // Set initial location in Golden Gate Park.
-        let initialLocation = CLLocation(latitude: 37.769319, longitude: -122.487104)
+        // Initialize map to old user location.
+        if let location = UserDefaults.standard.object(forKey: "LastUserLocation") as? CLLocation {
+            initialLocation = location
+        }
         self.centerMapOnLocation(initialLocation)
+        
+        // With firstLoad set to true, location status check will trigger pin refresh when current user location found.
+        self.firstLoad = true
+        self.checkLocationAuthorizationStatus()
+        
+        // NotificationCenter.default.addObserver(self, selector: #selector(self.saveCurrentLocation), name: NSNotification.Name(rawValue: "UIApplicationDidEnterBackgroundNotification"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.checkLocationAuthorizationStatus()
-        
-        /*
-        let annotation = MKPointAnnotation()
-        let coord = self.mapView.centerCoordinate
-        annotation.coordinate = coord
-        annotation.title = "art"
-        self.mapView.addAnnotation(annotation)
-        */
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -92,10 +100,45 @@ class MapViewController: UIViewController {
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .fade
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.saveCurrentLocation()
+    }
 }
 
 
-// MARK: - Map Helpers
+// MARK: - Fetch Helpers
+
+extension MapViewController {
+    func refreshData() {
+        self.currentHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.currentHUD.label.text = "Fetching Pins..."
+        self.refreshData {
+            self.currentHUD.hide(animated: true)
+        }
+    }
+    
+    func refreshData(completion: (() -> ())?) {
+        let query = PFQuery(className: "Pin")
+        query.whereKey("location", nearGeoPoint: PFGeoPoint(location: self.currentLocation), withinKilometers: Double(self.regionRadius))
+        query.findObjectsInBackground { (results: [PFObject]?, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                self.pins = results!
+                
+                print("PINS:", self.pins)
+                
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                self.mapView.addAnnotations(self.pins.map({ Pin(object: $0) }))
+            }
+            completion?()
+        }
+    }
+}
+
+
+// MARK: - Location Helpers
 
 extension MapViewController {
     func checkLocationAuthorizationStatus() {
@@ -108,8 +151,12 @@ extension MapViewController {
     }
     
     func centerMapOnLocation(_ location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.kRegionRadius * 2.0, self.kRegionRadius * 2.0)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 2.0, self.regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func saveCurrentLocation() {
+        UserDefaults.standard.set(self.currentLocation, forKey: "LastUserLocation")
     }
 }
 
@@ -127,7 +174,18 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             self.currentLocation = location
-            self.centerMapOnLocation(self.currentLocation!)
+            
+            if self.locationRequestedForNewPin {
+                self.locationRequestedForNewPin = false
+                self.completeNewPinCompose()
+                
+            } else {
+                self.centerMapOnLocation(self.currentLocation!)
+                if self.firstLoad {
+                    self.firstLoad = false
+                    self.refreshData()
+                }
+            }
             
             print("Current location: \(location)")
             
@@ -164,12 +222,12 @@ extension MapViewController {
     fileprivate func showFullScreenView(view: UIView, show: Bool) {
         if show {
             view.isHidden = false
-            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.15, delay: 0, options: .transitionCrossDissolve, animations: {
                 view.alpha = 1
             }, completion: nil)
             
         } else {
-            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.15, delay: 0, options: .transitionCrossDissolve, animations: {
                 view.alpha = 0
             }) { _ in
                 view.isHidden = true
@@ -226,7 +284,56 @@ extension MapViewController: NewPinComposeViewDelegate {
     }
     
     func newPinComposeView(didPostPin pinType: PinType.PinType, withDescription description: String) {
+        self.newPinType = pinType
+        self.newPinDescription = description
+        
+        // TODO: Store image.
+        
+        self.locationRequestedForNewPin = true
         self.locationManager.requestLocation()
+    }
+}
+
+
+// MARK: - New Pin Compose Helpers
+
+extension MapViewController {
+    func completeNewPinCompose() {
+        
+        let pin = PFObject(className: "Pin")
+        pin["location"] = PFGeoPoint(location: self.currentLocation)
+        pin["pinType"] = PinType.pinTypeString[self.newPinType!]
+        pin["description"] = self.newPinDescription
+        if let image = self.newPinImage {
+            let imageData = UIImageJPEGRepresentation(image, 100)
+            let imageFile = PFFile(name: "image.jpeg", data: imageData!)
+            pin["imageFile"] = imageFile
+        }
+        pin["createdBy"] = PFUser.current()?.username
+        pin.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+                
+                self.newPinComposeView.currentHUD.hide(animated: true)
+                let ac = UIAlertController(title: "Upload Failed", message: "Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(ac, animated: true, completion: nil)
+                
+            } else {
+                
+                print("NEW PIN UPLOAD SUCCESS")
+                
+                self.newPinType = nil
+                self.newPinDescription = nil
+                self.newPinImage = nil
+                
+                self.newPinComposeView.currentHUD.hide(animated: true)
+                self.showNewPinComposeView(false)
+                self.showNewPinTypeSelectionView(false)
+                
+                self.refreshData()      // TODO: Emphasize addition of this individual pin.
+            }
+        }
     }
 }
 

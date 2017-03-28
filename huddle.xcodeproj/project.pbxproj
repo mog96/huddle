@@ -29,6 +29,7 @@
 		258915591E89116200488A67 /* NewPinComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258915581E89116200488A67 /* NewPinComposeView.swift */; };
 		2589155B1E8911E500488A67 /* NewPinComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2589155A1E8911E500488A67 /* NewPinComposeView.xib */; };
 		25C3598F1E8913FB00936ECB /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3598E1E8913FB00936ECB /* CustomTextView.swift */; };
+		25E957921E89DEF30090C002 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E957911E89DEF30090C002 /* Pin.swift */; };
 		735C79B11DE8024CA5636B52 /* Pods_huddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		258915581E89116200488A67 /* NewPinComposeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPinComposeView.swift; sourceTree = "<group>"; };
 		2589155A1E8911E500488A67 /* NewPinComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPinComposeView.xib; sourceTree = "<group>"; };
 		25C3598E1E8913FB00936ECB /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		25E957911E89DEF30090C002 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		69B7F20890245A25B5CAC77E /* Pods-huddle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huddle.release.xcconfig"; path = "Pods/Target Support Files/Pods-huddle/Pods-huddle.release.xcconfig"; sourceTree = "<group>"; };
 		782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */,
+				25E957911E89DEF30090C002 /* Pin.swift */,
 				258915481E88DB8B00488A67 /* MenuView.swift */,
 				2589154D1E88ECC800488A67 /* NewPinTypeSelectionView.swift */,
 				258915531E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift */,
@@ -431,6 +434,7 @@
 				250C18BA1E837CA400591980 /* UITextField+NextTextField.swift in Sources */,
 				258915491E88DB8B00488A67 /* MenuView.swift in Sources */,
 				250C18B71E837B9500591980 /* LoadAnimationView.swift in Sources */,
+				25E957921E89DEF30090C002 /* Pin.swift in Sources */,
 				258915541E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift in Sources */,
 				253AC6BA1E7F6B4000A19AD8 /* AppDelegate.swift in Sources */,
 				25C3598F1E8913FB00936ECB /* CustomTextView.swift in Sources */,
