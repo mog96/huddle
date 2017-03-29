@@ -41,7 +41,7 @@
                                     <constraint firstAttribute="width" constant="70" id="GMN-Lp-Tj3"/>
                                     <constraint firstAttribute="height" constant="70" id="oLP-jE-y8p"/>
                                 </constraints>
-                                <state key="normal" image="create-button"/>
+                                <state key="normal" image="createbubble"/>
                                 <connections>
                                     <action selector="onPostButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rb7-Ip-vVh"/>
                                 </connections>
@@ -95,7 +95,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="create-button" width="220" height="220"/>
+        <image name="createbubble" width="235" height="235"/>
         <image name="locate" width="220" height="220"/>
         <image name="menu" width="220" height="220"/>
     </resources>

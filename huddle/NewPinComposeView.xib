@@ -86,41 +86,49 @@
                         <constraint firstAttribute="bottom" secondItem="1UZ-sT-9kU" secondAttribute="bottom" constant="20" id="wZG-SP-7wR"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbd-Ss-92X">
-                    <rect key="frame" x="91" y="550" width="194" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="CMi-Gc-jVv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                    <state key="normal" title="CREATE FREEDOM BUBBLE"/>
-                    <connections>
-                        <action selector="onCreatePinTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="xGw-I1-bow"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(AT YOUR CURRENT LOCATION)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ur1-hO-0xM">
-                    <rect key="frame" x="103" y="590" width="171" height="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE FREEDOM BUBBLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deO-Rh-ULx">
+                    <rect key="frame" x="115" y="541" width="145" height="14"/>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(AT YOUR CURRENT LOCATION)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ur1-hO-0xM">
+                    <rect key="frame" x="102" y="555" width="171" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbd-Ss-92X">
+                    <rect key="frame" x="153" y="577" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="cTp-wo-iIj"/>
+                        <constraint firstAttribute="height" constant="70" id="odD-ce-hHG"/>
+                    </constraints>
+                    <state key="normal" image="createbubble"/>
+                    <connections>
+                        <action selector="onCreatePinTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="xGw-I1-bow"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="x6f-Iv-zwv" secondAttribute="bottom" id="0qI-bT-bvw"/>
                 <constraint firstItem="b1g-f7-h1Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="1s5-A9-54T"/>
                 <constraint firstAttribute="trailing" secondItem="x6f-Iv-zwv" secondAttribute="trailing" id="3Sp-Ml-YLL"/>
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-189.5" id="5Bv-IP-r56"/>
-                <constraint firstItem="Ur1-hO-0xM" firstAttribute="top" secondItem="zbd-Ss-92X" secondAttribute="bottom" constant="-20" id="5sO-QG-1HU"/>
                 <constraint firstItem="b1g-f7-h1Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8sv-cV-j0Q"/>
                 <constraint firstItem="Uui-vK-4Ia" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="7" id="H78-MJ-mdF"/>
                 <constraint firstItem="Uui-vK-4Ia" firstAttribute="centerX" secondItem="PtA-6f-Vun" secondAttribute="centerX" id="IFc-mk-czZ"/>
                 <constraint firstItem="JGG-8P-fn0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ouq-KB-cRS"/>
                 <constraint firstItem="zbd-Ss-92X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pow-k5-9Mp"/>
+                <constraint firstItem="Ur1-hO-0xM" firstAttribute="centerX" secondItem="deO-Rh-ULx" secondAttribute="centerX" id="dFY-qp-qfa"/>
                 <constraint firstItem="x6f-Iv-zwv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fBr-cA-ksH"/>
-                <constraint firstAttribute="bottom" secondItem="zbd-Ss-92X" secondAttribute="bottom" constant="57" id="kHo-Ow-8xm"/>
+                <constraint firstItem="Ur1-hO-0xM" firstAttribute="top" secondItem="deO-Rh-ULx" secondAttribute="bottom" id="jz0-kk-o04"/>
+                <constraint firstAttribute="bottom" secondItem="zbd-Ss-92X" secondAttribute="bottom" constant="20" id="kHo-Ow-8xm"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="centerX" secondItem="zbd-Ss-92X" secondAttribute="centerX" id="w3Z-JP-Xgi"/>
                 <constraint firstItem="JGG-8P-fn0" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="61" id="wKu-06-A0h"/>
                 <constraint firstAttribute="trailing" secondItem="JGG-8P-fn0" secondAttribute="trailing" id="wVW-Bn-7c0"/>
                 <constraint firstItem="x6f-Iv-zwv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wVf-Pc-80R"/>
+                <constraint firstItem="zbd-Ss-92X" firstAttribute="top" secondItem="Ur1-hO-0xM" secondAttribute="bottom" constant="8" id="xby-cw-93w"/>
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yZd-ex-O5M"/>
             </constraints>
             <connections>
@@ -139,5 +147,6 @@
     </objects>
     <resources>
         <image name="close-button" width="34" height="34"/>
+        <image name="createbubble" width="235" height="235"/>
     </resources>
 </document>
