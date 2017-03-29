@@ -269,12 +269,13 @@ extension MapViewController: MKMapViewDelegate {
         
         // Assume control is pin detail disclosure.
         if let pinAnnotation = view.annotation as? Pin {
-            self.freedomBubblePinDetailView.pin = pinAnnotation.pfObject
             if let pinTypeString = pinAnnotation.pfObject["pinType"] as? String {
                 if let pinType = PinType.PinType(rawValue: pinTypeString) {
                     if pinType == .poiWiFi {
+                        self.wiFiPinDetailView.pin = pinAnnotation.pfObject
                         self.showWiFiPinDetailView(true)
                     } else {
+                        self.freedomBubblePinDetailView.pin = pinAnnotation.pfObject
                         self.showFreedomBubblePinDetailView(true)
                     }
                 }

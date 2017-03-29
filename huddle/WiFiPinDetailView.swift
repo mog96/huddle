@@ -21,6 +21,18 @@ class WiFiPinDetailView: PinDetailView {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     
+    override var pin: PFObject! {
+        didSet {
+            super.pin = pin
+            
+            if let wiFiUpVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
+                self.plusButton.isEnabled = wiFiUpVotedByMe.contains(self.pin.objectId!)
+            } else if let wiFiDownVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
+                self.minusButton.isEnabled = wiFiDownVotedByMe.contains(self.pin.objectId!)
+            }
+        }
+    }
+    
     var wiFiPinDetailViewDelegate: WiFiPinDetailViewDelegate?
     
     override var isHidden: Bool {
@@ -38,16 +50,6 @@ class WiFiPinDetailView: PinDetailView {
                 self.minusButton.isEnabled = true
                 self.plusButton.isEnabled = true
             }
-        }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        if let wiFiUpVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
-            self.plusButton.isEnabled = wiFiUpVotedByMe.contains(self.pin.objectId!)
-        } else if let wiFiDownVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
-            self.minusButton.isEnabled = wiFiDownVotedByMe.contains(self.pin.objectId!)
         }
     }
 }

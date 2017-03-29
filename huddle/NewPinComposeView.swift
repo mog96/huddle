@@ -42,7 +42,7 @@ class NewPinComposeView: UIView {
                 self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
                 self.pinTypeLabel.text = PinType.pinTypeName[self.pinType]
                 
-                if pinType == .poiWiFi {
+                if pinType == .poiWiFi || pinType == .poiWC || pinType == .poiWater {
                     self.coinButton.isHidden = true
                     self.coinCountLabel.isHidden = true
                 }
