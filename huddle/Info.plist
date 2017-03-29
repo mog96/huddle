@@ -42,5 +42,7 @@
 	<string>For posting.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>For posting.</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 </dict>
 </plist>

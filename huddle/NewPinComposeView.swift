@@ -51,7 +51,11 @@ class NewPinComposeView: UIView {
         }
     }
     var coinCount: Int!
-    var pinPhotoImage: UIImage?
+    var pinPhotoImage: UIImage? /* {
+        didSet {
+            self.pinPhotoImageView.image = self.pinPhotoImage
+        }
+    } */
     
     override var isHidden: Bool {
         get {
@@ -69,6 +73,7 @@ class NewPinComposeView: UIView {
                 self.coinCountLabel.text = String(self.coinCount)
                 self.countPickerViewHidden = true
                 self.pinPhotoImage = nil
+                self.addPhotoButton.alpha = 1
                 self.descriptionTextView?.clear()
                 self.descriptionTextViewHeight?.constant = self.defaultDescriptionTextViewHeight
                 self.endEditing(true)

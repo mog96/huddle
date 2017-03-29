@@ -79,6 +79,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.freedomBubblePinDetailView = Bundle.main.loadNibNamed("FreedomBubblePinDetailView", owner: self, options: nil)![0] as! FreedomBubblePinDetailView
         self.view.addSubview(self.freedomBubblePinDetailView)
         self.freedomBubblePinDetailView.autoPinEdgesToSuperviewEdges()
+        self.freedomBubblePinDetailView.pinDetailViewDelegate = self
         self.freedomBubblePinDetailView.freedomBubblePinDetailViewDelegate = self
         self.freedomBubblePinDetailView.alpha = 0
         self.freedomBubblePinDetailView.isHidden = true
@@ -86,6 +87,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.wiFiPinDetailView = Bundle.main.loadNibNamed("WiFiPinDetailView", owner: self, options: nil)![0] as! WiFiPinDetailView
         self.view.addSubview(self.wiFiPinDetailView)
         self.wiFiPinDetailView.autoPinEdgesToSuperviewEdges()
+        self.wiFiPinDetailView.pinDetailViewDelegate = self
         self.wiFiPinDetailView.wiFiPinDetailViewDelegate = self
         self.wiFiPinDetailView.alpha = 0
         self.wiFiPinDetailView.isHidden = true
@@ -105,7 +107,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         
         self.imagePickerVC = UIImagePickerController()
         self.imagePickerVC.delegate = self
-        // self.imagePickerVC.allowsEditing = true
+        self.imagePickerVC.allowsEditing = true
         self.imagePickerVC.mediaTypes = [kUTTypeImage as String] /* , kUTTypeMovie as String] */
         
         /* INITIALIZE MAP */
@@ -586,7 +588,12 @@ extension MapViewController: WiFiPinDetailViewDelegate {
 
 extension MapViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.newPinComposeView.pinPhotoImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.newPinComposeView.pinPhotoImage = image
+            self.newPinComposeView.pinPhotoImageView.image = image
+            print("BANANANA")
+        }
+        self.newPinComposeView.addPhotoButton.alpha = 0
         picker.dismiss(animated: true, completion: nil)
     }
 }
@@ -602,9 +609,7 @@ extension MapViewController {
         } else {
             self.imagePickerVC.sourceType = .camera
         }
-        self.present(self.imagePickerVC, animated: true) {
-            UIApplication.shared.setStatusBarStyle(.default, animated: true)
-        }
+        self.present(self.imagePickerVC, animated: true, completion: nil)
     }
 }
 

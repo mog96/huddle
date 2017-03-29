@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import MediaPlayer
+import MobileCoreServices
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var loadAnimationView: LoadAnimationView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var loginViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signupButton: UIButton!
+    
+    fileprivate var chooseMediaAC: UIAlertController!
+    fileprivate var imagePickerVC: UIImagePickerController!
     
     /** NOTE: These variables must be updated if the layout of
               the login view changes in the storyboard. **/
@@ -42,6 +49,8 @@ class LoginViewController: UIViewController {
     
     var inSignupMode = true
     var shouldContinueAnimating = false
+    
+    var profilePhotoImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +97,32 @@ class LoginViewController: UIViewController {
         passwordTextField.delegate = self
         self.usernameTextField.nextTextField = self.passwordTextField
         self.passwordTextField.returnKeyType = .go
+        
+        // Take or choose profile photo.
+        self.chooseMediaAC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        self.chooseMediaAC.addAction(UIAlertAction(title: "CLICK", style: .default, handler: { _ in
+            self.presentImagePicker(usingPhotoLibrary: false)
+        }))
+        self.chooseMediaAC.addAction(UIAlertAction(title: "CHOOSE", style: .default, handler: { _ in
+            self.presentImagePicker(usingPhotoLibrary: true)
+        }))
+        self.chooseMediaAC.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: { _ in
+            self.chooseMediaAC.dismiss(animated: true, completion: nil)
+        }))
+        
+        // Image picker.
+        self.imagePickerVC = UIImagePickerController()
+        self.imagePickerVC.delegate = self
+        self.imagePickerVC.allowsEditing = true
+        self.imagePickerVC.mediaTypes = [kUTTypeImage as String] /* , kUTTypeMovie as String] */
+        
+        self.addPhotoButton.isHidden = true
+        self.addPhotoButton.alpha = 0
+        
+        self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.width / 2
+        self.profilePhotoImageView.clipsToBounds = true
+        self.profilePhotoImageView.isHidden = true
+        self.profilePhotoImageView.alpha = 0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -196,6 +231,11 @@ extension LoginViewController {
         newUser.email = em
         newUser.username = un
         newUser.password = pw
+        if let image = self.profilePhotoImage {
+            let imageData = UIImageJPEGRepresentation(image, 100)
+            let imageFile = PFFile(name: "image.jpeg", data: imageData!)
+            newUser["profilePhotoImageFile"] = imageFile
+        }
         newUser.signUpInBackground { (success: Bool, error: Error?) in
             if let error = error {
                 
@@ -270,17 +310,27 @@ extension LoginViewController {
             
             self.nameTextField.isHidden = false
             self.emailTextField.isHidden = false
+            self.addPhotoButton.isHidden = false
+            self.profilePhotoImageView.isHidden = false
             UIView.animate(withDuration: animationDuration, delay: 0.1, options: .transitionCrossDissolve, animations: {
                 self.nameTextField.alpha = 1
                 self.emailTextField.alpha = 1
+                if self.profilePhotoImageView.image == nil {
+                    self.addPhotoButton.alpha = 1
+                }
+                self.profilePhotoImageView.alpha = 1
             }, completion: nil)
         } else {
             UIView.animate(withDuration: animationDuration, animations: { 
                 self.nameTextField.alpha = 0
                 self.emailTextField.alpha = 0
+                self.addPhotoButton.alpha = 0
+                self.profilePhotoImageView.alpha = 0
             }, completion: { _ in
                 self.nameTextField.isHidden = true
                 self.emailTextField.isHidden = true
+                self.addPhotoButton.isHidden = true
+                self.profilePhotoImageView.isHidden = true
             })
             
             self.loginViewHeightConstraint.constant = self.kLoginViewLoginHeight
@@ -451,9 +501,42 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 
+// MARK: - Image Picker Controller Delegate
+
+extension LoginViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.profilePhotoImage = image
+            self.profilePhotoImageView.image = image
+            print("BANANANA")
+        }
+        self.addPhotoButton.alpha = 0
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Image Picker Controller Helpers
+
+extension LoginViewController {
+    fileprivate func presentImagePicker(usingPhotoLibrary photoLibrary: Bool) {
+        if photoLibrary {
+            self.imagePickerVC.sourceType = .photoLibrary
+            self.imagePickerVC.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: imagePickerVC, action: nil)
+        } else {
+            self.imagePickerVC.sourceType = .camera
+        }
+        self.present(self.imagePickerVC, animated: true, completion: nil)
+    }
+}
+
+
 // MARK: - Actions
 
 extension LoginViewController {
+    @IBAction func onAddPhotoButtonTapped(_ sender: Any) {
+        self.present(self.chooseMediaAC, animated: true, completion: nil)
+    }
+    
     func goKeyPressed() {
         if self.inSignupMode {
             self.signupButton.sendActions(for: .touchUpInside)

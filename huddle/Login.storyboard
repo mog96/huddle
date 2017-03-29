@@ -121,22 +121,43 @@
                                     <constraint firstItem="tpU-FH-LpV" firstAttribute="leading" secondItem="BaS-R6-wbi" secondAttribute="leading" constant="25" id="sHW-ai-V35"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvj-gq-UKM">
+                                <rect key="frame" x="245" y="55" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ihT-1M-iRo"/>
+                                    <constraint firstAttribute="width" constant="60" id="naE-nn-wFD"/>
+                                </constraints>
+                                <state key="normal" image="add-photo"/>
+                                <connections>
+                                    <action selector="onAddPhotoButtonTapped:" destination="a7e-my-ce2" eventType="touchUpInside" id="0Qy-8C-elQ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8aj-EP-5Qk">
+                                <rect key="frame" x="245" y="55" width="60" height="60"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BaS-R6-wbi" firstAttribute="centerX" secondItem="GfO-jz-nGZ" secondAttribute="centerX" id="0lk-2T-sjV"/>
+                            <constraint firstItem="8aj-EP-5Qk" firstAttribute="trailing" secondItem="hvj-gq-UKM" secondAttribute="trailing" id="2dE-hh-h9X"/>
                             <constraint firstItem="Eyf-lw-abX" firstAttribute="top" secondItem="GfO-jz-nGZ" secondAttribute="top" id="7U8-5K-xF5"/>
                             <constraint firstItem="Z2s-wZ-ZQ6" firstAttribute="top" secondItem="GfO-jz-nGZ" secondAttribute="top" id="8BU-eO-WG8"/>
                             <constraint firstItem="BaS-R6-wbi" firstAttribute="top" secondItem="GfO-jz-nGZ" secondAttribute="top" constant="89" id="8KV-tx-hvW"/>
+                            <constraint firstItem="hvj-gq-UKM" firstAttribute="trailing" secondItem="BaS-R6-wbi" secondAttribute="trailing" constant="35" id="AcR-Ok-pEV"/>
                             <constraint firstAttribute="bottom" secondItem="Eyf-lw-abX" secondAttribute="bottom" id="FHm-nm-gON"/>
+                            <constraint firstItem="8aj-EP-5Qk" firstAttribute="leading" secondItem="hvj-gq-UKM" secondAttribute="leading" id="GNU-si-mAu"/>
                             <constraint firstAttribute="trailing" secondItem="Eyf-lw-abX" secondAttribute="trailing" id="RVG-Ow-bWT"/>
+                            <constraint firstItem="8aj-EP-5Qk" firstAttribute="top" secondItem="hvj-gq-UKM" secondAttribute="top" id="TXY-IQ-FYV"/>
                             <constraint firstItem="Eyf-lw-abX" firstAttribute="leading" secondItem="GfO-jz-nGZ" secondAttribute="leading" id="WYU-ND-aWN"/>
+                            <constraint firstItem="8aj-EP-5Qk" firstAttribute="bottom" secondItem="hvj-gq-UKM" secondAttribute="bottom" id="bKc-k0-EcD"/>
                             <constraint firstItem="Z2s-wZ-ZQ6" firstAttribute="leading" secondItem="GfO-jz-nGZ" secondAttribute="leading" id="ckb-tc-ifz"/>
+                            <constraint firstItem="hvj-gq-UKM" firstAttribute="top" secondItem="BaS-R6-wbi" secondAttribute="top" constant="-34" id="hJu-25-lex"/>
                             <constraint firstItem="c4s-r6-jr8" firstAttribute="top" secondItem="Z2s-wZ-ZQ6" secondAttribute="bottom" id="iAP-et-g6T"/>
                             <constraint firstAttribute="trailing" secondItem="Z2s-wZ-ZQ6" secondAttribute="trailing" id="yxq-b5-4fT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addPhotoButton" destination="hvj-gq-UKM" id="pDu-n0-JTX"/>
                         <outlet property="backgroundImageView" destination="Z2s-wZ-ZQ6" id="tGu-Er-vJJ"/>
                         <outlet property="emailTextField" destination="L0C-9y-iPw" id="WPa-2h-ar6"/>
                         <outlet property="loadAnimationView" destination="Eyf-lw-abX" id="glw-CH-Jlj"/>
@@ -145,6 +166,7 @@
                         <outlet property="loginViewHeightConstraint" destination="TxK-Pt-Zqr" id="xyF-Yk-qXG"/>
                         <outlet property="nameTextField" destination="9gY-nU-tqn" id="43j-2b-B1s"/>
                         <outlet property="passwordTextField" destination="lYD-C2-sIs" id="QKg-96-yxv"/>
+                        <outlet property="profilePhotoImageView" destination="8aj-EP-5Qk" id="Cj4-ln-f8Z"/>
                         <outlet property="signupButton" destination="25y-XK-twG" id="7c6-e9-BM9"/>
                         <outlet property="usernameTextField" destination="Nd2-rA-6qv" id="fXW-69-fCU"/>
                         <segue destination="2wJ-rG-AXd" kind="modal" identifier="LoginSegue" id="cUI-cc-7Oa"/>
@@ -168,6 +190,9 @@
             <point key="canvasLocation" x="105" y="1019"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add-photo" width="220" height="221"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
