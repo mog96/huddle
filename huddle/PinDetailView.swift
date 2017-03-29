@@ -11,8 +11,12 @@ import Parse
 import ParseUI
 
 protocol PinDetailViewDelegate {
+    func pinDetailViewCloseButtonTapped()
     func pinDetailView(didFlag pin: PFObject)
     func pinDetailView(didRemoveFlag pin: PFObject)
+    func pinDetailView(didTapJoin freedomBubblePin: PFObject)
+    func pinDetailView(plusButtonTappedFor wiFiPin: PFObject)
+    func pinDetailView(minusButtonTappedFor wiFiPin: PFObject)
 }
 
 class PinDetailView: UIView {
@@ -26,6 +30,10 @@ class PinDetailView: UIView {
     @IBOutlet weak var creatorSocialMediaHandleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pinPhotoImageView: UIImageView!
+    @IBOutlet weak var attendingCount: UILabel!
+    @IBOutlet weak var joinButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
     
     var pin: PFObject! {
         didSet {
@@ -79,6 +87,12 @@ class PinDetailView: UIView {
             if let flaggedByMe = PFUser.current()?["flaggedByMe"] as? [String] {
                 self.flagged = flaggedByMe.contains(pin.objectId!)
             }
+            
+            if let wiFiUpVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
+                self.plusButton.isEnabled = wiFiUpVotedByMe.contains(self.pin.objectId!)
+            } else if let wiFiDownVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
+                self.minusButton.isEnabled = wiFiDownVotedByMe.contains(self.pin.objectId!)
+            }
         }
     }
     
@@ -88,7 +102,7 @@ class PinDetailView: UIView {
         }
     }
     
-    var pinDetailViewDelegate: PinDetailViewDelegate?
+    var delegate: PinDetailViewDelegate?
     
     override var isHidden: Bool {
         get {
@@ -98,6 +112,8 @@ class PinDetailView: UIView {
             super.isHidden = hide
             
             if hide {
+                self.pinTypeImageView.image = nil
+                self.pinTypeLabel.text = nil
                 self.creatorProfileImageView.image = nil
                 self.timeDistanceLabel.text = nil
                 self.creatorNameLabel.text = nil
@@ -105,6 +121,11 @@ class PinDetailView: UIView {
                 self.descriptionLabel.text = nil
                 self.pinPhotoImageView.image = nil
                 self.flagged = false
+                
+                self.minusButton.isEnabled = true
+                self.minusButton.isHidden = true
+                self.plusButton.isEnabled = true
+                self.plusButton.isHidden = true
             }
         }
     }
@@ -124,12 +145,30 @@ class PinDetailView: UIView {
 // MARK: - Actions
 
 extension PinDetailView {
+    @IBAction func onCloseButtonTapped(_ sender: Any) {
+        self.delegate?.pinDetailViewCloseButtonTapped()
+    }
+    
     @IBAction func onFlagButtonTapped(_ sender: Any) {
         self.flagged = !self.flagged
         if self.flagged {
-            self.pinDetailViewDelegate?.pinDetailView(didFlag: self.pin)
+            self.delegate?.pinDetailView(didFlag: self.pin)
         } else {
-            self.pinDetailViewDelegate?.pinDetailView(didRemoveFlag: self.pin)
+            self.delegate?.pinDetailView(didRemoveFlag: self.pin)
         }
+    }
+    
+    @IBAction func onJoinButtonTapped(_ sender: Any) {
+        self.delegate?.pinDetailView(didTapJoin: self.pin)
+    }
+    
+    @IBAction func onMinusButtonTapped(_ sender: Any) {
+        self.delegate?.pinDetailView(minusButtonTappedFor: self.pin)
+        self.minusButton.isEnabled = false
+    }
+    
+    @IBAction func onPlusButtonTapped(_ sender: Any) {
+        self.delegate?.pinDetailView(plusButtonTappedFor: self.pin)
+        self.plusButton.isEnabled = false
     }
 }
