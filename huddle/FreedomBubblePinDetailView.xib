@@ -188,6 +188,12 @@
                         <constraint firstItem="8Hn-kh-nJG" firstAttribute="top" secondItem="Uko-8N-XtG" secondAttribute="bottom" constant="8" id="yZm-9d-y68"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[no location photo]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ru5-09-LwN">
+                    <rect key="frame" x="123" y="557" width="128" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IOk-V5-IYf">
                     <rect key="frame" x="123" y="500" width="128" height="128"/>
                     <constraints>
@@ -195,12 +201,6 @@
                         <constraint firstAttribute="height" constant="128" id="cBb-Q8-QDQ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[no location photo]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ru5-09-LwN">
-                    <rect key="frame" x="123" y="557" width="128" height="15"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoS-F4-red">
                     <rect key="frame" x="172" y="637" width="30" height="10"/>
                     <state key="normal" title="join"/>
