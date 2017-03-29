@@ -53,6 +53,16 @@ class CustomTextView: UITextView {
 }
 
 
+// MARK: - External helpers
+
+extension CustomTextView {
+    func clear() {
+        self.text = ""
+        self.placeholderLabel.isHidden = false
+    }
+}
+
+
 // MARK: - Notification Listeners
 
 extension CustomTextView {

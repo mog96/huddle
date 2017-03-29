@@ -56,7 +56,11 @@ class PinDetailView: UIView {
             // TODO: Calculate distance from current location.
             // self.timeDistanceLabel.text =
             
-            self.descriptionLabel.text = pin["description"] as? String
+            if let description = self.pin["description"] as? String {
+                self.descriptionLabel.text = "\"" + description + "\""
+            } else {
+                self.descriptionLabel.text = "[no description]"
+            }
             
             if let imageFile = pin["imageFile"] as? PFFile {
                 let pfImageView = PFImageView()
@@ -101,6 +105,11 @@ class PinDetailView: UIView {
 extension PinDetailView {
     @IBAction func onCloseButtonTapped(_ sender: Any) {
         self.delegate?.pinDetailViewCloseButtonTapped()
+    }
+    
+    @IBAction func onFlagButtonTapped(_ sender: Any) {
+        // TODO: Mark flagged
+        // .isSelected
     }
     
     @IBAction func onJoinButtonTapped(_ sender: Any) {

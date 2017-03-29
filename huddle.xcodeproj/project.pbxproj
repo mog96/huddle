@@ -143,7 +143,6 @@
 		250C18B81E837C7700591980 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				25C3598E1E8913FB00936ECB /* CustomTextView.swift */,
 				250C18B91E837CA400591980 /* UITextField+NextTextField.swift */,
 			);
 			name = Extensions;
@@ -181,7 +180,8 @@
 				253AC6BD1E7F6B4000A19AD8 /* Main.storyboard */,
 				253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */,
 				250C18B81E837C7700591980 /* Extensions */,
-				258915551E88F01200488A67 /* Utilities */,
+				258915551E88F01200488A67 /* Custom Classes */,
+				25E957971E8B3A630090C002 /* Utilities */,
 				253AC6C51E7F6B4000A19AD8 /* Info.plist */,
 				250C18BB1E837E4300591980 /* Keys.plist */,
 			);
@@ -218,7 +218,15 @@
 			name = Layout;
 			sourceTree = "<group>";
 		};
-		258915551E88F01200488A67 /* Utilities */ = {
+		258915551E88F01200488A67 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				25C3598E1E8913FB00936ECB /* CustomTextView.swift */,
+			);
+			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		25E957971E8B3A630090C002 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				258915561E88F0AB00488A67 /* PinType.swift */,

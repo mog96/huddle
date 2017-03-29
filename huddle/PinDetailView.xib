@@ -62,7 +62,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pin type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTa-ac-IUq">
-                    <rect key="frame" x="265" y="61.5" width="53" height="17"/>
+                    <rect key="frame" x="265" y="62" width="53" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -73,9 +73,17 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b7-Pf-adG">
-                    <rect key="frame" x="16" y="180" width="37" height="30"/>
-                    <state key="normal" title="FLAG"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b7-Pf-adG">
+                    <rect key="frame" x="16" y="184" width="15" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="I4f-Ax-Rcw"/>
+                        <constraint firstAttribute="width" constant="15" id="h8E-NL-tAy"/>
+                    </constraints>
+                    <state key="normal" image="flag"/>
+                    <state key="selected" image="flag-filled"/>
+                    <connections>
+                        <action selector="onFlagButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="KIe-s4-Sff"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eWE-tt-Yzq">
                     <rect key="frame" x="0.0" y="214" width="375" height="240"/>
@@ -195,7 +203,7 @@
                 <constraint firstAttribute="trailing" secondItem="SYT-WR-Wzq" secondAttribute="trailing" id="Rco-F2-sXk"/>
                 <constraint firstItem="IOk-V5-IYf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Rqm-J8-MuV"/>
                 <constraint firstAttribute="trailing" secondItem="eWE-tt-Yzq" secondAttribute="trailing" id="STI-Cx-P7f"/>
-                <constraint firstItem="eWE-tt-Yzq" firstAttribute="top" secondItem="3b7-Pf-adG" secondAttribute="bottom" constant="3.5" id="UJM-hd-Xyp"/>
+                <constraint firstItem="eWE-tt-Yzq" firstAttribute="top" secondItem="3b7-Pf-adG" secondAttribute="bottom" constant="6" id="UJM-hd-Xyp"/>
                 <constraint firstAttribute="bottom" secondItem="SYT-WR-Wzq" secondAttribute="bottom" id="Yak-Vv-kqp"/>
                 <constraint firstItem="aoc-fk-eQ6" firstAttribute="top" secondItem="Apc-6K-uKs" secondAttribute="top" constant="-12" id="ZcT-ou-TJG"/>
                 <constraint firstItem="eWE-tt-Yzq" firstAttribute="top" secondItem="Gf1-xH-klQ" secondAttribute="bottom" constant="10" id="bra-YF-hwA"/>
@@ -224,5 +232,7 @@
     </objects>
     <resources>
         <image name="close-button" width="34" height="34"/>
+        <image name="flag" width="65" height="105"/>
+        <image name="flag-filled" width="65" height="105"/>
     </resources>
 </document>

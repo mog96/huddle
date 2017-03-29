@@ -69,6 +69,9 @@
                         <action selector="onCameraButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="5wc-ot-JG6"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EoX-kz-egF">
+                    <rect key="frame" x="227" y="52" width="60" height="60"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTv-Yy-GWm">
                     <rect key="frame" x="224" y="187" width="40" height="40"/>
                     <constraints>
@@ -80,7 +83,7 @@
                         <action selector="onCoinButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="YCW-fe-Avc"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-rW-6va">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-rW-6va">
                     <rect key="frame" x="259" y="182" width="21" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <nil key="textColor"/>
@@ -137,6 +140,30 @@
                         <action selector="onCreatePinTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="xGw-I1-bow"/>
                     </connections>
                 </button>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e0V-LC-9Na">
+                    <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8Aj-S7-7Cp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9vf-Cy-iNc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="qca-ne-Vo0">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xKS-4M-Q09">
+                    <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                </pickerView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="x6f-Iv-zwv" secondAttribute="bottom" id="0qI-bT-bvw"/>
@@ -146,6 +173,7 @@
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-189.5" id="5Bv-IP-r56"/>
                 <constraint firstItem="C2e-rW-6va" firstAttribute="trailing" secondItem="hTv-Yy-GWm" secondAttribute="trailing" constant="16" id="5Xi-Aj-6vW"/>
                 <constraint firstItem="b1g-f7-h1Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8sv-cV-j0Q"/>
+                <constraint firstAttribute="bottom" secondItem="xKS-4M-Q09" secondAttribute="bottom" id="Dah-aL-5wM"/>
                 <constraint firstItem="Uui-vK-4Ia" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="7" id="H78-MJ-mdF"/>
                 <constraint firstItem="4lU-y3-W4I" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="top" constant="-28" id="HHH-1f-Px9"/>
                 <constraint firstItem="hTv-Yy-GWm" firstAttribute="bottom" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="19" id="I8Z-tw-EzR"/>
@@ -153,22 +181,36 @@
                 <constraint firstItem="4lU-y3-W4I" firstAttribute="trailing" secondItem="PtA-6f-Vun" secondAttribute="trailing" constant="36" id="OUf-MY-vRT"/>
                 <constraint firstItem="JGG-8P-fn0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ouq-KB-cRS"/>
                 <constraint firstItem="zbd-Ss-92X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pow-k5-9Mp"/>
+                <constraint firstItem="xKS-4M-Q09" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Qk7-cA-a8I"/>
+                <constraint firstItem="EoX-kz-egF" firstAttribute="leading" secondItem="4lU-y3-W4I" secondAttribute="leading" id="RmZ-DE-Xzo"/>
                 <constraint firstItem="C2e-rW-6va" firstAttribute="top" secondItem="hTv-Yy-GWm" secondAttribute="top" constant="-5" id="aMg-mQ-4NO"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="centerX" secondItem="deO-Rh-ULx" secondAttribute="centerX" id="dFY-qp-qfa"/>
                 <constraint firstItem="x6f-Iv-zwv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fBr-cA-ksH"/>
+                <constraint firstItem="EoX-kz-egF" firstAttribute="bottom" secondItem="4lU-y3-W4I" secondAttribute="bottom" id="geu-M7-Qw5"/>
+                <constraint firstItem="xKS-4M-Q09" firstAttribute="top" secondItem="e0V-LC-9Na" secondAttribute="top" id="jH0-AI-w6a"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="top" secondItem="deO-Rh-ULx" secondAttribute="bottom" id="jz0-kk-o04"/>
                 <constraint firstAttribute="bottom" secondItem="zbd-Ss-92X" secondAttribute="bottom" constant="20" id="kHo-Ow-8xm"/>
+                <constraint firstItem="EoX-kz-egF" firstAttribute="trailing" secondItem="4lU-y3-W4I" secondAttribute="trailing" id="lHs-ho-MQb"/>
+                <constraint firstItem="xKS-4M-Q09" firstAttribute="bottom" secondItem="e0V-LC-9Na" secondAttribute="bottom" id="lp8-Xh-fv6"/>
+                <constraint firstItem="xKS-4M-Q09" firstAttribute="leading" secondItem="e0V-LC-9Na" secondAttribute="leading" id="q5O-g4-rAM"/>
+                <constraint firstItem="xKS-4M-Q09" firstAttribute="trailing" secondItem="e0V-LC-9Na" secondAttribute="trailing" id="s1g-3W-O62"/>
+                <constraint firstAttribute="trailing" secondItem="xKS-4M-Q09" secondAttribute="trailing" id="ut9-hT-t80"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="centerX" secondItem="zbd-Ss-92X" secondAttribute="centerX" id="w3Z-JP-Xgi"/>
                 <constraint firstItem="JGG-8P-fn0" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="61" id="wKu-06-A0h"/>
                 <constraint firstAttribute="trailing" secondItem="JGG-8P-fn0" secondAttribute="trailing" id="wVW-Bn-7c0"/>
                 <constraint firstItem="x6f-Iv-zwv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wVf-Pc-80R"/>
+                <constraint firstItem="EoX-kz-egF" firstAttribute="top" secondItem="4lU-y3-W4I" secondAttribute="top" id="wvY-ug-6r2"/>
                 <constraint firstItem="zbd-Ss-92X" firstAttribute="top" secondItem="Ur1-hO-0xM" secondAttribute="bottom" constant="8" id="xby-cw-93w"/>
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yZd-ex-O5M"/>
             </constraints>
             <connections>
+                <outlet property="addPhotoButton" destination="4lU-y3-W4I" id="Dre-2y-Mxj"/>
                 <outlet property="coinCountLabel" destination="C2e-rW-6va" id="zi9-sD-DqQ"/>
+                <outlet property="coinCountPickerBackgroundView" destination="e0V-LC-9Na" id="s6y-5h-PEu"/>
+                <outlet property="coinCountPickerView" destination="xKS-4M-Q09" id="a0j-ob-xRA"/>
                 <outlet property="descriptionTextView" destination="1UZ-sT-9kU" id="dNn-cv-jzV"/>
                 <outlet property="descriptionTextViewHeight" destination="78C-ZU-43t" id="cB3-V3-yWl"/>
+                <outlet property="pinPhotoImageView" destination="EoX-kz-egF" id="jNb-aO-dFq"/>
                 <outlet property="pinTypeImageView" destination="PtA-6f-Vun" id="QLP-N4-Gex"/>
                 <outlet property="pinTypeLabel" destination="Uui-vK-4Ia" id="OUh-cK-jav"/>
             </connections>

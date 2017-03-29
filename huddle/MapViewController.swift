@@ -29,15 +29,13 @@ class MapViewController: UIViewController {
     
     fileprivate var statusBarHidden = false
     
-    fileprivate var regionRadius: CLLocationDistance = 1000     // meters
+    fileprivate var regionRadius: CLLocationDistance = 500     // meters
     
     fileprivate let locationManager = CLLocationManager()
     fileprivate var currentLocation: CLLocation?
     
     fileprivate var locationRequestedForNewPin = false
-    fileprivate var newPinType: PinType.PinType?
-    fileprivate var newPinDescription: String?
-    fileprivate var newPinImage: UIImage?
+    fileprivate var newPin: PFObject!
     
     fileprivate var currentHUD = MBProgressHUD()
     
@@ -343,9 +341,8 @@ extension MapViewController: NewPinComposeViewDelegate {
         self.showNewPinComposeView(false)
     }
     
-    func newPinComposeView(didPostPin pinType: PinType.PinType, withDescription description: String) {
-        self.newPinType = pinType
-        self.newPinDescription = description
+    func newPinComposeView(didCreatePin pinWithoutLocation: PFObject) {
+        self.newPin = pinWithoutLocation
         
         // TODO: Store image.
         // self.newPinPhotoImage =
@@ -360,18 +357,8 @@ extension MapViewController: NewPinComposeViewDelegate {
 
 extension MapViewController {
     func completeNewPinCompose() {
-        
-        let pin = PFObject(className: "Pin")
-        pin["location"] = PFGeoPoint(location: self.currentLocation)
-        pin["pinType"] = self.newPinType!.rawValue
-        pin["description"] = self.newPinDescription
-        if let image = self.newPinImage {
-            let imageData = UIImageJPEGRepresentation(image, 100)
-            let imageFile = PFFile(name: "image.jpeg", data: imageData!)
-            pin["imageFile"] = imageFile
-        }
-        pin["createdBy"] = PFUser.current()
-        pin.saveInBackground { (success: Bool, error: Error?) in
+        self.newPin["location"] = PFGeoPoint(location: self.currentLocation)
+        self.newPin.saveInBackground { (success: Bool, error: Error?) in
             if error != nil {
                 print("Error: \(error!) \(error!.localizedDescription)")
                 
@@ -384,9 +371,7 @@ extension MapViewController {
                 
                 print("NEW PIN UPLOAD SUCCESS")
                 
-                self.newPinType = nil
-                self.newPinDescription = nil
-                self.newPinImage = nil
+                self.newPin = nil
                 
                 self.newPinComposeView.currentHUD.hide(animated: true)
                 self.showNewPinComposeView(false)
@@ -430,6 +415,9 @@ extension MapViewController {
     }
     
     @IBAction func onPostButtonTapped(_ sender: Any) {
+        if self.currentLocation != nil {
+            self.centerMapOnLocation(self.currentLocation!)
+        }
         self.showNewPinTypeSelectionView(true)
     }
     

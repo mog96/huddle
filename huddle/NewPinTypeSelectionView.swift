@@ -21,20 +21,6 @@ class NewPinTypeSelectionView: UIView {
     fileprivate let kItemsPerRow: Int = 3
     
     var delegate: NewPinTypeSelectionViewDelegate?
-
-    init(frame: CGRect, exemptFrames: CGRect...) {
-        super.init(frame: frame)
-        self.commonInit()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.commonInit()
-    }
-    
-    func commonInit() {
-        //
-    }
     
     override func awakeFromNib() {
         self.collectionView.delegate = self
