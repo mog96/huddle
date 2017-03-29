@@ -21,6 +21,7 @@ class NewPinComposeView: UIView {
     @IBOutlet weak var pinPhotoImageView: UIImageView!
     @IBOutlet weak var pinTypeImageView: UIImageView!
     @IBOutlet weak var pinTypeLabel: UILabel!
+    @IBOutlet weak var coinButton: UIButton!
     @IBOutlet weak var coinCountLabel: UILabel!
     @IBOutlet weak var descriptionTextView: CustomTextView!
     @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
@@ -40,6 +41,11 @@ class NewPinComposeView: UIView {
             if pinType != nil {
                 self.pinTypeImageView.image = PinType.pinTypeImage[self.pinType]
                 self.pinTypeLabel.text = PinType.pinTypeName[self.pinType]
+                
+                if pinType == .poiWiFi {
+                    self.coinButton.isHidden = true
+                    self.coinCountLabel.isHidden = true
+                }
             }
         }
     }
@@ -56,6 +62,8 @@ class NewPinComposeView: UIView {
             if hide {
                 self.pinType = nil
                 self.pinTypeImageView?.image = nil
+                self.coinButton.isHidden = false
+                self.coinCountLabel.isHidden = false
                 self.coinCount = self.coinCounts[0]
                 self.coinCountLabel.text = String(self.coinCount)
                 self.countPickerViewHidden = true

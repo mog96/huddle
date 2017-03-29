@@ -205,6 +205,7 @@
             </constraints>
             <connections>
                 <outlet property="addPhotoButton" destination="4lU-y3-W4I" id="Dre-2y-Mxj"/>
+                <outlet property="coinButton" destination="hTv-Yy-GWm" id="n9b-pQ-W5s"/>
                 <outlet property="coinCountLabel" destination="C2e-rW-6va" id="zi9-sD-DqQ"/>
                 <outlet property="coinCountPickerBackgroundView" destination="e0V-LC-9Na" id="s6y-5h-PEu"/>
                 <outlet property="coinCountPickerView" destination="xKS-4M-Q09" id="a0j-ob-xRA"/>

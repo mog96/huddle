@@ -64,6 +64,10 @@ class PinType: NSObject {
         case wildlifeWatch
         case workout
         case yoga
+        
+        case poiWater
+        case poiWC
+        case poiWiFi
     }
     
     static var pinTypeName: [PinType: String] = [
@@ -114,7 +118,11 @@ class PinType: NSObject {
         .volunteer: "volunteer",
         .wildlifeWatch: "wildlifeWatch",
         .workout: "workout",
-        .yoga: "yoga"
+        .yoga: "yoga",
+        
+        .poiWater: "poiWater",
+        .poiWC: "poiWC",
+        .poiWiFi: "poiWiFi"
     ]
     
     static var pinTypeImage: [PinType: UIImage] = [
@@ -165,7 +173,11 @@ class PinType: NSObject {
         .volunteer: #imageLiteral(resourceName: "volunteer"),
         .wildlifeWatch: #imageLiteral(resourceName: "wildlifewatch"),
         .workout: #imageLiteral(resourceName: "workout"),
-        .yoga: #imageLiteral(resourceName: "yoga")
+        .yoga: #imageLiteral(resourceName: "yoga"),
+        
+        .poiWater: #imageLiteral(resourceName: "poi-water"),
+        .poiWC: #imageLiteral(resourceName: "poi-wc"),
+        .poiWiFi: #imageLiteral(resourceName: "poi-wifi")
     ]
     
     static var pinTypePinImage: [PinType: UIImage] = [
@@ -216,6 +228,10 @@ class PinType: NSObject {
         .volunteer: #imageLiteral(resourceName: "volunteer-pin"),
         .wildlifeWatch: #imageLiteral(resourceName: "wildlifewatch-pin"),
         .workout: #imageLiteral(resourceName: "workout-pin"),
-        .yoga: #imageLiteral(resourceName: "yoga-pin")
+        .yoga: #imageLiteral(resourceName: "yoga-pin"),
+        
+        .poiWater: #imageLiteral(resourceName: "poi-water-pin"),
+        .poiWC: #imageLiteral(resourceName: "poi-wc-pin"),
+        .poiWiFi: #imageLiteral(resourceName: "poi-wifi-pin")
     ]
 }

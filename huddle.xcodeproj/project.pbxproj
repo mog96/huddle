@@ -19,6 +19,7 @@
 		253AC6CF1E7F6B4100A19AD8 /* huddleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6CE1E7F6B4100A19AD8 /* huddleTests.swift */; };
 		253AC6DA1E7F6B4100A19AD8 /* huddleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6D91E7F6B4100A19AD8 /* huddleUITests.swift */; };
 		253AC6E81E7F6C8500A19AD8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */; };
+		2545D6561E8BB68800CB9479 /* LayoutUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2545D6551E8BB68800CB9479 /* LayoutUtils.swift */; };
 		258915471E88D73A00488A67 /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258915461E88D73A00488A67 /* MenuView.xib */; };
 		258915491E88DB8B00488A67 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258915481E88DB8B00488A67 /* MenuView.swift */; };
 		2589154E1E88ECC800488A67 /* NewPinTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2589154D1E88ECC800488A67 /* NewPinTypeSelectionView.swift */; };
@@ -30,8 +31,11 @@
 		2589155B1E8911E500488A67 /* NewPinComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2589155A1E8911E500488A67 /* NewPinComposeView.xib */; };
 		25C3598F1E8913FB00936ECB /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3598E1E8913FB00936ECB /* CustomTextView.swift */; };
 		25E957921E89DEF30090C002 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E957911E89DEF30090C002 /* Pin.swift */; };
-		25E957941E8A001C0090C002 /* PinDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E957931E8A001C0090C002 /* PinDetailView.xib */; };
+		25E957941E8A001C0090C002 /* FreedomBubblePinDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E957931E8A001C0090C002 /* FreedomBubblePinDetailView.xib */; };
 		25E957961E8AD2E70090C002 /* PinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E957951E8AD2E60090C002 /* PinDetailView.swift */; };
+		25E957991E8B9C470090C002 /* WiFiPinDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E957981E8B9C470090C002 /* WiFiPinDetailView.xib */; };
+		25E9579B1E8B9EF80090C002 /* WiFiPinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9579A1E8B9EF80090C002 /* WiFiPinDetailView.swift */; };
+		25E9579D1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E9579C1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift */; };
 		735C79B11DE8024CA5636B52 /* Pods_huddle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +76,7 @@
 		253AC6D91E7F6B4100A19AD8 /* huddleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = huddleUITests.swift; sourceTree = "<group>"; };
 		253AC6DB1E7F6B4100A19AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		2545D6551E8BB68800CB9479 /* LayoutUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutUtils.swift; sourceTree = "<group>"; };
 		258915461E88D73A00488A67 /* MenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuView.xib; sourceTree = "<group>"; };
 		258915481E88DB8B00488A67 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		2589154D1E88ECC800488A67 /* NewPinTypeSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPinTypeSelectionView.swift; sourceTree = "<group>"; };
@@ -83,8 +88,11 @@
 		2589155A1E8911E500488A67 /* NewPinComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPinComposeView.xib; sourceTree = "<group>"; };
 		25C3598E1E8913FB00936ECB /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		25E957911E89DEF30090C002 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
-		25E957931E8A001C0090C002 /* PinDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinDetailView.xib; sourceTree = "<group>"; };
+		25E957931E8A001C0090C002 /* FreedomBubblePinDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreedomBubblePinDetailView.xib; sourceTree = "<group>"; };
 		25E957951E8AD2E60090C002 /* PinDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailView.swift; sourceTree = "<group>"; };
+		25E957981E8B9C470090C002 /* WiFiPinDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WiFiPinDetailView.xib; sourceTree = "<group>"; };
+		25E9579A1E8B9EF80090C002 /* WiFiPinDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WiFiPinDetailView.swift; sourceTree = "<group>"; };
+		25E9579C1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreedomBubblePinDetailView.swift; sourceTree = "<group>"; };
 		69B7F20890245A25B5CAC77E /* Pods-huddle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-huddle.release.xcconfig"; path = "Pods/Target Support Files/Pods-huddle/Pods-huddle.release.xcconfig"; sourceTree = "<group>"; };
 		782B4D7D4C042563EDEC93C5 /* Pods_huddle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_huddle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +143,8 @@
 				258915531E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift */,
 				258915581E89116200488A67 /* NewPinComposeView.swift */,
 				25E957951E8AD2E60090C002 /* PinDetailView.swift */,
+				25E9579C1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift */,
+				25E9579A1E8B9EF80090C002 /* WiFiPinDetailView.swift */,
 				2589154A1E88DB9400488A67 /* Layout */,
 			);
 			name = Map;
@@ -213,7 +223,8 @@
 				2589154F1E88ECDB00488A67 /* NewPinTypeSelectionView.xib */,
 				258915511E88EE0A00488A67 /* NewPinTypeCollectionViewCell.xib */,
 				2589155A1E8911E500488A67 /* NewPinComposeView.xib */,
-				25E957931E8A001C0090C002 /* PinDetailView.xib */,
+				25E957931E8A001C0090C002 /* FreedomBubblePinDetailView.xib */,
+				25E957981E8B9C470090C002 /* WiFiPinDetailView.xib */,
 			);
 			name = Layout;
 			sourceTree = "<group>";
@@ -229,6 +240,7 @@
 		25E957971E8B3A630090C002 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				2545D6551E8BB68800CB9479 /* LayoutUtils.swift */,
 				258915561E88F0AB00488A67 /* PinType.swift */,
 			);
 			name = Utilities;
@@ -369,7 +381,8 @@
 				250C18B21E83764300591980 /* Login.storyboard in Resources */,
 				253AC6C41E7F6B4000A19AD8 /* LaunchScreen.storyboard in Resources */,
 				258915501E88ECDB00488A67 /* NewPinTypeSelectionView.xib in Resources */,
-				25E957941E8A001C0090C002 /* PinDetailView.xib in Resources */,
+				25E957941E8A001C0090C002 /* FreedomBubblePinDetailView.xib in Resources */,
+				25E957991E8B9C470090C002 /* WiFiPinDetailView.xib in Resources */,
 				253AC6C11E7F6B4000A19AD8 /* Assets.xcassets in Resources */,
 				253AC6BF1E7F6B4000A19AD8 /* Main.storyboard in Resources */,
 				258915521E88EE0A00488A67 /* NewPinTypeCollectionViewCell.xib in Resources */,
@@ -448,13 +461,16 @@
 			files = (
 				250C18BA1E837CA400591980 /* UITextField+NextTextField.swift in Sources */,
 				258915491E88DB8B00488A67 /* MenuView.swift in Sources */,
+				25E9579D1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift in Sources */,
 				250C18B71E837B9500591980 /* LoadAnimationView.swift in Sources */,
 				25E957921E89DEF30090C002 /* Pin.swift in Sources */,
 				258915541E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift in Sources */,
 				253AC6BA1E7F6B4000A19AD8 /* AppDelegate.swift in Sources */,
+				25E9579B1E8B9EF80090C002 /* WiFiPinDetailView.swift in Sources */,
 				25E957961E8AD2E70090C002 /* PinDetailView.swift in Sources */,
 				25C3598F1E8913FB00936ECB /* CustomTextView.swift in Sources */,
 				253007B81E84CDA8006D383B /* LoginViewController.swift in Sources */,
+				2545D6561E8BB68800CB9479 /* LayoutUtils.swift in Sources */,
 				258915571E88F0AB00488A67 /* PinType.swift in Sources */,
 				2589154E1E88ECC800488A67 /* NewPinTypeSelectionView.swift in Sources */,
 				258915591E89116200488A67 /* NewPinComposeView.swift in Sources */,

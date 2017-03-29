@@ -25,7 +25,8 @@ class MapViewController: UIViewController {
     fileprivate var menuView: MenuView!
     fileprivate var newPinTypeSelectionView: NewPinTypeSelectionView!
     fileprivate var newPinComposeView: NewPinComposeView!
-    fileprivate var pinDetailView: PinDetailView!
+    fileprivate var freedomBubblePinDetailView: FreedomBubblePinDetailView!
+    fileprivate var wiFiPinDetailView: WiFiPinDetailView!
     
     fileprivate var statusBarHidden = false
     
@@ -70,16 +71,19 @@ class MapViewController: UIViewController {
         self.newPinComposeView.alpha = 0
         self.newPinComposeView.isHidden = true
         
-        self.pinDetailView = Bundle.main.loadNibNamed("PinDetailView", owner: self, options: nil)![0] as! PinDetailView
-        self.view.addSubview(self.pinDetailView)
-        self.pinDetailView.autoPinEdgesToSuperviewEdges()
-        self.pinDetailView.delegate = self
-        self.pinDetailView.alpha = 0
-        self.pinDetailView.isHidden = true
-        self.pinDetailView.autoPin(toTopLayoutGuideOf: self, withInset: 0)
-        self.pinDetailView.autoPinEdge(toSuperviewEdge: .left)
-        self.pinDetailView.autoPinEdge(toSuperviewEdge: .right)
-        self.pinDetailView.autoPinEdge(toSuperviewEdge: .bottom)
+        self.freedomBubblePinDetailView = Bundle.main.loadNibNamed("FreedomBubblePinDetailView", owner: self, options: nil)![0] as! FreedomBubblePinDetailView
+        self.view.addSubview(self.freedomBubblePinDetailView)
+        self.freedomBubblePinDetailView.autoPinEdgesToSuperviewEdges()
+        self.freedomBubblePinDetailView.freedomBubblePinDetailViewDelegate = self
+        self.freedomBubblePinDetailView.alpha = 0
+        self.freedomBubblePinDetailView.isHidden = true
+        
+        self.wiFiPinDetailView = Bundle.main.loadNibNamed("WiFiPinDetailView", owner: self, options: nil)![0] as! WiFiPinDetailView
+        self.view.addSubview(self.wiFiPinDetailView)
+        self.wiFiPinDetailView.autoPinEdgesToSuperviewEdges()
+        self.wiFiPinDetailView.wiFiPinDetailViewDelegate = self
+        self.wiFiPinDetailView.alpha = 0
+        self.wiFiPinDetailView.isHidden = true
         
         self.searchButton.isHidden = true
         
@@ -262,10 +266,19 @@ extension MapViewController: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
         // Assume control is pin detail disclosure.
         if let pinAnnotation = view.annotation as? Pin {
-            self.pinDetailView.pin = pinAnnotation.pfObject
-            self.showPinDetailView(true)
+            self.freedomBubblePinDetailView.pin = pinAnnotation.pfObject
+            if let pinTypeString = pinAnnotation.pfObject["pinType"] as? String {
+                if let pinType = PinType.PinType(rawValue: pinTypeString) {
+                    if pinType == .poiWiFi {
+                        self.showWiFiPinDetailView(true)
+                    } else {
+                        self.showFreedomBubblePinDetailView(true)
+                    }
+                }
+            }
         }
     }
 }
@@ -290,8 +303,12 @@ extension MapViewController {
         self.showFullScreenView(view: self.newPinComposeView, show: show)
     }
     
-    fileprivate func showPinDetailView(_ show: Bool) {
-        self.showFullScreenView(view: self.pinDetailView, show: show)
+    fileprivate func showFreedomBubblePinDetailView(_ show: Bool) {
+        self.showFullScreenView(view: self.freedomBubblePinDetailView, show: show)
+    }
+    
+    fileprivate func showWiFiPinDetailView(_ show: Bool) {
+        self.showFullScreenView(view: self.wiFiPinDetailView, show: show)
     }
     
     fileprivate func showFullScreenView(view: UIView, show: Bool) {
@@ -388,10 +405,6 @@ extension MapViewController {
 // MARK: - Pin Detail View Delegate
 
 extension MapViewController: PinDetailViewDelegate {
-    func pinDetailViewCloseButtonTapped() {
-        self.showPinDetailView(false)
-    }
-    
     func pinDetailView(didFlag pin: PFObject) {
         PFUser.current()!.addUniqueObject(pin.objectId!, forKey: "flaggedByMe")
         PFUser.current()!.saveInBackground { (success: Bool, error: Error?) in
@@ -433,8 +446,17 @@ extension MapViewController: PinDetailViewDelegate {
             }
         }
     }
+}
+
+
+// MARK: - Freedom Bubble Pin Detail View Delegate
+
+extension MapViewController: FreedomBubblePinDetailViewDelegate {
+    func freedomBubblePinDetailViewCloseButtonTapped() {
+        self.showFreedomBubblePinDetailView(false)
+    }
     
-    func pinDetailView(didTapJoin pin: PFObject) {
+    func freedomBubblePinDetailView(didTapJoin pin: PFObject) {
         // TODO: Mark this in the DB
         
         self.currentHUD.label.text = "Joined!"
@@ -444,9 +466,22 @@ extension MapViewController: PinDetailViewDelegate {
         
         // TODO: Change 'join' to 'joined'
     }
+}
+
+
+// MARK: - WiFi Pin Detail View Delegate
+
+extension MapViewController: WiFiPinDetailViewDelegate {
+    func wiFiPinDetailViewCloseButtonTapped() {
+        self.showWiFiPinDetailView(false)
+    }
     
-    @objc fileprivate func hidePinDetailView() {
-        self.showPinDetailView(false)
+    func wiFiPinDetailView(minusButtonTappedFor wiFiPin: PFObject) {
+        // TODO
+    }
+    
+    func wiFiPinDetailView(plusButtonTappedFor wiFiPin: PFObject) {
+        // TODO
     }
 }
 
