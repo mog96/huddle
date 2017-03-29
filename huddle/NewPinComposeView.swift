@@ -162,6 +162,7 @@ extension NewPinComposeView {
     }
     
     @IBAction func onCoinButtonTapped(_ sender: Any) {
+        self.endEditing(true)
         self.countPickerViewHidden = false
     }
     

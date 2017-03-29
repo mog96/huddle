@@ -76,6 +76,12 @@ class PinDetailView: UIView {
         }
     }
     
+    var flagged = false {
+        didSet {
+            self.flagButton.isSelected = true
+        }
+    }
+    
     var delegate: PinDetailViewDelegate?
     
     override var isHidden: Bool {
@@ -94,6 +100,7 @@ class PinDetailView: UIView {
                 self.creatorSocialMediaHandleLabel.text = nil
                 self.descriptionLabel.text = nil
                 self.pinPhotoImageView.image = nil
+                self.flagged = false
             }
         }
     }
@@ -108,8 +115,7 @@ extension PinDetailView {
     }
     
     @IBAction func onFlagButtonTapped(_ sender: Any) {
-        // TODO: Mark flagged
-        // .isSelected
+        self.flagged = !self.flagged
     }
     
     @IBAction func onJoinButtonTapped(_ sender: Any) {

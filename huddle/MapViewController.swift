@@ -81,6 +81,8 @@ class MapViewController: UIViewController {
         self.pinDetailView.autoPinEdge(toSuperviewEdge: .right)
         self.pinDetailView.autoPinEdge(toSuperviewEdge: .bottom)
         
+        self.searchButton.isHidden = true
+        
         self.mapView.delegate = self
         
         // Default initial location to Golden Gate Park.
@@ -95,8 +97,6 @@ class MapViewController: UIViewController {
         // With firstLoad set to true, location status check will trigger pin refresh when current user location found.
         self.firstLoad = true
         self.checkLocationAuthorizationStatus()
-        
-        self.searchButton.isHidden = true
         
         // NotificationCenter.default.addObserver(self, selector: #selector(self.saveCurrentLocation), name: NSNotification.Name(rawValue: "UIApplicationDidEnterBackgroundNotification"), object: nil)
     }
@@ -183,6 +183,7 @@ extension MapViewController {
     func centerMapOnLocation(_ location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, self.regionRadius * 2.0, self.regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
+        self.searchButton.isHidden = true
     }
     
     func saveCurrentLocation() {
