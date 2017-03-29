@@ -13,6 +13,8 @@ import ParseUI
 protocol PinDetailViewDelegate {
     func pinDetailViewCloseButtonTapped()
     func pinDetailView(didTapJoin pin: PFObject)
+    func pinDetailView(didFlag pin: PFObject)
+    func pinDetailView(didRemoveFlag pin: PFObject)
 }
 
 class PinDetailView: UIView {
@@ -73,12 +75,18 @@ class PinDetailView: UIView {
                     }
                 })
             }
+            
+            print(PFUser.current()!)
+            
+            if let flaggedByMe = PFUser.current()?["flaggedByMe"] as? [String] {
+                self.flagged =  flaggedByMe.contains(pin.objectId!)
+            }
         }
     }
     
     var flagged = false {
         didSet {
-            self.flagButton.isSelected = true
+            self.flagButton.isSelected = self.flagged
         }
     }
     
@@ -116,6 +124,11 @@ extension PinDetailView {
     
     @IBAction func onFlagButtonTapped(_ sender: Any) {
         self.flagged = !self.flagged
+        if self.flagged {
+            self.delegate?.pinDetailView(didFlag: self.pin)
+        } else {
+            self.delegate?.pinDetailView(didRemoveFlag: self.pin)
+        }
     }
     
     @IBAction func onJoinButtonTapped(_ sender: Any) {

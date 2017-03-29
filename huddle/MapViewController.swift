@@ -392,14 +392,57 @@ extension MapViewController: PinDetailViewDelegate {
         self.showPinDetailView(false)
     }
     
+    func pinDetailView(didFlag pin: PFObject) {
+        PFUser.current()!.addUniqueObject(pin.objectId!, forKey: "flaggedByMe")
+        PFUser.current()!.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                let ac = UIAlertController(title: "Post Flagged", message: "Administrators have been notified and this post will be reviewed.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(ac, animated: true, completion: nil)
+            }
+        }
+        pin.addUniqueObject(PFUser.current()!, forKey: "flaggedBy")
+        pin.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                print("ADDED FLAG TO PIN")
+            }
+        }
+    }
+    
+    func pinDetailView(didRemoveFlag pin: PFObject) {
+        PFUser.current()!.remove(pin.objectId!, forKey: "flaggedByMe")
+        PFUser.current()!.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                let ac = UIAlertController(title: "Flag Removed", message: "Your flag has been removed from this post.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(ac, animated: true, completion: nil)
+            }
+        }
+        pin.remove(PFUser.current()!, forKey: "flaggedBy")
+        pin.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                print("REMOVED FLAG FROM PIN")
+            }
+        }
+    }
+    
     func pinDetailView(didTapJoin pin: PFObject) {
         // TODO: Mark this in the DB
         
-        currentHUD.label.text = "Joined!"
-        currentHUD.mode = MBProgressHUDMode.customView
+        self.currentHUD.label.text = "Joined!"
+        self.currentHUD.mode = MBProgressHUDMode.customView
         let delay: TimeInterval = 2.0
-        currentHUD.hide(animated: true, afterDelay: delay)
-        self.perform(#selector(self.hidePinDetailView), with: self, afterDelay: delay)
+        self.currentHUD.hide(animated: true, afterDelay: delay)
+        
+        // TODO: Change 'join' to 'joined'
     }
     
     @objc fileprivate func hidePinDetailView() {
