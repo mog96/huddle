@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import Parse
 import ParseUI
 
@@ -26,9 +27,9 @@ class WiFiPinDetailView: PinDetailView {
             super.pin = pin
             
             if let wiFiUpVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
-                self.plusButton.isEnabled = wiFiUpVotedByMe.contains(self.pin.objectId!)
-            } else if let wiFiDownVotedByMe = PFUser.current()?["wiFiUpVotedByMe"] as? [String] {
-                self.minusButton.isEnabled = wiFiDownVotedByMe.contains(self.pin.objectId!)
+                self.plusButton.isEnabled = !wiFiUpVotedByMe.contains(self.pin.objectId!)
+            } else if let wiFiDownVotedByMe = PFUser.current()?["wiFiDownVotedByMe"] as? [String] {
+                self.minusButton.isEnabled = !wiFiDownVotedByMe.contains(self.pin.objectId!)
             }
         }
     }
@@ -62,13 +63,17 @@ extension WiFiPinDetailView {
         self.wiFiPinDetailViewDelegate?.wiFiPinDetailViewCloseButtonTapped()
     }
     
-    @IBAction func onMinusButtonTapped(_ sender: Any) {
-        self.wiFiPinDetailViewDelegate?.wiFiPinDetailView(minusButtonTappedFor: self.pin)
-        self.minusButton.isEnabled = false
-    }
-    
     @IBAction func onPlusButtonTapped(_ sender: Any) {
+        self.currentHUD = MBProgressHUD.showAdded(to: self, animated: true)
+        self.currentHUD.label.text = "Confirming Wi-Fi Access..."
         self.wiFiPinDetailViewDelegate?.wiFiPinDetailView(plusButtonTappedFor: self.pin)
         self.plusButton.isEnabled = false
+    }
+    
+    @IBAction func onMinusButtonTapped(_ sender: Any) {
+        self.currentHUD = MBProgressHUD.showAdded(to: self, animated: true)
+        self.currentHUD.label.text = "Marking Invalid Wi-Fi Access..."
+        self.wiFiPinDetailViewDelegate?.wiFiPinDetailView(minusButtonTappedFor: self.pin)
+        self.minusButton.isEnabled = false
     }
 }

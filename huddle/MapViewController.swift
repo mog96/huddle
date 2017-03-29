@@ -469,6 +469,7 @@ extension MapViewController: FreedomBubblePinDetailViewDelegate {
                 self.freedomBubblePinDetailView.currentHUD.hide(animated: true, afterDelay: delay)
                 
                 self.freedomBubblePinDetailView.joinButton.isEnabled = false
+                self.freedomBubblePinDetailView.pin = pin
             }
         }
         pin.addUniqueObject(PFUser.current()!, forKey: "joinedBy")
@@ -490,12 +491,58 @@ extension MapViewController: WiFiPinDetailViewDelegate {
         self.showWiFiPinDetailView(false)
     }
     
-    func wiFiPinDetailView(minusButtonTappedFor wiFiPin: PFObject) {
-        // TODO
+    func wiFiPinDetailView(plusButtonTappedFor wiFiPin: PFObject) {
+        PFUser.current()!.remove(wiFiPin.objectId!, forKey: "wiFiDownVotedByMe")
+        PFUser.current()!.addUniqueObject(wiFiPin.objectId!, forKey: "wiFiUpVotedByMe")
+        PFUser.current()!.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                self.wiFiPinDetailView.currentHUD.mode = MBProgressHUDMode.customView
+                self.wiFiPinDetailView.currentHUD.label.text = "Wi-Fi Confirmed!"
+                let delay: TimeInterval = 1.2
+                self.wiFiPinDetailView.currentHUD.hide(animated: true, afterDelay: delay)
+                
+                self.wiFiPinDetailView.minusButton.isEnabled = true
+                self.wiFiPinDetailView.plusButton.isEnabled = false
+            }
+        }
+        wiFiPin.remove(PFUser.current()!, forKey: "wiFiDownVotedBy")
+        wiFiPin.addUniqueObject(PFUser.current()!, forKey: "wiFiUpVotedBy")
+        wiFiPin.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                print("WIFI UPVOTED AT WIFI PIN")
+            }
+        }
     }
     
-    func wiFiPinDetailView(plusButtonTappedFor wiFiPin: PFObject) {
-        // TODO
+    func wiFiPinDetailView(minusButtonTappedFor wiFiPin: PFObject) {
+        PFUser.current()!.remove(wiFiPin.objectId!, forKey: "wiFiUpVotedByMe")
+        PFUser.current()!.addUniqueObject(wiFiPin.objectId!, forKey: "wiFiDownVotedByMe")
+        PFUser.current()!.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                self.wiFiPinDetailView.currentHUD.mode = MBProgressHUDMode.customView
+                self.wiFiPinDetailView.currentHUD.label.text = "Wi-Fi Demoted"
+                let delay: TimeInterval = 1.2
+                self.wiFiPinDetailView.currentHUD.hide(animated: true, afterDelay: delay)
+                
+                self.wiFiPinDetailView.plusButton.isEnabled = true
+                self.wiFiPinDetailView.minusButton.isEnabled = false
+            }
+        }
+        wiFiPin.remove(PFUser.current()!, forKey: "wiFiUpVotedBy")
+        wiFiPin.addUniqueObject(PFUser.current()!, forKey: "wiFiDownVotedBy")
+        wiFiPin.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                print("WIFI DOWNVOTED AT WIFI PIN")
+            }
+        }
     }
 }
 

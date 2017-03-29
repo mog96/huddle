@@ -27,6 +27,12 @@ class FreedomBubblePinDetailView: PinDetailView {
             if let joinedByMe = PFUser.current()?["joinedByMe"] as? [String] {
                 self.joinButton.isEnabled = !joinedByMe.contains(self.pin.objectId!)
             }
+            
+            print("JOINED BY:", pin)
+            
+            if let joinedBy = pin["joinedBy"] as? [PFUser] {
+                self.attendingCount.text = String( /* TODO: REMOVE --> */ 84 + joinedBy.count)
+            }
         }
     }
     
@@ -42,6 +48,7 @@ class FreedomBubblePinDetailView: PinDetailView {
             if hide {
                 self.pinTypeImageView.image = nil
                 self.pinTypeLabel.text = nil
+                self.attendingCount.text = String(84)       // TODO: Temporary
                 self.joinButton.isEnabled = true
             }
         }
