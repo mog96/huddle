@@ -51,13 +51,41 @@
                         <action selector="onCancelButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="SM9-bz-ukB"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PtA-6f-Vun">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skate" translatesAutoresizingMaskIntoConstraints="NO" id="PtA-6f-Vun">
                     <rect key="frame" x="123" y="80" width="128" height="128"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="fGY-O8-AHF"/>
                         <constraint firstAttribute="width" constant="128" id="tvh-hj-l7R"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lU-y3-W4I">
+                    <rect key="frame" x="227" y="52" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="X2N-nh-Bh7"/>
+                        <constraint firstAttribute="height" constant="60" id="fkr-XE-D47"/>
+                    </constraints>
+                    <state key="normal" image="add-photo"/>
+                    <connections>
+                        <action selector="onCameraButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="5wc-ot-JG6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTv-Yy-GWm">
+                    <rect key="frame" x="224" y="187" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="gky-Uq-yeL"/>
+                        <constraint firstAttribute="width" constant="40" id="sVI-kx-iYl"/>
+                    </constraints>
+                    <state key="normal" image="sovacoin"/>
+                    <connections>
+                        <action selector="onCoinButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="YCW-fe-Avc"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2e-rW-6va">
+                    <rect key="frame" x="259" y="182" width="21" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pin type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uui-vK-4Ia">
                     <rect key="frame" x="163" y="215" width="49" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -112,14 +140,20 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="x6f-Iv-zwv" secondAttribute="bottom" id="0qI-bT-bvw"/>
+                <constraint firstItem="hTv-Yy-GWm" firstAttribute="trailing" secondItem="PtA-6f-Vun" secondAttribute="trailing" constant="13" id="14j-S6-cuR"/>
                 <constraint firstItem="b1g-f7-h1Y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="1s5-A9-54T"/>
                 <constraint firstAttribute="trailing" secondItem="x6f-Iv-zwv" secondAttribute="trailing" id="3Sp-Ml-YLL"/>
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-189.5" id="5Bv-IP-r56"/>
+                <constraint firstItem="C2e-rW-6va" firstAttribute="trailing" secondItem="hTv-Yy-GWm" secondAttribute="trailing" constant="16" id="5Xi-Aj-6vW"/>
                 <constraint firstItem="b1g-f7-h1Y" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="8sv-cV-j0Q"/>
                 <constraint firstItem="Uui-vK-4Ia" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="7" id="H78-MJ-mdF"/>
+                <constraint firstItem="4lU-y3-W4I" firstAttribute="top" secondItem="PtA-6f-Vun" secondAttribute="top" constant="-28" id="HHH-1f-Px9"/>
+                <constraint firstItem="hTv-Yy-GWm" firstAttribute="bottom" secondItem="PtA-6f-Vun" secondAttribute="bottom" constant="19" id="I8Z-tw-EzR"/>
                 <constraint firstItem="Uui-vK-4Ia" firstAttribute="centerX" secondItem="PtA-6f-Vun" secondAttribute="centerX" id="IFc-mk-czZ"/>
+                <constraint firstItem="4lU-y3-W4I" firstAttribute="trailing" secondItem="PtA-6f-Vun" secondAttribute="trailing" constant="36" id="OUf-MY-vRT"/>
                 <constraint firstItem="JGG-8P-fn0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ouq-KB-cRS"/>
                 <constraint firstItem="zbd-Ss-92X" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Pow-k5-9Mp"/>
+                <constraint firstItem="C2e-rW-6va" firstAttribute="top" secondItem="hTv-Yy-GWm" secondAttribute="top" constant="-5" id="aMg-mQ-4NO"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="centerX" secondItem="deO-Rh-ULx" secondAttribute="centerX" id="dFY-qp-qfa"/>
                 <constraint firstItem="x6f-Iv-zwv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fBr-cA-ksH"/>
                 <constraint firstItem="Ur1-hO-0xM" firstAttribute="top" secondItem="deO-Rh-ULx" secondAttribute="bottom" id="jz0-kk-o04"/>
@@ -132,6 +166,7 @@
                 <constraint firstItem="PtA-6f-Vun" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yZd-ex-O5M"/>
             </constraints>
             <connections>
+                <outlet property="coinCountLabel" destination="C2e-rW-6va" id="zi9-sD-DqQ"/>
                 <outlet property="descriptionTextView" destination="1UZ-sT-9kU" id="dNn-cv-jzV"/>
                 <outlet property="descriptionTextViewHeight" destination="78C-ZU-43t" id="cB3-V3-yWl"/>
                 <outlet property="pinTypeImageView" destination="PtA-6f-Vun" id="QLP-N4-Gex"/>
@@ -146,7 +181,10 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="add-photo" width="220" height="221"/>
         <image name="close-button" width="34" height="34"/>
         <image name="createbubble" width="235" height="235"/>
+        <image name="skate" width="220" height="220"/>
+        <image name="sovacoin" width="220" height="220"/>
     </resources>
 </document>

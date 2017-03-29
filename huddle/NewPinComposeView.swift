@@ -18,8 +18,10 @@ class NewPinComposeView: UIView {
     
     @IBOutlet weak var pinTypeImageView: UIImageView!
     @IBOutlet weak var pinTypeLabel: UILabel!
+    @IBOutlet weak var coinCountLabel: UILabel!
     @IBOutlet weak var descriptionTextView: CustomTextView!
     @IBOutlet weak var descriptionTextViewHeight: NSLayoutConstraint!
+    
     var delegate: NewPinComposeViewDelegate?
     
     var currentHUD = MBProgressHUD()
@@ -100,6 +102,14 @@ extension NewPinComposeView {
     
     @IBAction func onCancelButtonTapped(_ sender: Any) {
         self.delegate?.newPinComposeViewCancelButtonTapped()
+    }
+    
+    @IBAction func onCameraButtonTapped(_ sender: Any) {
+        //
+    }
+    
+    @IBAction func onCoinButtonTapped(_ sender: Any) {
+        //
     }
     
     @IBAction func onCreatePinTapped(_ sender: Any) {
