@@ -458,14 +458,27 @@ extension MapViewController: FreedomBubblePinDetailViewDelegate {
     }
     
     func freedomBubblePinDetailView(didTapJoin pin: PFObject) {
-        // TODO: Mark this in the DB
-        
-        self.currentHUD.label.text = "Joined!"
-        self.currentHUD.mode = MBProgressHUDMode.customView
-        let delay: TimeInterval = 2.0
-        self.currentHUD.hide(animated: true, afterDelay: delay)
-        
-        // TODO: Change 'join' to 'joined'
+        PFUser.current()!.addUniqueObject(pin.objectId!, forKey: "joinedByMe")
+        PFUser.current()!.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                self.freedomBubblePinDetailView.currentHUD.mode = MBProgressHUDMode.customView
+                self.freedomBubblePinDetailView.currentHUD.label.text = "Joined!"
+                let delay: TimeInterval = 1.2
+                self.freedomBubblePinDetailView.currentHUD.hide(animated: true, afterDelay: delay)
+                
+                self.freedomBubblePinDetailView.joinButton.isEnabled = false
+            }
+        }
+        pin.addUniqueObject(PFUser.current()!, forKey: "joinedBy")
+        pin.saveInBackground { (success: Bool, error: Error?) in
+            if error != nil {
+                print("Error: \(error!) \(error!.localizedDescription)")
+            } else {
+                print("JOINED HUDDLE AT PIN")
+            }
+        }
     }
 }
 

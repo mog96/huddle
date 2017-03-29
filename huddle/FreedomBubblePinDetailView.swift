@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import Parse
 
 protocol FreedomBubblePinDetailViewDelegate: PinDetailViewDelegate {
@@ -18,6 +19,16 @@ class FreedomBubblePinDetailView: PinDetailView {
     
     @IBOutlet weak var attendingCount: UILabel!
     @IBOutlet weak var joinButton: UIButton!
+    
+    override var pin: PFObject! {
+        didSet {
+            super.pin = pin
+            
+            if let joinedByMe = PFUser.current()?["joinedByMe"] as? [String] {
+                self.joinButton.isEnabled = !joinedByMe.contains(self.pin.objectId!)
+            }
+        }
+    }
     
     var freedomBubblePinDetailViewDelegate: FreedomBubblePinDetailViewDelegate?
     
@@ -31,6 +42,7 @@ class FreedomBubblePinDetailView: PinDetailView {
             if hide {
                 self.pinTypeImageView.image = nil
                 self.pinTypeLabel.text = nil
+                self.joinButton.isEnabled = true
             }
         }
     }
@@ -51,6 +63,9 @@ extension FreedomBubblePinDetailView {
     }
     
     @IBAction func onJoinButtonTapped(_ sender: Any) {
+        self.currentHUD = MBProgressHUD.showAdded(to: self, animated: true)
+        self.currentHUD.label.text = "Joining..."
+        
         self.freedomBubblePinDetailViewDelegate?.freedomBubblePinDetailView(didTapJoin: self.pin)
     }
 }

@@ -204,6 +204,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoS-F4-red">
                     <rect key="frame" x="172" y="637" width="30" height="10"/>
                     <state key="normal" title="join"/>
+                    <state key="disabled" title="joined"/>
                     <connections>
                         <action selector="onJoinButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="z3F-JQ-XvU"/>
                     </connections>

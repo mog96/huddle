@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 import Parse
 import ParseUI
 
@@ -26,6 +27,8 @@ class PinDetailView: UIView {
     @IBOutlet weak var creatorSocialMediaHandleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var pinPhotoImageView: UIImageView!
+    
+    var currentHUD = MBProgressHUD()
     
     var pin: PFObject! {
         didSet {
