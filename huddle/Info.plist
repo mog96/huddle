@@ -38,5 +38,9 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>So you can find yourself on the map.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For posting.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>For posting.</string>
 </dict>
 </plist>

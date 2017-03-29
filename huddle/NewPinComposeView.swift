@@ -12,6 +12,7 @@ import Parse
 
 protocol NewPinComposeViewDelegate {
     func newPinComposeViewCancelButtonTapped()
+    func newPinComposeViewCameraButtonTapped()
     func newPinComposeView(didCreatePin pinWithoutLocation: PFObject)
 }
 
@@ -165,6 +166,7 @@ extension NewPinComposeView {
     }
     
     @IBAction func onCameraButtonTapped(_ sender: Any) {
+        self.delegate?.newPinComposeViewCameraButtonTapped()
         // TODO: Present image picker
         //  - On return, make add photo button alpha zero.
     }

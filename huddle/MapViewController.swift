@@ -9,10 +9,12 @@
 import UIKit
 import MapKit
 import MBProgressHUD
+import MediaPlayer
+import MobileCoreServices
 import Parse
 import PureLayout
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, UINavigationControllerDelegate {
     
     let METERS_PER_MILE = 1609.344
 
@@ -27,6 +29,9 @@ class MapViewController: UIViewController {
     fileprivate var newPinComposeView: NewPinComposeView!
     fileprivate var freedomBubblePinDetailView: FreedomBubblePinDetailView!
     fileprivate var wiFiPinDetailView: WiFiPinDetailView!
+    
+    fileprivate var chooseMediaAC: UIAlertController!
+    fileprivate var imagePickerVC: UIImagePickerController!
     
     fileprivate var statusBarHidden = false
     
@@ -86,6 +91,27 @@ class MapViewController: UIViewController {
         self.wiFiPinDetailView.isHidden = true
         
         self.searchButton.isHidden = true
+        
+        self.chooseMediaAC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        self.chooseMediaAC.addAction(UIAlertAction(title: "CLICK", style: .default, handler: { _ in
+            self.presentImagePicker(usingPhotoLibrary: false)
+        }))
+        self.chooseMediaAC.addAction(UIAlertAction(title: "CHOOSE", style: .default, handler: { _ in
+            self.presentImagePicker(usingPhotoLibrary: true)
+        }))
+        self.chooseMediaAC.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: { _ in
+            self.chooseMediaAC.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.imagePickerVC = UIImagePickerController()
+        self.imagePickerVC.delegate = self
+        // self.imagePickerVC.allowsEditing = true
+        self.imagePickerVC.mediaTypes = [kUTTypeImage as String] /* , kUTTypeMovie as String] */
+        
+        /* INITIALIZE MAP */
+        
+        self.currentHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        self.currentHUD.label.text = "Orienting..."
         
         self.mapView.delegate = self
         
@@ -191,7 +217,7 @@ extension MapViewController {
     }
     
     func saveCurrentLocation() {
-        UserDefaults.standard.set(self.currentLocation, forKey: "LastUserLocation")
+        // UserDefaults.standard.set(self.currentLocation, forKey: "LastUserLocation")
     }
 }
 
@@ -217,6 +243,7 @@ extension MapViewController: CLLocationManagerDelegate {
             } else {
                 self.centerMapOnLocation(self.currentLocation!)
                 if self.firstLoad {
+                    self.currentHUD.hide(animated: true)
                     self.refreshData()
                 }
             }
@@ -360,6 +387,10 @@ extension MapViewController: NewPinComposeViewDelegate {
         self.showNewPinComposeView(false)
     }
     
+    func newPinComposeViewCameraButtonTapped() {
+        self.present(self.chooseMediaAC, animated: true, completion: nil)
+    }
+    
     func newPinComposeView(didCreatePin pinWithoutLocation: PFObject) {
         self.newPin = pinWithoutLocation
         
@@ -392,7 +423,11 @@ extension MapViewController {
                 
                 self.newPin = nil
                 
-                self.newPinComposeView.currentHUD.hide(animated: true)
+                self.newPinComposeView.currentHUD.mode = MBProgressHUDMode.customView
+                self.newPinComposeView.currentHUD.label.text = "Posted!"
+                let delay: TimeInterval = 1.2
+                self.newPinComposeView.currentHUD.hide(animated: true, afterDelay: delay)
+                
                 self.showNewPinComposeView(false)
                 self.showNewPinTypeSelectionView(false)
                 
@@ -542,6 +577,33 @@ extension MapViewController: WiFiPinDetailViewDelegate {
             } else {
                 print("WIFI DOWNVOTED AT WIFI PIN")
             }
+        }
+    }
+}
+
+
+// MARK: - Image Picker Controller Delegate
+
+extension MapViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.newPinComposeView.pinPhotoImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+// MARK: - Image Picker Controller Helpers
+
+extension MapViewController {
+    fileprivate func presentImagePicker(usingPhotoLibrary photoLibrary: Bool) {
+        if photoLibrary {
+            self.imagePickerVC.sourceType = .photoLibrary
+            self.imagePickerVC.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: imagePickerVC, action: nil)
+        } else {
+            self.imagePickerVC.sourceType = .camera
+        }
+        self.present(self.imagePickerVC, animated: true) {
+            UIApplication.shared.setStatusBarStyle(.default, animated: true)
         }
     }
 }
