@@ -48,7 +48,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
     fileprivate var pins = [PFObject]()
     
     fileprivate var firstLoad = false
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -132,11 +132,6 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         
         // NotificationCenter.default.addObserver(self, selector: #selector(self.saveCurrentLocation), name: NSNotification.Name(rawValue: "UIApplicationDidEnterBackgroundNotification"), object: nil)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     override var prefersStatusBarHidden: Bool {
         return self.statusBarHidden
@@ -148,6 +143,11 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.saveCurrentLocation()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
 }
 

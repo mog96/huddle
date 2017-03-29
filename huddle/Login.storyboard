@@ -67,7 +67,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="kT5-EK-vF1"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
@@ -76,7 +75,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="1uk-S6-H2s"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
@@ -85,7 +83,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="HOg-7l-Fln"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
@@ -94,12 +91,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="Agp-Xj-IVf"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="lYD-C2-sIs" firstAttribute="leading" secondItem="Nd2-rA-6qv" secondAttribute="leading" id="6BP-FA-WOY"/>
                                     <constraint firstItem="tpU-FH-LpV" firstAttribute="leading" secondItem="lYD-C2-sIs" secondAttribute="leading" constant="1" id="9dm-Wp-M4P"/>
@@ -136,7 +132,7 @@
                                 <rect key="frame" x="245" y="55" width="60" height="60"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BaS-R6-wbi" firstAttribute="centerX" secondItem="GfO-jz-nGZ" secondAttribute="centerX" id="0lk-2T-sjV"/>
                             <constraint firstItem="8aj-EP-5Qk" firstAttribute="trailing" secondItem="hvj-gq-UKM" secondAttribute="trailing" id="2dE-hh-h9X"/>
@@ -164,6 +160,7 @@
                         <outlet property="loginButton" destination="tpU-FH-LpV" id="yKL-H4-npR"/>
                         <outlet property="loginView" destination="BaS-R6-wbi" id="z9z-da-mcY"/>
                         <outlet property="loginViewHeightConstraint" destination="TxK-Pt-Zqr" id="xyF-Yk-qXG"/>
+                        <outlet property="loginViewWidthConstraint" destination="ets-em-Iei" id="3Qh-O0-uet"/>
                         <outlet property="nameTextField" destination="9gY-nU-tqn" id="43j-2b-B1s"/>
                         <outlet property="passwordTextField" destination="lYD-C2-sIs" id="QKg-96-yxv"/>
                         <outlet property="profilePhotoImageView" destination="8aj-EP-5Qk" id="Cj4-ln-f8Z"/>

@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var loadAnimationView: LoadAnimationView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var loginViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var loginViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var profilePhotoImageView: UIImageView!
     @IBOutlet weak var addPhotoButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -32,9 +33,11 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
     /** NOTE: These variables must be updated if the layout of
               the login view changes in the storyboard. **/
     let kLoginViewSignupHeight: CGFloat = 185
+    
     // Height of Name and Email textviews, plus the spacing below each.
     let kLoginViewExtraHeightOnSignup: CGFloat = 58
     var kLoginViewLoginHeight: CGFloat!
+    var kLoginViewLoginWidth: CGFloat = 165
     
     var loginLabel: UILabel!
     var loginLabelOriginalOrigin: CGPoint!
@@ -51,6 +54,10 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
     var shouldContinueAnimating = false
     
     var profilePhotoImage: UIImage?
+    
+    
+    let kWelcomeMessageKey = "LoginViewControllerWelcomeMessageDisplayed"
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +71,7 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
         
         // Initialize in login mode.
         self.loginViewHeightConstraint.constant = self.kLoginViewLoginHeight
+        self.loginViewWidthConstraint.constant = self.kLoginViewLoginWidth
         self.nameTextField.isHidden = true
         self.nameTextField.alpha = 0
         self.emailTextField.isHidden = true
@@ -71,13 +79,13 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
         self.inSignupMode = false
         
         // Name text field.
-        self.nameTextField.attributedPlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.lightText])
+        self.nameTextField.attributedPlaceholder = NSAttributedString(string: "Name", attributes: [NSForegroundColorAttributeName : UIColor.gray])
         self.nameTextField.keyboardAppearance = UIKeyboardAppearance.dark
         self.nameTextField.delegate = self
         self.nameTextField.returnKeyType = .next
         
         // Email text field.
-        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.lightText])
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName : UIColor.gray])
         self.emailTextField.keyboardAppearance = UIKeyboardAppearance.dark
         self.emailTextField.delegate = self
         self.nameTextField.nextTextField = self.emailTextField
@@ -85,14 +93,14 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
         self.emailTextField.returnKeyType = .next
         
         // Username text field.
-        self.usernameTextField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSForegroundColorAttributeName : UIColor.lightText])
+        self.usernameTextField.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [NSForegroundColorAttributeName : UIColor.gray])
         self.usernameTextField.keyboardAppearance = UIKeyboardAppearance.dark
         usernameTextField.delegate = self
         self.emailTextField.nextTextField = self.usernameTextField
         self.usernameTextField.returnKeyType = .next
         
         // Password text field.
-        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.lightText])
+        self.passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName : UIColor.gray])
         self.passwordTextField.keyboardAppearance = UIKeyboardAppearance.dark
         passwordTextField.delegate = self
         self.usernameTextField.nextTextField = self.passwordTextField
@@ -129,7 +137,13 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
         super.viewDidAppear(animated)
         
         self.usernameTextField.becomeFirstResponder()
-        self.addLoginLabel()
+        
+        if UserDefaults.standard.object(forKey: self.kWelcomeMessageKey) == nil {
+            let ac = UIAlertController(title: "Welcome", message: "Human connection matters.\n\nStudies prove human connection is essential​ to happiness, mental health and thriving community.\n\nTechnology today.\n\nTech keeps us  highly \"connected\" yet has created a largely impersonal world that has eroded the fabric of real human relationships and community. In an era of polarizing politics, fear of other and fake news propagated through media, human connection matters now more than ever to overcome and dispell the severity of our purported differences.\n\nIt's time to forge real human connections and rebuild real-world community.\n\nMeet huddle.\n\nThe application that provides strangers  the opportunity to get together (huddle) in public spaces to engage in spontaneous communal activities.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(ac, animated: true, completion: nil)
+            UserDefaults.standard.set(true, forKey: self.kWelcomeMessageKey)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -138,6 +152,10 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
         } else {
             AppDelegate.isAdmin = false
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.addLoginLabel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -226,6 +244,8 @@ extension LoginViewController {
             return
         }
         
+        self.startLoginAnimation()
+        
         let newUser = PFUser()
         newUser["name"] = nm
         newUser.email = em
@@ -304,6 +324,7 @@ extension LoginViewController {
         
         if show {
             self.loginViewHeightConstraint.constant = self.kLoginViewSignupHeight
+            self.loginViewWidthConstraint.constant = UIScreen.main.bounds.width - 80
             UIView.animate(withDuration: animationDuration, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
@@ -334,6 +355,7 @@ extension LoginViewController {
             })
             
             self.loginViewHeightConstraint.constant = self.kLoginViewLoginHeight
+            self.loginViewWidthConstraint.constant = self.kLoginViewLoginWidth
             UIView.animate(withDuration: animationDuration, delay: 0.1, options: .transitionCrossDissolve, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
