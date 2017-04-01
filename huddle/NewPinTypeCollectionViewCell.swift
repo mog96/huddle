@@ -14,7 +14,7 @@ protocol NewPinTypeCollectionViewCellDelegate {
 
 class NewPinTypeCollectionViewCell: UICollectionViewCell {
     
-    // @IBOutlet weak var pinTypeButton: UIButton!
+    @IBOutlet weak var pinTypeButton: UIButton!
     @IBOutlet weak var pinTypeImageView: UIImageView!
     @IBOutlet weak var pinTypeLabel: UILabel!
     
@@ -41,9 +41,7 @@ class NewPinTypeCollectionViewCell: UICollectionViewCell {
 // MARK: - Actions
 
 extension NewPinTypeCollectionViewCell {
-    /*
     @IBAction func onPinTypeButtonTapped(_ sender: Any) {
         self.delegate?.newPinTypeCollectionViewCell(tappedWithPinType: self.pinType)
     }
-    */
 }

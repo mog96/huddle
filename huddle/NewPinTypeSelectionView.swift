@@ -26,6 +26,7 @@ class NewPinTypeSelectionView: UIView {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "NewPinTypeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "NewPinTypeCell")
+        self.collectionView.register(UINib(nibName: "PlaceholderCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PlaceholderCell")
         // self.collectionView.contentOffset = CGPoint(x: self.collectionView.contentOffset.x, y: self.collectionView.contentOffset.y - 100)
     }
 }
@@ -39,23 +40,31 @@ extension NewPinTypeSelectionView: UICollectionViewDelegate, UICollectionViewDat
         if PinType.kNumPinTypes % self.kItemsPerRow > 0 {
             numRows += 1
         }
-        return numRows
+        return numRows + 1 // Blank top row.
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.kItemsPerRow
     }
     
+    
+    
+    // TODO: Pad bottom row.
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 0 {
+            return self.collectionView.dequeueReusableCell(withReuseIdentifier: "PlaceholderCell", for: indexPath)
+        }
+        
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "NewPinTypeCell", for: indexPath) as! NewPinTypeCollectionViewCell
-        cell.pinType = Array(PinType.pinTypeImage.keys)[indexPath.section * self.kItemsPerRow + indexPath.item]
+        
+        // TODO: Not currently returning alphabetical order.
+        
+        cell.pinType = Array(PinType.pinTypeImage.keys)[indexPath.section * self.kItemsPerRow + indexPath.item - 3 /* Blank top row. */]
         cell.delegate = self
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let pinType = (self.collectionView.cellForItem(at: indexPath) as! NewPinTypeCollectionViewCell).pinType!
-        self.delegate?.newPinTypeSelectionView(didSelectPinType: pinType)
     }
 }
 
@@ -85,7 +94,7 @@ extension NewPinTypeSelectionView: UICollectionViewDelegateFlowLayout {
 
 extension NewPinTypeSelectionView: NewPinTypeCollectionViewCellDelegate {
     func newPinTypeCollectionViewCell(tappedWithPinType pinType: PinType.PinType) {
-        // present detail view.
+        self.delegate?.newPinTypeSelectionView(didSelectPinType: pinType)
     }
 }
 

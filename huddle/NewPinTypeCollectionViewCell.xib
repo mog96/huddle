@@ -25,6 +25,12 @@
                             <constraint firstAttribute="width" secondItem="z1q-8d-p7B" secondAttribute="height" multiplier="1:1" id="gjY-UE-le3"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGq-ds-zbj">
+                        <rect key="frame" x="17" y="8" width="90" height="90"/>
+                        <connections>
+                            <action selector="onPinTypeButtonTapped:" destination="0GB-1H-Lw6" eventType="touchUpInside" id="fYH-wh-yTr"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pin type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-Ed-BvL">
                         <rect key="frame" x="39" y="102" width="46" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -38,10 +44,15 @@
                 <constraint firstItem="jfN-Ed-BvL" firstAttribute="centerX" secondItem="0GB-1H-Lw6" secondAttribute="centerX" id="H3c-tQ-j1z"/>
                 <constraint firstItem="z1q-8d-p7B" firstAttribute="top" secondItem="0GB-1H-Lw6" secondAttribute="top" constant="8" id="K0G-eh-7Wv"/>
                 <constraint firstAttribute="trailing" secondItem="z1q-8d-p7B" secondAttribute="trailing" constant="18" id="Myg-OR-sBY"/>
+                <constraint firstItem="kGq-ds-zbj" firstAttribute="top" secondItem="z1q-8d-p7B" secondAttribute="top" id="O9P-YZ-IgC"/>
+                <constraint firstItem="kGq-ds-zbj" firstAttribute="leading" secondItem="z1q-8d-p7B" secondAttribute="leading" id="QPa-eV-vYL"/>
                 <constraint firstItem="jfN-Ed-BvL" firstAttribute="top" secondItem="z1q-8d-p7B" secondAttribute="bottom" constant="4" id="hec-4F-jHe"/>
                 <constraint firstItem="z1q-8d-p7B" firstAttribute="leading" secondItem="0GB-1H-Lw6" secondAttribute="leading" constant="17" id="lqi-F2-6jX"/>
+                <constraint firstItem="kGq-ds-zbj" firstAttribute="bottom" secondItem="z1q-8d-p7B" secondAttribute="bottom" id="v8M-jm-Kc9"/>
+                <constraint firstItem="kGq-ds-zbj" firstAttribute="trailing" secondItem="z1q-8d-p7B" secondAttribute="trailing" id="v9k-uq-06w"/>
             </constraints>
             <connections>
+                <outlet property="pinTypeButton" destination="kGq-ds-zbj" id="DuR-T3-fpg"/>
                 <outlet property="pinTypeImageView" destination="z1q-8d-p7B" id="yaj-bo-QUQ"/>
                 <outlet property="pinTypeLabel" destination="jfN-Ed-BvL" id="ASZ-Df-063"/>
             </connections>
