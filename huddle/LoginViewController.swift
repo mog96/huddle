@@ -33,17 +33,24 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
     /** NOTE: These variables must be updated if the layout of
               the login view changes in the storyboard. **/
     let kLoginViewSignupHeight: CGFloat = 185
+    let kLoginViewSignupWidth: CGFloat = 295
     
     // Height of Name and Email textviews, plus the spacing below each.
     let kLoginViewExtraHeightOnSignup: CGFloat = 58
     var kLoginViewLoginHeight: CGFloat!
     var kLoginViewLoginWidth: CGFloat = 165
     
+    // Login label for login animation.
     var loginLabel: UILabel!
     var loginLabelOriginalOrigin: CGPoint!
-    
     let kLoginString = "LOG IN"
     let kLoggingInString = "LOGGING IN..."
+    
+    // Signup label for signup animation.
+    var signupLabel: UILabel!
+    var signupLabelOriginalOrigin: CGPoint!
+    let kSignupString = "SIGN UP"
+    let kSigningInString = "SIGNING IN..."
     
     var loginButtonOriginalColor: UIColor!
     var signupButtonOriginalColor: UIColor!
@@ -156,6 +163,7 @@ class LoginViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLayoutSubviews() {
         self.addLoginLabel()
+        self.addSignupLabel()
     }
 
     override func didReceiveMemoryWarning() {
@@ -185,6 +193,7 @@ extension LoginViewController {
         }
         
         self.startLoginAnimation()
+        
         PFUser.logInWithUsername(inBackground: un, password: pw) { (user: PFUser?, error: Error?) -> Void in
             if let error = error {
                 
@@ -204,7 +213,7 @@ extension LoginViewController {
                     ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                     self.present(ac, animated: true, completion: nil)
                 }
-            } else if let user = user {
+            } else if let _ = user {
                 
                 print("LOGIN SUCCESSFUL")
                 
@@ -244,7 +253,7 @@ extension LoginViewController {
             return
         }
         
-        self.startLoginAnimation()
+        self.startSignupAnimation()
         
         let newUser = PFUser()
         newUser["name"] = nm
@@ -261,7 +270,7 @@ extension LoginViewController {
                 
                 print("LOGIN FAILED")
                 
-                self.endLoginAnmation()
+                self.endSignupAnmation()
                 
                 print("LOGIN ERROR:", error._code)
                 
@@ -313,7 +322,7 @@ extension LoginViewController {
 }
 
 
-// MARK: - UI Helpers
+// MARK: - Transition Helpers
 
 extension LoginViewController {
     fileprivate func showSignupMode(_ show: Bool) {
@@ -324,7 +333,7 @@ extension LoginViewController {
         
         if show {
             self.loginViewHeightConstraint.constant = self.kLoginViewSignupHeight
-            self.loginViewWidthConstraint.constant = UIScreen.main.bounds.width - 80
+            self.loginViewWidthConstraint.constant = self.kLoginViewSignupWidth
             UIView.animate(withDuration: animationDuration, animations: {
                 self.view.layoutIfNeeded()
             }, completion: nil)
@@ -366,6 +375,16 @@ extension LoginViewController {
         self.nameTextField.text = nil
         self.usernameTextField.text = nil
         self.emailTextField.text = nil
+    }
+    
+    fileprivate func transitionToApp() {
+        let animationDuration = 0.5
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        UIView.transition(with: self.view.window!, duration: animationDuration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
+            self.view.window!.rootViewController = appDelegate.mapViewController
+        }, completion: nil)
     }
 }
 
@@ -464,10 +483,12 @@ extension LoginViewController {
         self.loginLabel.isHidden = true
         self.view.addSubview(self.loginLabel)
         
-        self.exemptLoginLabelFrameFromDeltAnimation()
+        self.exemptLoginLabelFrameFromLoginAnimation()
     }
     
-    fileprivate func exemptLoginLabelFrameFromDeltAnimation() {
+    // Move login label to animation destination in center of screen
+    // and exempt it from the background animation.
+    fileprivate func exemptLoginLabelFrameFromLoginAnimation() {
         self.loginLabel.text = self.kLoggingInString
         self.loginLabel.sizeToFit()
         self.loginLabel.center.x = self.loginView.center.x
@@ -491,15 +512,131 @@ extension LoginViewController {
             })
         })
     }
-    
-    fileprivate func transitionToApp() {
+}
+
+
+// MARK: - Signup Animation Helpers
+
+extension LoginViewController {
+    fileprivate func startSignupAnimation() {
+        self.view.endEditing(true)
+        
         let animationDuration = 0.5
+        self.shouldContinueAnimating = true
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.signupLabel.isHidden = false
+        self.signupButton.isHidden = true
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.signupLabel.text = self.kSigningInString
+            self.signupLabel.sizeToFit()
+            self.signupLabel.center.x = self.loginView.center.x
+        }, completion: { _ in
+            self.pulseSignupLabel()
+        })
         
-        UIView.transition(with: self.view.window!, duration: animationDuration, options: UIViewAnimationOptions.transitionCrossDissolve, animations: { () -> Void in
-            self.view.window!.rootViewController = appDelegate.mapViewController
+        UIApplication.shared.setStatusBarHidden(true, with: .fade)
+        UIView.transition(with: self.backgroundImageView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+            self.backgroundImageView.alpha = 0
+            // self.signupBackgroundImageIndex = (self.signupBackgroundImageIndex + 1) % self.signupBackgroundImageNames.count
+        }, completion: { _ in
+            // self.backgroundImageView.image = UIImage(named: self.signupBackgroundImageNames[self.signupBackgroundImageIndex])
+        })
+        
+        var controlsToHide: [UIControl]!
+        if self.inSignupMode {
+            controlsToHide = [self.nameTextField, self.emailTextField, self.usernameTextField, self.passwordTextField, self.signupButton]
+        } else {
+            controlsToHide = [self.usernameTextField, self.passwordTextField, self.signupButton]
+        }
+        UIView.animate(withDuration: animationDuration, delay: 0.1, options: .transitionCrossDissolve, animations: {
+            controlsToHide.forEach({ $0.alpha = 0 })
+        }, completion: { _ in
+            controlsToHide.forEach({ $0.isHidden = true })
+        })
+        
+        UIView.transition(with: self.loadAnimationView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+            self.loadAnimationView.startAnimating()
+            self.loadAnimationView.isHidden = false
         }, completion: nil)
+    }
+    
+    fileprivate func endSignupAnmation() {
+        let animationDuration = 0.5
+        self.shouldContinueAnimating = false
+        
+        // Return duplicate signup label to signup button title label's position.
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.signupLabel.text = self.kSignupString
+            self.signupLabel.sizeToFit()
+            self.signupLabel.frame.origin.x = self.signupLabelOriginalOrigin.x
+        }, completion: { _ in
+            self.signupButton.isHidden = false
+            self.signupLabel.isHidden = true
+        })
+        
+        var controlsToShow: [UIControl]!
+        if self.inSignupMode {
+            controlsToShow = [self.nameTextField, self.emailTextField, self.usernameTextField, self.passwordTextField, self.signupButton]
+        } else {
+            controlsToShow = [self.usernameTextField, self.passwordTextField, self.signupButton]
+        }
+        controlsToShow.forEach({ $0.isHidden = false })
+        UIView.animate(withDuration: animationDuration, delay: 0.1, options: .transitionCrossDissolve, animations: {
+            controlsToShow.forEach({ $0.alpha = 1 })
+        }, completion: nil)
+        
+        UIApplication.shared.setStatusBarHidden(false, with: .fade)
+        UIView.transition(with: self.backgroundImageView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+            self.backgroundImageView.alpha = 1
+        }, completion: nil)
+        UIView.transition(with: self.loadAnimationView, duration: animationDuration, options: .transitionCrossDissolve, animations: {
+            self.loadAnimationView.isHidden = true
+            self.loadAnimationView.stopAnimating()
+        }, completion: nil)
+        
+        self.lastFirstResponder?.becomeFirstResponder()
+    }
+    
+    // Signup label used as duplicate of signup button title label for animations.
+    fileprivate func addSignupLabel() {
+        self.signupLabel = UILabel()
+        self.signupLabel.text = self.signupButton.titleLabel!.text
+        self.signupLabel.textColor = self.signupButton.titleLabel!.textColor
+        self.signupLabel.font = self.signupButton.titleLabel!.font
+        let signupButtonTitleLabelFrame = self.signupLabel.convert(self.signupButton.titleLabel!.frame, to: self.view)
+        self.signupLabel.frame = CGRect(x: signupButtonTitleLabelFrame.origin.x, y: signupButtonTitleLabelFrame.origin.y, width: signupButtonTitleLabelFrame.width, height: signupButtonTitleLabelFrame.height)
+        self.signupLabelOriginalOrigin = self.signupLabel.frame.origin
+        self.signupLabel.isHidden = true
+        self.view.addSubview(self.signupLabel)
+        
+        self.exemptSignupLabelFrameFromSignupAnimation()
+    }
+    
+    // Move signup label to animation destination in center of screen
+    // and exempt it from the background animation.
+    fileprivate func exemptSignupLabelFrameFromSignupAnimation() {
+        self.signupLabel.text = self.kSigningInString
+        self.signupLabel.sizeToFit()
+        self.signupLabel.center.x = self.loginView.center.x
+        self.loadAnimationView.addExemptFrames(self.signupLabel.frame)
+        self.signupLabel.text = self.kSignupString
+        self.signupLabel.sizeToFit()
+        self.signupLabel.frame.origin.x = self.signupLabelOriginalOrigin.x
+    }
+    
+    // WARNING: Recursive loop could cause stack overflow.
+    fileprivate func pulseSignupLabel() {
+        UIView.animate(withDuration: 1, animations: {
+            self.signupLabel.alpha = 0
+        }, completion: { _ in
+            UIView.animate(withDuration: 2, animations: {
+                self.signupLabel.alpha = 1
+            }, completion: { _ in
+                if self.shouldContinueAnimating {
+                    self.pulseSignupLabel()
+                }
+            })
+        })
     }
 }
 
