@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yHR-SF-6XP">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yHR-SF-6XP" customClass="ProfileFieldTableViewCell" customModule="huddle" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yHR-SF-6XP" id="u6D-T1-D8L">
@@ -24,21 +24,48 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="value" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="GXW-eq-NFX">
+                        <rect key="frame" x="167" y="13" width="41" height="18"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0WA-To-KrY">
-                        <rect key="frame" x="169.5" y="13" width="37" height="18"/>
+                        <rect key="frame" x="167" y="13" width="41" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cgb-t6-fno">
+                        <rect key="frame" x="337" y="9" width="30" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <state key="normal" title="EDIT"/>
+                        <connections>
+                            <action selector="onEditButtonTapped:" destination="yHR-SF-6XP" eventType="touchUpInside" id="lXx-ef-tfW"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="0WA-To-KrY" firstAttribute="leading" secondItem="GXW-eq-NFX" secondAttribute="leading" id="0Jg-vz-N5P"/>
+                    <constraint firstAttribute="trailing" secondItem="cgb-t6-fno" secondAttribute="trailing" constant="8" id="775-lz-vyJ"/>
                     <constraint firstItem="jPJ-x8-aAF" firstAttribute="centerY" secondItem="u6D-T1-D8L" secondAttribute="centerY" id="DD7-Vr-l5p"/>
                     <constraint firstItem="jPJ-x8-aAF" firstAttribute="leading" secondItem="u6D-T1-D8L" secondAttribute="leading" constant="8" id="Efh-2c-JAr"/>
+                    <constraint firstItem="0WA-To-KrY" firstAttribute="bottom" secondItem="GXW-eq-NFX" secondAttribute="bottom" id="Ohy-8c-hCq"/>
                     <constraint firstItem="0WA-To-KrY" firstAttribute="centerX" secondItem="u6D-T1-D8L" secondAttribute="centerX" id="aLi-wK-3lc"/>
+                    <constraint firstItem="0WA-To-KrY" firstAttribute="trailing" secondItem="GXW-eq-NFX" secondAttribute="trailing" id="aq1-I0-vS9"/>
                     <constraint firstItem="0WA-To-KrY" firstAttribute="centerY" secondItem="u6D-T1-D8L" secondAttribute="centerY" id="dhK-zg-8iD"/>
                     <constraint firstItem="0WA-To-KrY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jPJ-x8-aAF" secondAttribute="trailing" constant="10" id="ep4-c0-YK5"/>
+                    <constraint firstItem="cgb-t6-fno" firstAttribute="centerY" secondItem="u6D-T1-D8L" secondAttribute="centerY" id="f5e-Gi-5n9"/>
+                    <constraint firstItem="cgb-t6-fno" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0WA-To-KrY" secondAttribute="trailing" constant="8" id="krO-dU-N9e"/>
+                    <constraint firstItem="0WA-To-KrY" firstAttribute="top" secondItem="GXW-eq-NFX" secondAttribute="top" id="oNT-s2-e21"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="editButton" destination="cgb-t6-fno" id="b9C-yU-eEt"/>
+                <outlet property="fieldNameLabel" destination="jPJ-x8-aAF" id="6YK-Hz-VfT"/>
+                <outlet property="fieldValueLabel" destination="0WA-To-KrY" id="7W9-Xs-EO5"/>
+                <outlet property="fieldValueTextField" destination="GXW-eq-NFX" id="7aC-KH-1Fy"/>
+            </connections>
             <point key="canvasLocation" x="34.5" y="24"/>
         </tableViewCell>
     </objects>

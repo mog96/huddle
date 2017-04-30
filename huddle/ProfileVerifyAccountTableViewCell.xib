@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5PG-7r-09V">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5PG-7r-09V" customClass="ProfileVerifyAccountTableViewCell" customModule="huddle" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5PG-7r-09V" id="2Ek-hO-70L">
@@ -21,6 +21,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRH-Pp-Wgs">
                         <rect key="frame" x="124" y="7" width="127" height="30"/>
                         <state key="normal" title="VERIFY ACCOUNT"/>
+                        <connections>
+                            <action selector="onVerifyAccountButtonTapped:" destination="5PG-7r-09V" eventType="touchUpInside" id="nJM-NP-aKR"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -28,6 +31,9 @@
                     <constraint firstItem="PRH-Pp-Wgs" firstAttribute="centerX" secondItem="2Ek-hO-70L" secondAttribute="centerX" id="gH9-k8-z2s"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="verifyAccountButton" destination="PRH-Pp-Wgs" id="TYA-7f-g3g"/>
+            </connections>
             <point key="canvasLocation" x="4" y="43"/>
         </tableViewCell>
     </objects>
