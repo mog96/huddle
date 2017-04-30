@@ -31,6 +31,12 @@
 		258915591E89116200488A67 /* NewPinComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258915581E89116200488A67 /* NewPinComposeView.swift */; };
 		2589155B1E8911E500488A67 /* NewPinComposeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2589155A1E8911E500488A67 /* NewPinComposeView.xib */; };
 		25C3598F1E8913FB00936ECB /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C3598E1E8913FB00936ECB /* CustomTextView.swift */; };
+		25DE917F1EB6861000D8E94E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE917E1EB6861000D8E94E /* ProfileView.swift */; };
+		25DE91821EB6867200D8E94E /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25DE91811EB6867200D8E94E /* ProfileView.xib */; };
+		25DE91841EB68B7F00D8E94E /* ProfileFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25DE91831EB68B7F00D8E94E /* ProfileFieldCell.xib */; };
+		25DE91861EB68C7C00D8E94E /* ProfileSocialMediaHandleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25DE91851EB68C7C00D8E94E /* ProfileSocialMediaHandleCell.xib */; };
+		25DE91881EB68D9500D8E94E /* ProfileBioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25DE91871EB68D9500D8E94E /* ProfileBioCell.xib */; };
+		25DE918A1EB68F9900D8E94E /* ProfileVerifyAccountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25DE91891EB68F9900D8E94E /* ProfileVerifyAccountCell.xib */; };
 		25E957921E89DEF30090C002 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E957911E89DEF30090C002 /* Pin.swift */; };
 		25E957941E8A001C0090C002 /* FreedomBubblePinDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25E957931E8A001C0090C002 /* FreedomBubblePinDetailView.xib */; };
 		25E957961E8AD2E70090C002 /* PinDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E957951E8AD2E60090C002 /* PinDetailView.swift */; };
@@ -89,6 +95,12 @@
 		258915581E89116200488A67 /* NewPinComposeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPinComposeView.swift; sourceTree = "<group>"; };
 		2589155A1E8911E500488A67 /* NewPinComposeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPinComposeView.xib; sourceTree = "<group>"; };
 		25C3598E1E8913FB00936ECB /* CustomTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		25DE917E1EB6861000D8E94E /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		25DE91811EB6867200D8E94E /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		25DE91831EB68B7F00D8E94E /* ProfileFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileFieldCell.xib; sourceTree = "<group>"; };
+		25DE91851EB68C7C00D8E94E /* ProfileSocialMediaHandleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSocialMediaHandleCell.xib; sourceTree = "<group>"; };
+		25DE91871EB68D9500D8E94E /* ProfileBioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileBioCell.xib; sourceTree = "<group>"; };
+		25DE91891EB68F9900D8E94E /* ProfileVerifyAccountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileVerifyAccountCell.xib; sourceTree = "<group>"; };
 		25E957911E89DEF30090C002 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		25E957931E8A001C0090C002 /* FreedomBubblePinDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreedomBubblePinDetailView.xib; sourceTree = "<group>"; };
 		25E957951E8AD2E60090C002 /* PinDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinDetailView.swift; sourceTree = "<group>"; };
@@ -139,14 +151,10 @@
 			isa = PBXGroup;
 			children = (
 				253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */,
-				25E957911E89DEF30090C002 /* Pin.swift */,
 				258915481E88DB8B00488A67 /* MenuView.swift */,
-				2589154D1E88ECC800488A67 /* NewPinTypeSelectionView.swift */,
-				258915531E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift */,
-				258915581E89116200488A67 /* NewPinComposeView.swift */,
-				25E957951E8AD2E60090C002 /* PinDetailView.swift */,
-				25E9579C1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift */,
-				25E9579A1E8B9EF80090C002 /* WiFiPinDetailView.swift */,
+				25DE917E1EB6861000D8E94E /* ProfileView.swift */,
+				25DE917A1EB685A800D8E94E /* New Pin */,
+				25DE917B1EB685C300D8E94E /* Pin Detail */,
 				2589154A1E88DB9400488A67 /* Layout */,
 			);
 			name = Map;
@@ -186,14 +194,15 @@
 			isa = PBXGroup;
 			children = (
 				253AC6B91E7F6B4000A19AD8 /* AppDelegate.swift */,
-				250C18B41E83764900591980 /* Login */,
-				250C18B51E83765100591980 /* Map */,
 				253AC6C21E7F6B4000A19AD8 /* LaunchScreen.storyboard */,
 				253AC6BD1E7F6B4000A19AD8 /* Main.storyboard */,
-				253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */,
+				250C18B41E83764900591980 /* Login */,
+				250C18B51E83765100591980 /* Map */,
 				258915551E88F01200488A67 /* Custom Classes */,
 				250C18B81E837C7700591980 /* Extensions */,
+				25DE917C1EB685D300D8E94E /* Types */,
 				25E957971E8B3A630090C002 /* Utilities */,
+				253AC6C01E7F6B4000A19AD8 /* Assets.xcassets */,
 				253AC6C51E7F6B4000A19AD8 /* Info.plist */,
 				250C18BB1E837E4300591980 /* Keys.plist */,
 			);
@@ -222,6 +231,11 @@
 			isa = PBXGroup;
 			children = (
 				258915461E88D73A00488A67 /* MenuView.xib */,
+				25DE91811EB6867200D8E94E /* ProfileView.xib */,
+				25DE91831EB68B7F00D8E94E /* ProfileFieldCell.xib */,
+				25DE91851EB68C7C00D8E94E /* ProfileSocialMediaHandleCell.xib */,
+				25DE91871EB68D9500D8E94E /* ProfileBioCell.xib */,
+				25DE91891EB68F9900D8E94E /* ProfileVerifyAccountCell.xib */,
 				2589154F1E88ECDB00488A67 /* NewPinTypeSelectionView.xib */,
 				2545D6571E8FA5D300CB9479 /* PlaceholderCollectionViewCell.xib */,
 				258915511E88EE0A00488A67 /* NewPinTypeCollectionViewCell.xib */,
@@ -238,6 +252,34 @@
 				25C3598E1E8913FB00936ECB /* CustomTextView.swift */,
 			);
 			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		25DE917A1EB685A800D8E94E /* New Pin */ = {
+			isa = PBXGroup;
+			children = (
+				2589154D1E88ECC800488A67 /* NewPinTypeSelectionView.swift */,
+				258915531E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift */,
+				258915581E89116200488A67 /* NewPinComposeView.swift */,
+			);
+			name = "New Pin";
+			sourceTree = "<group>";
+		};
+		25DE917B1EB685C300D8E94E /* Pin Detail */ = {
+			isa = PBXGroup;
+			children = (
+				25E957951E8AD2E60090C002 /* PinDetailView.swift */,
+				25E9579C1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift */,
+				25E9579A1E8B9EF80090C002 /* WiFiPinDetailView.swift */,
+			);
+			name = "Pin Detail";
+			sourceTree = "<group>";
+		};
+		25DE917C1EB685D300D8E94E /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				25E957911E89DEF30090C002 /* Pin.swift */,
+			);
+			name = Types;
 			sourceTree = "<group>";
 		};
 		25E957971E8B3A630090C002 /* Utilities */ = {
@@ -380,16 +422,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				2589155B1E8911E500488A67 /* NewPinComposeView.xib in Resources */,
+				25DE918A1EB68F9900D8E94E /* ProfileVerifyAccountCell.xib in Resources */,
 				258915471E88D73A00488A67 /* MenuView.xib in Resources */,
 				250C18B21E83764300591980 /* Login.storyboard in Resources */,
 				253AC6C41E7F6B4000A19AD8 /* LaunchScreen.storyboard in Resources */,
+				25DE91841EB68B7F00D8E94E /* ProfileFieldCell.xib in Resources */,
 				2545D6581E8FA5D300CB9479 /* PlaceholderCollectionViewCell.xib in Resources */,
 				258915501E88ECDB00488A67 /* NewPinTypeSelectionView.xib in Resources */,
+				25DE91821EB6867200D8E94E /* ProfileView.xib in Resources */,
 				25E957941E8A001C0090C002 /* FreedomBubblePinDetailView.xib in Resources */,
 				25E957991E8B9C470090C002 /* WiFiPinDetailView.xib in Resources */,
 				253AC6C11E7F6B4000A19AD8 /* Assets.xcassets in Resources */,
 				253AC6BF1E7F6B4000A19AD8 /* Main.storyboard in Resources */,
+				25DE91861EB68C7C00D8E94E /* ProfileSocialMediaHandleCell.xib in Resources */,
 				258915521E88EE0A00488A67 /* NewPinTypeCollectionViewCell.xib in Resources */,
+				25DE91881EB68D9500D8E94E /* ProfileBioCell.xib in Resources */,
 				250C18BC1E837E4300591980 /* Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +519,7 @@
 				253AC6BA1E7F6B4000A19AD8 /* AppDelegate.swift in Sources */,
 				25E9579B1E8B9EF80090C002 /* WiFiPinDetailView.swift in Sources */,
 				25E957961E8AD2E70090C002 /* PinDetailView.swift in Sources */,
+				25DE917F1EB6861000D8E94E /* ProfileView.swift in Sources */,
 				25C3598F1E8913FB00936ECB /* CustomTextView.swift in Sources */,
 				253007B81E84CDA8006D383B /* LoginViewController.swift in Sources */,
 				2545D6561E8BB68800CB9479 /* LayoutUtils.swift in Sources */,

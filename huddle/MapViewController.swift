@@ -130,8 +130,6 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         // With firstLoad set to true, location status check will trigger pin refresh when current user location found.
         self.firstLoad = true
         self.checkLocationAuthorizationStatus()
-        
-        // NotificationCenter.default.addObserver(self, selector: #selector(self.saveCurrentLocation), name: NSNotification.Name(rawValue: "UIApplicationDidEnterBackgroundNotification"), object: nil)
     }
     
     override var prefersStatusBarHidden: Bool {
