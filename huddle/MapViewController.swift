@@ -116,6 +116,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.currentHUD.label.text = "Orienting..."
         
         self.mapView.delegate = self
+        self.mapView.showsPointsOfInterest = false
         
         // Default initial location to Golden Gate Park.
         var initialLocation = CLLocation(latitude: 37.769319, longitude: -122.487104)
