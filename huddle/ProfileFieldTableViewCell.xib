@@ -60,6 +60,7 @@
                     <constraint firstItem="0WA-To-KrY" firstAttribute="top" secondItem="GXW-eq-NFX" secondAttribute="top" id="oNT-s2-e21"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="editButton" destination="cgb-t6-fno" id="b9C-yU-eEt"/>
                 <outlet property="fieldNameLabel" destination="jPJ-x8-aAF" id="6YK-Hz-VfT"/>

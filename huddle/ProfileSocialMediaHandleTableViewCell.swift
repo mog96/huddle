@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileSocialMediaHandleTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var fieldNameLabel: UILabel!
     @IBOutlet weak var socialNetworkIcon: UIImageView!
     @IBOutlet weak var socialHandleLabel: UILabel!
     @IBOutlet weak var socialHandleTextField: UITextField!

@@ -31,6 +31,7 @@
                     <constraint firstItem="PRH-Pp-Wgs" firstAttribute="centerX" secondItem="2Ek-hO-70L" secondAttribute="centerX" id="gH9-k8-z2s"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="verifyAccountButton" destination="PRH-Pp-Wgs" id="TYA-7f-g3g"/>
             </connections>

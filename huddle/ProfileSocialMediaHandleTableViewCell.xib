@@ -68,8 +68,10 @@
                     <constraint firstItem="FlS-YS-983" firstAttribute="bottom" secondItem="3wq-QF-132" secondAttribute="bottom" id="yff-BT-mxW"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="editButton" destination="x6A-br-rC9" id="XSw-bT-cky"/>
+                <outlet property="fieldNameLabel" destination="yZT-wE-EVx" id="Bkm-M3-Kb1"/>
                 <outlet property="socialHandleLabel" destination="3wq-QF-132" id="C7b-dG-Yp0"/>
                 <outlet property="socialHandleTextField" destination="FlS-YS-983" id="ZiD-O9-39r"/>
                 <outlet property="socialNetworkIcon" destination="in3-oL-HPD" id="PN2-70-xXy"/>

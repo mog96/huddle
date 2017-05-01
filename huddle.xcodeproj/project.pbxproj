@@ -161,11 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				253AC6E71E7F6C8500A19AD8 /* MapViewController.swift */,
-				258915481E88DB8B00488A67 /* MenuView.swift */,
+				25DE91961EB6A76600D8E94E /* Menu */,
 				25DE918D1EB69F7700D8E94E /* Profile */,
 				25DE917A1EB685A800D8E94E /* New Pin */,
 				25DE917B1EB685C300D8E94E /* Pin Detail */,
-				2589154A1E88DB9400488A67 /* Layout */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -240,16 +239,6 @@
 		2589154A1E88DB9400488A67 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				258915461E88D73A00488A67 /* MenuView.xib */,
-				25DE91811EB6867200D8E94E /* ProfileView.xib */,
-				25DE91831EB68B7F00D8E94E /* ProfileFieldTableViewCell.xib */,
-				25DE91851EB68C7C00D8E94E /* ProfileSocialMediaHandleTableViewCell.xib */,
-				25DE91871EB68D9500D8E94E /* ProfileBioTableViewCell.xib */,
-				25DE91891EB68F9900D8E94E /* ProfileVerifyAccountTableViewCell.xib */,
-				258915511E88EE0A00488A67 /* NewPinTypeCollectionViewCell.xib */,
-				2545D6571E8FA5D300CB9479 /* PlaceholderCollectionViewCell.xib */,
-				2589154F1E88ECDB00488A67 /* NewPinTypeSelectionView.xib */,
-				2589155A1E8911E500488A67 /* NewPinComposeView.xib */,
 				25E957931E8A001C0090C002 /* FreedomBubblePinDetailView.xib */,
 				25E957981E8B9C470090C002 /* WiFiPinDetailView.xib */,
 			);
@@ -268,6 +257,7 @@
 		25DE917A1EB685A800D8E94E /* New Pin */ = {
 			isa = PBXGroup;
 			children = (
+				25DE91981EB6A78600D8E94E /* Layout */,
 				2589154D1E88ECC800488A67 /* NewPinTypeSelectionView.swift */,
 				258915531E88EE9700488A67 /* NewPinTypeCollectionViewCell.swift */,
 				258915581E89116200488A67 /* NewPinComposeView.swift */,
@@ -278,6 +268,7 @@
 		25DE917B1EB685C300D8E94E /* Pin Detail */ = {
 			isa = PBXGroup;
 			children = (
+				2589154A1E88DB9400488A67 /* Layout */,
 				25E957951E8AD2E60090C002 /* PinDetailView.swift */,
 				25E9579C1E8BA5E80090C002 /* FreedomBubblePinDetailView.swift */,
 				25E9579A1E8B9EF80090C002 /* WiFiPinDetailView.swift */,
@@ -296,6 +287,7 @@
 		25DE918D1EB69F7700D8E94E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				25DE91971EB6A77800D8E94E /* Layout */,
 				25DE917E1EB6861000D8E94E /* ProfileView.swift */,
 				25DE918E1EB69FA300D8E94E /* ProfileFieldTableViewCell.swift */,
 				25DE91901EB69FB900D8E94E /* ProfileSocialMediaHandleTableViewCell.swift */,
@@ -303,6 +295,38 @@
 				25DE91941EB69FDA00D8E94E /* ProfileVerifyAccountTableViewCell.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		25DE91961EB6A76600D8E94E /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				258915461E88D73A00488A67 /* MenuView.xib */,
+				258915481E88DB8B00488A67 /* MenuView.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		25DE91971EB6A77800D8E94E /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				25DE91811EB6867200D8E94E /* ProfileView.xib */,
+				25DE91831EB68B7F00D8E94E /* ProfileFieldTableViewCell.xib */,
+				25DE91851EB68C7C00D8E94E /* ProfileSocialMediaHandleTableViewCell.xib */,
+				25DE91871EB68D9500D8E94E /* ProfileBioTableViewCell.xib */,
+				25DE91891EB68F9900D8E94E /* ProfileVerifyAccountTableViewCell.xib */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		25DE91981EB6A78600D8E94E /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				258915511E88EE0A00488A67 /* NewPinTypeCollectionViewCell.xib */,
+				2545D6571E8FA5D300CB9479 /* PlaceholderCollectionViewCell.xib */,
+				2589154F1E88ECDB00488A67 /* NewPinTypeSelectionView.xib */,
+				2589155A1E8911E500488A67 /* NewPinComposeView.xib */,
+			);
+			name = Layout;
 			sourceTree = "<group>";
 		};
 		25E957971E8B3A630090C002 /* Utilities */ = {

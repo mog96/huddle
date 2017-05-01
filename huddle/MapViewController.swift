@@ -25,6 +25,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var searchButton: UIButton!
     
     fileprivate var menuView: MenuView!
+    fileprivate var profileView: ProfileView!
     fileprivate var newPinTypeSelectionView: NewPinTypeSelectionView!
     fileprivate var newPinComposeView: NewPinComposeView!
     fileprivate var freedomBubblePinDetailView: FreedomBubblePinDetailView!
@@ -55,6 +56,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
+        // Menu view.
         self.menuView = Bundle.main.loadNibNamed("MenuView", owner: self, options: nil)![0] as! MenuView
         self.view.addSubview(self.menuView)
         self.menuView.autoPinEdgesToSuperviewEdges()
@@ -62,6 +64,17 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.menuView.alpha = 0
         self.menuView.isHidden = true
         
+        // Profile view.
+        self.profileView = Bundle.main.loadNibNamed("ProfileView", owner: self, options: nil)![0] as! ProfileView
+        self.view.addSubview(self.profileView)
+        self.profileView.autoPinEdgesToSuperviewEdges()
+        self.profileView.frame.size = self.view.frame.size
+        self.profileView.containerView.frame.size = self.view.frame.size
+        self.profileView.delegate = self
+        self.profileView.alpha = 0
+        self.profileView.isHidden = true
+        
+        // New pin type selection view.
         self.newPinTypeSelectionView = Bundle.main.loadNibNamed("NewPinTypeSelectionView", owner: self, options: nil)![0] as! NewPinTypeSelectionView
         self.view.addSubview(self.newPinTypeSelectionView)
         self.newPinTypeSelectionView.autoPinEdgesToSuperviewEdges()
@@ -69,6 +82,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.newPinTypeSelectionView.alpha = 0
         self.newPinTypeSelectionView.isHidden = true
         
+        // New pin compose view.
         self.newPinComposeView = Bundle.main.loadNibNamed("NewPinComposeView", owner: self, options: nil)![0] as! NewPinComposeView
         self.view.addSubview(self.newPinComposeView)
         self.newPinComposeView.autoPinEdgesToSuperviewEdges()
@@ -76,6 +90,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.newPinComposeView.alpha = 0
         self.newPinComposeView.isHidden = true
         
+        // Freedom bubble pin detail view.
         self.freedomBubblePinDetailView = Bundle.main.loadNibNamed("FreedomBubblePinDetailView", owner: self, options: nil)![0] as! FreedomBubblePinDetailView
         self.view.addSubview(self.freedomBubblePinDetailView)
         self.freedomBubblePinDetailView.autoPinEdgesToSuperviewEdges()
@@ -84,6 +99,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.freedomBubblePinDetailView.alpha = 0
         self.freedomBubblePinDetailView.isHidden = true
         
+        // Wi-Fi pin detail view.
         self.wiFiPinDetailView = Bundle.main.loadNibNamed("WiFiPinDetailView", owner: self, options: nil)![0] as! WiFiPinDetailView
         self.view.addSubview(self.wiFiPinDetailView)
         self.wiFiPinDetailView.autoPinEdgesToSuperviewEdges()
@@ -94,6 +110,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         
         self.searchButton.isHidden = true
         
+        // Image picker.
         self.chooseMediaAC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         self.chooseMediaAC.addAction(UIAlertAction(title: "CLICK", style: .default, handler: { _ in
             self.presentImagePicker(usingPhotoLibrary: false)
@@ -104,7 +121,6 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         self.chooseMediaAC.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: { _ in
             self.chooseMediaAC.dismiss(animated: true, completion: nil)
         }))
-        
         self.imagePickerVC = UIImagePickerController()
         self.imagePickerVC.delegate = self
         self.imagePickerVC.allowsEditing = true
@@ -112,6 +128,7 @@ class MapViewController: UIViewController, UINavigationControllerDelegate {
         
         /* INITIALIZE MAP */
         
+        // Map setup.
         self.currentHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
         self.currentHUD.label.text = "Orienting..."
         
@@ -316,10 +333,30 @@ extension MapViewController: MKMapViewDelegate {
 // MARK: - Transition Helpers
 
 extension MapViewController {
+    fileprivate func showFullScreenView(view: UIView, show: Bool) {
+        if show {
+            view.isHidden = false
+            UIView.animate(withDuration: 0.15, delay: 0, options: .transitionCrossDissolve, animations: {
+                view.alpha = 1
+            }, completion: nil)
+            
+        } else {
+            UIView.animate(withDuration: 0.15, delay: 0, options: .transitionCrossDissolve, animations: {
+                view.alpha = 0
+            }) { _ in
+                view.isHidden = true
+            }
+        }
+    }
+    
     fileprivate func showMenuView(_ show: Bool) {
         self.statusBarHidden = show
         self.setNeedsStatusBarAppearanceUpdate()
         self.showFullScreenView(view: self.menuView, show: show)
+    }
+    
+    fileprivate func showProfileView(_ show: Bool) {
+        self.showFullScreenView(view: self.profileView, show: show)
     }
     
     fileprivate func showNewPinTypeSelectionView(_ show: Bool) {
@@ -339,22 +376,6 @@ extension MapViewController {
     fileprivate func showWiFiPinDetailView(_ show: Bool) {
         self.showFullScreenView(view: self.wiFiPinDetailView, show: show)
     }
-    
-    fileprivate func showFullScreenView(view: UIView, show: Bool) {
-        if show {
-            view.isHidden = false
-            UIView.animate(withDuration: 0.15, delay: 0, options: .transitionCrossDissolve, animations: {
-                view.alpha = 1
-            }, completion: nil)
-            
-        } else {
-            UIView.animate(withDuration: 0.15, delay: 0, options: .transitionCrossDissolve, animations: {
-                view.alpha = 0
-            }) { _ in
-                view.isHidden = true
-            }
-        }
-    }
 }
 
 
@@ -363,6 +384,21 @@ extension MapViewController {
 extension MapViewController: MenuViewDelegate {
     func menuViewCloseButtonTapped() {
         self.showMenuView(false)
+    }
+    
+    func menuViewProfileButtonTapped() {
+        self.showProfileView(true)
+        self.showMenuView(false)
+    }
+}
+
+
+// MARK: - Profile View Delegate
+
+extension MapViewController: ProfileViewDelegate {
+    func profileViewCloseButtonTapped() {
+        self.showProfileView(false)
+        self.showMenuView(true)
     }
 }
 

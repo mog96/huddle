@@ -14,6 +14,7 @@ protocol ProfileViewDelegate {
 
 class ProfileView: UIView {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var addProfilePhotoButton: UIButton!
     @IBOutlet weak var profilePhotoImageView: ProfilePhotoImageView!
@@ -51,6 +52,10 @@ class ProfileView: UIView {
     }
     
     func commonInit() {
+        //
+    }
+    
+    override func awakeFromNib() {        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.register(UINib(nibName: "ProfileFieldTableViewCell", bundle: nil), forCellReuseIdentifier: "FieldCell")
@@ -67,13 +72,25 @@ extension ProfileView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "FieldCell")!
+            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "FieldCell") as! ProfileFieldTableViewCell
+            cell.fieldNameLabel.text = "name:"
             return cell
-        case 0:
-            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "FieldCell")!
+        case 1:
+            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "FieldCell") as! ProfileFieldTableViewCell
+            cell.fieldNameLabel.text = "username:"
             return cell
-        default:
-            return UITableViewCell()
+        case 2:
+            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "SocialMediaHandleCell") as! ProfileSocialMediaHandleTableViewCell
+            if indexPath.row > 0 {
+                cell.fieldNameLabel.isHidden = true
+            }
+            return cell
+        case 3:
+            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "BioCell") as! ProfileBioTableViewCell
+            return cell
+        default: // case 5
+            let cell =  self.tableView.dequeueReusableCell(withIdentifier: "VerifyAccountCell") as! ProfileVerifyAccountTableViewCell
+            return cell
         }
     }
     
@@ -90,7 +107,7 @@ extension ProfileView: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 2:
             // Return one cell per social media handle.
-            return 1
+            return 2
         default:
             return 1
         }
@@ -104,7 +121,13 @@ extension ProfileView: UITableViewDelegate, UITableViewDataSource {
         let inset: CGFloat = 16
         let separatorView = UIView(frame: CGRect(x: inset, y: 0, width: self.tableView.frame.width - inset, height: 1))
         separatorView.backgroundColor = UIColor(colorLiteralRed: 244/255, green: 244/255, blue: 244/255, alpha: 244/255)
-        return separatorView
+        let separatorContainerView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width - inset, height: 1))
+        separatorContainerView.addSubview(separatorView)
+        return separatorContainerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
     }
 }
 

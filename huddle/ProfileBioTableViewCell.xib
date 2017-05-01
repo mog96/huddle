@@ -50,6 +50,7 @@
                     <constraint firstItem="sK2-az-VhE" firstAttribute="centerY" secondItem="fS4-ZZ-70W" secondAttribute="centerY" id="wXZ-4x-h4b"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bioTextView" destination="IHf-7m-gD6" id="rfX-DX-SVi"/>
                 <outlet property="editButton" destination="sK2-az-VhE" id="9Su-wz-U4C"/>

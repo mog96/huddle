@@ -15,6 +15,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNJ-vB-yLP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hlH-dX-nyt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1go-wd-SLx">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="4Sg-Xh-YWL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2n-bg-R4w">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
@@ -32,12 +53,59 @@
                                         <action selector="onCloseButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="P0O-cr-aze"/>
                                     </connections>
                                 </button>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hee-I4-KRg">
+                                    <rect key="frame" x="0.0" y="221" width="375" height="446"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </tableView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QIx-Zt-9Wn" customClass="ProfilePhotoImageView" customModule="huddle" customModuleProvider="target">
+                                    <rect key="frame" x="123" y="60" width="128" height="128"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="128" id="JD3-6L-bjg"/>
+                                        <constraint firstAttribute="width" constant="128" id="ZLQ-92-QPk"/>
+                                    </constraints>
+                                </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReC-1c-ObP">
+                                    <rect key="frame" x="16" y="173" width="40" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="EoU-j1-MSZ"/>
+                                        <constraint firstAttribute="height" constant="40" id="RNo-pC-6R4"/>
+                                    </constraints>
+                                    <state key="normal" image="sovacoin"/>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iam-jK-rkq">
+                                    <rect key="frame" x="50" y="167" width="21" height="15"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGP-te-mLP">
+                                    <rect key="frame" x="224" y="29" width="60" height="60"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="60" id="NFi-5J-LDD"/>
+                                        <constraint firstAttribute="width" constant="60" id="Os2-Q4-WJu"/>
+                                    </constraints>
+                                    <state key="normal" image="add-photo"/>
+                                    <connections>
+                                        <action selector="onAddProfilePhotoButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="tpo-dL-5Zl"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
+                                <constraint firstItem="QIx-Zt-9Wn" firstAttribute="centerX" secondItem="e9N-6G-9UG" secondAttribute="centerX" id="5gZ-fQ-qBW"/>
+                                <constraint firstItem="ReC-1c-ObP" firstAttribute="top" secondItem="Iam-jK-rkq" secondAttribute="top" constant="6" id="5jx-6o-rxo"/>
+                                <constraint firstItem="Hee-I4-KRg" firstAttribute="leading" secondItem="e9N-6G-9UG" secondAttribute="leading" id="KEQ-u2-4Zp"/>
                                 <constraint firstItem="Zmp-79-SX8" firstAttribute="leading" secondItem="e9N-6G-9UG" secondAttribute="leading" constant="16" id="PYo-yY-RWm"/>
-                                <constraint firstAttribute="height" constant="667" placeholder="YES" id="UsX-zQ-AC7"/>
-                                <constraint firstAttribute="width" constant="375" placeholder="YES" id="XxC-eu-IVS"/>
+                                <constraint firstItem="Hee-I4-KRg" firstAttribute="top" secondItem="ReC-1c-ObP" secondAttribute="bottom" constant="8" id="QBf-VG-asy"/>
+                                <constraint firstItem="Hee-I4-KRg" firstAttribute="top" secondItem="QIx-Zt-9Wn" secondAttribute="bottom" constant="33" id="QZd-1X-fz0"/>
+                                <constraint firstAttribute="bottom" secondItem="Hee-I4-KRg" secondAttribute="bottom" id="TUJ-GO-RrI"/>
+                                <constraint firstAttribute="height" constant="667" id="UsX-zQ-AC7"/>
+                                <constraint firstItem="tGP-te-mLP" firstAttribute="top" secondItem="QIx-Zt-9Wn" secondAttribute="top" constant="-31" id="VzM-Db-esL"/>
+                                <constraint firstItem="tGP-te-mLP" firstAttribute="trailing" secondItem="QIx-Zt-9Wn" secondAttribute="trailing" constant="33" id="XFF-xK-CJg"/>
+                                <constraint firstItem="QIx-Zt-9Wn" firstAttribute="top" secondItem="e9N-6G-9UG" secondAttribute="top" constant="60" id="bOD-UE-zc7"/>
+                                <constraint firstItem="ReC-1c-ObP" firstAttribute="leading" secondItem="e9N-6G-9UG" secondAttribute="leading" constant="16" id="cIL-jk-hhE"/>
                                 <constraint firstItem="Zmp-79-SX8" firstAttribute="top" secondItem="e9N-6G-9UG" secondAttribute="top" constant="20" id="nkq-Z4-GAL"/>
+                                <constraint firstAttribute="trailing" secondItem="Hee-I4-KRg" secondAttribute="trailing" id="uNg-4r-qF4"/>
+                                <constraint firstItem="ReC-1c-ObP" firstAttribute="trailing" secondItem="Iam-jK-rkq" secondAttribute="trailing" constant="-15" id="xHQ-YY-03c"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -45,69 +113,27 @@
                         <constraint firstItem="e9N-6G-9UG" firstAttribute="leading" secondItem="E2n-bg-R4w" secondAttribute="leading" id="8oP-uy-3ba"/>
                         <constraint firstItem="e9N-6G-9UG" firstAttribute="top" secondItem="E2n-bg-R4w" secondAttribute="top" id="BuQ-pc-WfP"/>
                         <constraint firstAttribute="bottom" secondItem="e9N-6G-9UG" secondAttribute="bottom" id="OZi-eZ-dkE"/>
+                        <constraint firstItem="e9N-6G-9UG" firstAttribute="width" secondItem="E2n-bg-R4w" secondAttribute="width" id="ce5-U7-8Ic"/>
                         <constraint firstAttribute="trailing" secondItem="e9N-6G-9UG" secondAttribute="trailing" id="jU0-S4-f90"/>
                     </constraints>
                 </scrollView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QIx-Zt-9Wn" customClass="ProfilePhotoImageView" customModule="huddle" customModuleProvider="target">
-                    <rect key="frame" x="123" y="62" width="128" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="JD3-6L-bjg"/>
-                        <constraint firstAttribute="width" constant="128" id="ZLQ-92-QPk"/>
-                    </constraints>
-                </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Hee-I4-KRg">
-                    <rect key="frame" x="0.0" y="223" width="375" height="444"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReC-1c-ObP">
-                    <rect key="frame" x="16" y="175" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="EoU-j1-MSZ"/>
-                        <constraint firstAttribute="height" constant="40" id="RNo-pC-6R4"/>
-                    </constraints>
-                    <state key="normal" image="sovacoin"/>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iam-jK-rkq">
-                    <rect key="frame" x="51" y="170" width="21" height="15"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tGP-te-mLP">
-                    <rect key="frame" x="222" y="29" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="NFi-5J-LDD"/>
-                        <constraint firstAttribute="width" constant="60" id="Os2-Q4-WJu"/>
-                    </constraints>
-                    <state key="normal" image="add-photo"/>
-                    <connections>
-                        <action selector="onAddProfilePhotoButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="tpo-dL-5Zl"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
-                <constraint firstItem="ReC-1c-ObP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="5lc-4A-ATr"/>
-                <constraint firstItem="tGP-te-mLP" firstAttribute="top" secondItem="QIx-Zt-9Wn" secondAttribute="top" constant="-33" id="Bgx-06-Bzs"/>
                 <constraint firstAttribute="trailing" secondItem="E2n-bg-R4w" secondAttribute="trailing" id="EX6-NB-Q59"/>
-                <constraint firstItem="Hee-I4-KRg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="EZn-Pe-nLO"/>
-                <constraint firstItem="tGP-te-mLP" firstAttribute="trailing" secondItem="QIx-Zt-9Wn" secondAttribute="trailing" constant="31" id="Gom-ap-Kr7"/>
-                <constraint firstAttribute="trailing" secondItem="Hee-I4-KRg" secondAttribute="trailing" id="K6o-bF-38O"/>
+                <constraint firstItem="BNJ-vB-yLP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Eih-OV-DWN"/>
                 <constraint firstItem="E2n-bg-R4w" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ROS-8w-9Ed"/>
                 <constraint firstItem="E2n-bg-R4w" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SlN-4i-iO9"/>
-                <constraint firstItem="Iam-jK-rkq" firstAttribute="trailing" secondItem="ReC-1c-ObP" secondAttribute="trailing" constant="16" id="VEu-Hk-lsG"/>
-                <constraint firstAttribute="bottom" secondItem="Hee-I4-KRg" secondAttribute="bottom" id="WVt-Ms-cEF"/>
-                <constraint firstItem="Iam-jK-rkq" firstAttribute="top" secondItem="ReC-1c-ObP" secondAttribute="top" constant="-5" id="d2V-as-YUl"/>
-                <constraint firstItem="QIx-Zt-9Wn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hW1-Aw-QtK"/>
-                <constraint firstItem="Hee-I4-KRg" firstAttribute="top" secondItem="ReC-1c-ObP" secondAttribute="bottom" constant="8" id="iCW-FN-2f6"/>
+                <constraint firstAttribute="bottom" secondItem="BNJ-vB-yLP" secondAttribute="bottom" id="ch1-x2-Tpb"/>
+                <constraint firstAttribute="trailing" secondItem="BNJ-vB-yLP" secondAttribute="trailing" id="jHe-7K-FTb"/>
                 <constraint firstAttribute="bottom" secondItem="E2n-bg-R4w" secondAttribute="bottom" id="k1n-0H-evr"/>
-                <constraint firstItem="QIx-Zt-9Wn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="62" id="kmV-xg-7Ud"/>
-                <constraint firstItem="Hee-I4-KRg" firstAttribute="top" secondItem="QIx-Zt-9Wn" secondAttribute="bottom" constant="33" id="vbO-qf-xfY"/>
+                <constraint firstItem="BNJ-vB-yLP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vtu-EI-LcA"/>
             </constraints>
             <connections>
                 <outlet property="addProfilePhotoButton" destination="tGP-te-mLP" id="5is-9h-XRk"/>
                 <outlet property="closeButton" destination="Zmp-79-SX8" id="y98-ct-ahz"/>
                 <outlet property="coinButton" destination="ReC-1c-ObP" id="DQs-Ge-ibx"/>
                 <outlet property="coinCountLabel" destination="Iam-jK-rkq" id="vzT-yd-dc1"/>
+                <outlet property="containerView" destination="e9N-6G-9UG" id="GFG-7J-c8H"/>
                 <outlet property="profilePhotoImageView" destination="QIx-Zt-9Wn" id="AcW-0Z-ee1"/>
                 <outlet property="tableView" destination="Hee-I4-KRg" id="pFH-Dj-eXc"/>
             </connections>

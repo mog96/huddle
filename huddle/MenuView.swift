@@ -10,6 +10,7 @@ import UIKit
 
 protocol MenuViewDelegate {
     func menuViewCloseButtonTapped()
+    func menuViewProfileButtonTapped()
 }
 
 class MenuView: UIView {
@@ -40,6 +41,7 @@ extension MenuView {
     
     // Profile button.
     @IBAction func on00Tapped(_ sender: Any) {
+        self.delegate?.menuViewProfileButtonTapped()
     }
     
     // Filter button.
