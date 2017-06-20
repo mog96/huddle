@@ -21,6 +21,7 @@ class ProfileBioTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.bioTextView.isEditable = self.isEditingBio
+        self.bioTextView.isUserInteractionEnabled = self.isEditingBio
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,6 +39,7 @@ extension ProfileBioTableViewCell {
         self.isEditingBio = !self.isEditingBio
         
         self.bioTextView.isEditable = self.isEditingBio
+        self.bioTextView.isUserInteractionEnabled = self.isEditingBio
         
         if self.isEditingBio {
             UIView.transition(with: self.editButton, duration: 0.2, options: .transitionCrossDissolve, animations: {
