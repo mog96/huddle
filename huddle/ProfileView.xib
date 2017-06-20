@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -118,6 +118,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="E2n-bg-R4w" secondAttribute="trailing" id="EX6-NB-Q59"/>
                 <constraint firstItem="BNJ-vB-yLP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Eih-OV-DWN"/>
@@ -136,9 +137,15 @@
                 <outlet property="containerView" destination="e9N-6G-9UG" id="GFG-7J-c8H"/>
                 <outlet property="profilePhotoImageView" destination="QIx-Zt-9Wn" id="AcW-0Z-ee1"/>
                 <outlet property="tableView" destination="Hee-I4-KRg" id="pFH-Dj-eXc"/>
+                <outletCollection property="gestureRecognizers" destination="Bdo-Hg-hDc" appends="YES" id="2ex-F4-4Qq"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="Bdo-Hg-hDc">
+            <connections>
+                <action selector="onScreenTapped:" destination="iN0-l3-epB" id="XvZ-cz-Aau"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="add-photo" width="220" height="221"/>

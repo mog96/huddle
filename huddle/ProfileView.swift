@@ -142,4 +142,10 @@ extension ProfileView {
     @IBAction func onAddProfilePhotoButtonTapped(_ sender: Any) {
         //
     }
+    
+    @IBAction func onScreenTapped(_ sender: Any) {
+        self.endEditing(true)
+        
+        print("BANANA")
+    }
 }
